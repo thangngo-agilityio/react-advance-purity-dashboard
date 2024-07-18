@@ -7,7 +7,6 @@ import { bases } from './bases';
 export const theme = extendTheme({
   ...bases,
   components,
-
   fonts: {
     heading: `'Helvetica', sans-serif`,
     body: `'Helvetica Bold', sans-serif`,

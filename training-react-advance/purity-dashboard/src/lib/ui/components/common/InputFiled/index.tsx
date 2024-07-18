@@ -48,10 +48,10 @@ const InputField = (
     <FormControl isInvalid={isError} maxW={430}>
       {label && (
         <FormLabel
-          fontSize="base"
-          fontWeight="regular"
+          fontSize="md"
           marginInlineEnd={0}
           minW="max-content"
+          color='text.200'
         >
           {label}
         </FormLabel>
@@ -67,7 +67,6 @@ const InputField = (
           py={5}
           type="text"
           onChange={handleChangeValue}
-          border="none"
           ref={ref}
           {...rest}
           isInvalid={isError}
