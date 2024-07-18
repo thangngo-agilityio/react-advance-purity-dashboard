@@ -1,10 +1,10 @@
 import { colors } from './colors';
 import { radii } from './metric';
-import { font, fontSizes } from './typography';
+import { Fonts, fontSizes } from './typography';
 
 export const bases = {
   colors,
   fontSizes,
-  font,
+  Fonts,
   radii,
 };
