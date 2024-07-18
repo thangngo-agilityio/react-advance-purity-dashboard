@@ -22,6 +22,7 @@ export const colors = {
 
   border: {
     100: '#4FD1C5',
+    200: '#E2E8F0',
   },
 
   shadow: {

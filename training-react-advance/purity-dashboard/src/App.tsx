@@ -4,14 +4,14 @@ import * as React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import Button from './lib/ui/components/common/Button';
 import { theme } from './themes';
+import InputFiled from './lib/ui/components/common/InputFiled';
 
 const App = () => {
   // 2. Wrap ChakraProvider at the root of your app
   return (
     <ChakraProvider theme={theme}>
-      <Button>
-        Test
-      </Button>
+      <h1>Text</h1>
+      <InputFiled placeholder='text'/>
     </ChakraProvider>
   )
 }
