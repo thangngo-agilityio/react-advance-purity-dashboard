@@ -7,6 +7,8 @@ export type TButtonProps = ButtonProps & {
   children: ReactNode;
 };
 
-export const ButtonComponent = memo(({ children, ...rest }: TButtonProps) => (
+const ButtonComponent = memo(({ children, ...rest }: TButtonProps) => (
   <Button {...rest}>{children}</Button>
 ));
+
+export default ButtonComponent;
