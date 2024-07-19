@@ -1,35 +1,30 @@
 import { defineStyleConfig } from '@chakra-ui/react';
 
-export const Heading = defineStyleConfig({
+export const Text = defineStyleConfig({
   baseStyle: {
-    fontFamily: 'heading',
+    fontWeight: 400,
   },
-
   sizes: {
-    md: {
+    textSm: {
+      fontSize: 'sm',
+    },
+    textMd: {
       fontSize: 'md',
     },
-    lg: {
+    textLg: {
       fontSize: 'lg',
-    },
-    xl: {
-      fontSize: 'xl',
     },
   },
   variants: {
     primary: {
-      color: 'text.200',
+      color: 'text.400',
     },
     secondary: {
       color: 'text.100',
     },
-    tertiary: {
-      color: 'text.300',
-    },
   },
-
   defaultProps: {
-    size: 'lg',
+    size: 'textMd',
     variant: 'primary',
   },
 });
