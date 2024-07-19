@@ -27,7 +27,7 @@ type TInputFieldProps = Omit<InputProps, 'onChange'> & {
   onChange?: (value: string) => void;
 };
 
-const InputField = (
+export const InputField = memo(forwardRef((
   {
     isError = false,
     errorMessages = 'Default error',
@@ -83,6 +83,5 @@ const InputField = (
       )}
     </FormControl>
   );
-};
+}));
 
-export default memo(forwardRef(InputField));

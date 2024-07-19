@@ -2,7 +2,7 @@ import { fireEvent, render, RenderResult } from '@testing-library/react';
 
 
 // Components
-import InputField from '..';
+import { InputField } from '..';
 import { PhoneIcon } from '@chakra-ui/icons';
 
 const mockOnChange = jest.fn();
