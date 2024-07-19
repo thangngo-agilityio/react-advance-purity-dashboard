@@ -11,4 +11,4 @@ describe('Heading test cases', () => {
     );
     expect(container).toMatchSnapshot();
   })
-})
+});
