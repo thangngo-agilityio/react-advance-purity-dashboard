@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AddIcon } from '@chakra-ui/icons';
 
 // components
-import Button from '.';
+import { ButtonComponent } from '.';
 
 
-const meta: Meta<typeof Button> = {
-  title: 'Custom Components/Button',
+const meta: Meta<typeof ButtonComponent> = {
+  title: 'Components/Button',
   tags: ['autodocs'],
-  component: Button,
+  component: ButtonComponent,
   argTypes: {
     onClick: {
       description: 'The click event handling function',
@@ -29,7 +29,7 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof ButtonComponent>;
 
 
 export const Primary: Story = {
