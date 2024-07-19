@@ -1,13 +1,10 @@
-import { Heading } from '@chakra-ui/react'
+import { Heading, HeadingProps } from '@chakra-ui/react'
+import { memo } from 'react';
 
-interface THeadingProps {
+export type THeadingProps = HeadingProps & {
   title: string;
 }
 
-export const HeadingComponent = ({ title, ...rest }: THeadingProps) => {
-  return (
-    <Heading {...rest}>
-      {title}
-    </Heading>
-  )
-}
+export const HeadingComponent = memo(({ title, ...rest }: THeadingProps) => (
+  <Heading {...rest}>{title}</Heading>
+));
