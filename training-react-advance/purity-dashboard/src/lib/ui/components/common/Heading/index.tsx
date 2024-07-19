@@ -5,6 +5,8 @@ export type THeadingProps = HeadingProps & {
   title: string;
 }
 
-export const HeadingComponent = memo(({ title, ...rest }: THeadingProps) => (
+const HeadingComponent = memo(({ title, ...rest }: THeadingProps) => (
   <Heading {...rest}>{title}</Heading>
 ));
+
+export default HeadingComponent;

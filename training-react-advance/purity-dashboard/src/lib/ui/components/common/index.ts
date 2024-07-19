@@ -1,3 +1,3 @@
-export * from './Button';
+export { default as Button } from './Button';
 export * from './InputFiled';
-export * from './Heading';
+export { default as Heading } from './Heading';

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { PhoneIcon } from '@chakra-ui/icons';
 
 // component
-import Button from '..';
+import { Button } from '../..';
 
 
 describe('Button test cases', () => {
