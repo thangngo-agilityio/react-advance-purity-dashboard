@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "prepare": "husky",
     "test": "jest",
+    "test-coverage": "jest --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -29,6 +30,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-fast-compare": "^3.2.2",
+    "react-hook-form": "^7.52.1",
     "react-router-dom": "^6.25.1",
     "ts-jest": "^29.2.2",
     "ts-node": "^10.9.2"
