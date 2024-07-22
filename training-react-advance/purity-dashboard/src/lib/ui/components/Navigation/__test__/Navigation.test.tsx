@@ -1,6 +1,8 @@
 import { PhoneIcon } from "@chakra-ui/icons";
-import Navigation from "..";
 import { render } from "@testing-library/react";
+
+// Component
+import Navigation from "..";
 
 describe('Navigation test case', () => {
   it('Should render correctly', () => {
