@@ -2,7 +2,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 // Component
-import { Navigation, Text } from "..";
+import { Navigation } from "..";
 import { PhoneIcon } from "@chakra-ui/icons";
 
 const meta: Meta<typeof Navigation> = {
@@ -28,16 +28,10 @@ export const Default: Story = {
   }
 }
 
-export const Small: Story = {
+export const Active: Story = {
   args: {
     leftIcon: <PhoneIcon />,
     children: 'Content 2',
-  }
-}
-
-export const Large: Story = {
-  args: {
-    leftIcon: <PhoneIcon />,
-    children: 'Content 3',
+    isActive: true
   }
 }
