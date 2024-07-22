@@ -3,14 +3,17 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 // Theme
 import { theme } from './themes';
+import { Navigation } from './lib/ui';
+import { PhoneIcon } from '@chakra-ui/icons';
 
-import InputFiled from './lib/ui/components/common/InputFiled';
 
 const App = () => {
   // 2. Wrap ChakraProvider at the root of your app
   return (
     <ChakraProvider theme={theme}>
-      <InputFiled label='text' placeholder='text' />
+      <Navigation leftIcon={<PhoneIcon />} isActive={true}>
+        text
+      </Navigation>
     </ChakraProvider>
   )
 }

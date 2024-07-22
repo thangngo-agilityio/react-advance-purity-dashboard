@@ -9,7 +9,7 @@ export const colors = {
     600: '#48BB78',
     700: '#CBD5E0',
     800: '#81e6d9',
-    900: '#e6fffa',
+    900: '#E6fffA',
   },
 
   text: {

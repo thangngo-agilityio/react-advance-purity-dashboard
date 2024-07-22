@@ -2,12 +2,16 @@
   font-family: 'Helvetica';
   font-style: normal;
   font-weight: normal;
-  src: local('Helvetica'), url('./assets/fonts/Helvetica.ttf') format('truetype');
-  }
+  src:
+    local('Helvetica'),
+    url('./assets/fonts/Helvetica.ttf') format('truetype');
+}
 
-  @font-face {
-    font-family: 'Helvetica Bold';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Helvetica Bold'), url('./assets/fonts/Helvetica-Bold.ttf') format('truetype');
-    }
+@font-face {
+  font-family: 'Helvetica Bold';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local('Helvetica Bold'),
+    url('./assets/fonts/Helvetica-Bold.ttf') format('truetype');
+}
