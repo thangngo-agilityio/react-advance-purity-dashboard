@@ -3,14 +3,14 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 // Theme
 import { theme } from './themes';
-import Header from './lib/ui/components/Header';
+import Footer from './lib/ui/components/Footer';
 
 
 const App = () => {
   // 2. Wrap ChakraProvider at the root of your app
   return (
     <ChakraProvider theme={theme}>
-      <Header />
+      <Footer />
     </ChakraProvider>
   )
 }
