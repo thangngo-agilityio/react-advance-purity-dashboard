@@ -4,15 +4,19 @@ export const NAVBAR_LINKS = [
     path: '/dashboard',
   },
   {
-    name: 'PROFILE',
+    name: 'Tables',
+    path: '/tables',
+  },
+  {
+    name: 'Billing',
+    path: '/billing',
+  },
+  {
+    name: 'RTL',
+    path: '/rtl',
+  },
+  {
+    name: 'Profile',
     path: '/profile',
-  },
-  {
-    name: 'SIGN UP',
-    path: '/sign-up',
-  },
-  {
-    name: 'SIGN IN',
-    path: '/sign-in',
   },
 ];

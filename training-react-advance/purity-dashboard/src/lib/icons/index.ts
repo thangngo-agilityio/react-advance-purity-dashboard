@@ -9,3 +9,4 @@ export * from './notification';
 export * from './person';
 export * from './rocket';
 export * from './setting';
+export * from './search';

@@ -1,8 +1,8 @@
 import { Text, TextProps } from "@chakra-ui/react";
-import { memo } from "react";
+import { memo, ReactNode } from "react";
 
 type TTextProps = TextProps & {
-  content: string;
+  content: ReactNode;
 }
 
 const TextComponent = memo(({ content, ...rest }: TTextProps) => (

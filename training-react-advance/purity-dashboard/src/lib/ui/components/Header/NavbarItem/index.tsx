@@ -1,33 +1,23 @@
-import { NAVBAR_LINKS } from '../../../../constants';
-import { List, ListItem } from '@chakra-ui/react';
-import { Link, useLocation } from 'react-router-dom';
+
+import { Box, Flex, Link, ListItem } from '@chakra-ui/react';
 
 // Components
+import { Heading, Text } from '../../common';
 
-const Navbar = () => {
-  const location = useLocation();
-  const activePath = location.pathname;
+type TNavbarProps = {
+  path?: string;
+  name?: string;
+  colorFill?: string;
+}
 
-  return (
-    <List maxW="440px" display="flex" h="inherit">
-      {NAVBAR_LINKS.map(({ name, path }) => (
-        <ListItem
-          key={name}
-          w="110px"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          fontSize="md"
-          color="secondary"
-          {...(activePath === path && {
-            color: 'steelBlue',
-          })}
-        >
-          <Link to={path}>{name}</Link>
-        </ListItem>
-      ))}
-    </List>
-  );
-};
+const Navbar = ({ path, name, colorFill }: TNavbarProps) => (
+  <Box>
+    <Flex flexDirection='row' alignItems='center' mb='5px'>
+      <Text size='textSm' content='Pages /' />
+      <Link href={path} variant='secondary' color={colorFill}>{name}</Link>
+    </Flex>
+    <Heading as={'h2'} title={name} size='md' color={colorFill} />
+  </Box>
+);
 
 export default Navbar;

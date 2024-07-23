@@ -21,5 +21,7 @@ export default meta;
 type Story = StoryObj<typeof Header>;
 
 export const Default: Story = {
-
+  args: {
+    name: 'Home'
+  }
 }

@@ -56,9 +56,9 @@ export const InputField = memo(forwardRef((
           {label}
         </FormLabel>
       )}
-      <InputGroup>
+      <InputGroup >
         {leftIcon && (
-          <InputLeftElement top={1} pointerEvents="none">
+          <InputLeftElement pointerEvents="none">
             {leftIcon}
           </InputLeftElement>
         )}
@@ -68,6 +68,13 @@ export const InputField = memo(forwardRef((
           type="text"
           onChange={handleChangeValue}
           ref={ref}
+          borderColor='border.200'
+          _hover={
+            { borderColor: 'border.300', }
+          }
+          _focusVisible={
+            { borderColor: 'border.100', }
+          }
           {...rest}
           isInvalid={isError}
         />

@@ -1,8 +1,8 @@
 import { Heading, HeadingProps } from '@chakra-ui/react'
-import { memo } from 'react';
+import { memo, ReactNode } from 'react';
 
 export type THeadingProps = HeadingProps & {
-  title: string;
+  title: ReactNode;
 }
 
 const HeadingComponent = memo(({ title, ...rest }: THeadingProps) => (
