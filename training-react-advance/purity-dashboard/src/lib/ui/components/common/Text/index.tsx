@@ -5,10 +5,10 @@ type TTextProps = TextProps & {
   content: ReactNode;
 }
 
-const TextComponent = memo(({ content, ...rest }: TTextProps) => (
+const TextComponent = ({ content, ...rest }: TTextProps) => (
   <Text {...rest}>
     {content}
   </Text>
-));
+);
 
-export default TextComponent;
+export default memo(TextComponent);
