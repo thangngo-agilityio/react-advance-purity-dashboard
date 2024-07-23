@@ -12,6 +12,7 @@ export const Input = defineStyleConfig({
       color: 'text.200',
       _placeholder: {
         color: 'text.400',
+        fontSize: 'sm',
       },
     },
   },
