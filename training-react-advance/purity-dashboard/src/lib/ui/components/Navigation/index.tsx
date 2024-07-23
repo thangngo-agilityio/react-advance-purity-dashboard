@@ -1,12 +1,12 @@
-import { MouseEvent, ReactNode, memo } from 'react';
+import { MouseEvent, ReactElement, ReactNode, memo } from 'react';
 import { Box, Link } from '@chakra-ui/react';
 import ButtonIcon from '../common/ButtonIcon';
 
 export type TNavigationProps = {
   children: ReactNode;
-  leftIcon: ReactNode;
+  leftIcon?: ReactElement;
   destination?: string;
-  isActive: boolean;
+  isActive?: boolean;
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
 };
 

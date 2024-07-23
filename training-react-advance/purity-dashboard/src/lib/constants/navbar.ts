@@ -1,22 +1,53 @@
-export const NAVBAR_LINKS = [
+// Component
+import { BuildIcon, CardIcon, ChartIcon, HomeIcon, PersonIcon } from '../icons';
+
+// Constants
+import { ROUTES } from './router';
+
+export const MENU_ITEM_LIST = () => [
   {
-    name: 'DASHBOARD',
-    path: '/dashboard',
+    id: 1,
+    leftIcon: HomeIcon,
+    menuItemContent: 'Dashboards',
+    destination: '/',
   },
   {
-    name: 'Tables',
-    path: '/tables',
+    id: 2,
+    leftIcon: ChartIcon,
+    menuItemContent: 'Tables',
+    destination: `/`,
   },
   {
-    name: 'Billing',
-    path: '/billing',
+    id: 3,
+    leftIcon: CardIcon,
+    menuItemContent: 'Billing',
+    destination: `/${ROUTES}`,
   },
   {
-    name: 'RTL',
-    path: '/rtl',
+    id: 4,
+    leftIcon: BuildIcon,
+    menuItemContent: 'RTL',
+    destination: `/${ROUTES.RTL}`,
+  },
+];
+
+export const ACCOUNT_LIST = () => [
+  {
+    id: 1,
+    leftIcon: PersonIcon,
+    menuItemContent: 'Profile',
+    destination: `/${ROUTES.PROFILE}`,
+  },
+];
+
+export const SIDEBAR_LIST = [
+  {
+    id: 1,
+    title: '',
+    listItem: MENU_ITEM_LIST,
   },
   {
-    name: 'Profile',
-    path: '/profile',
+    id: 2,
+    title: 'ACCOUNT PAGES',
   },
 ];
