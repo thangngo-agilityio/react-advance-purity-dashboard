@@ -1,5 +1,5 @@
 
-import { Box, Flex, Link, ListItem } from '@chakra-ui/react';
+import { Box, Flex, Link } from '@chakra-ui/react';
 
 // Components
 import { Heading, Text } from '../../common';
