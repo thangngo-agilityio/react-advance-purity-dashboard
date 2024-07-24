@@ -1,9 +1,8 @@
-import { Flex, Link, List, ListItem, Text, VStack } from "@chakra-ui/react";
+import { Link, List, ListItem, VStack } from "@chakra-ui/react";
+import { Fragment, ReactElement } from "react";
 
 // Component
 import { LineIcon, LogoIcon } from "@/lib/icons";
-import { Fragment, ReactElement } from "react";
-import { ROUTES } from "@/lib/constants";
 import Navigation from "../Navigation";
 import CardHelp from "../CardHelp";
 
@@ -37,7 +36,7 @@ const Sidebar = ({ listItem = [] }: TSidebarProps) => (
           const LeftIconComponent = leftIcon || Fragment;
           return (
             <ListItem key={id} aria-label="item-icon">
-              <Navigation destination={destination} onClick={() => { }} leftIcon={<LeftIconComponent />}>
+              <Navigation destination={destination} leftIcon={<LeftIconComponent />}>
                 {menuItemContent}
               </Navigation>
             </ListItem>
