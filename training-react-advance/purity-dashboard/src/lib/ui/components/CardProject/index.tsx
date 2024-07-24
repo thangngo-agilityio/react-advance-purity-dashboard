@@ -9,8 +9,8 @@ type TCardProject = {
 }
 
 const CardProject = ({ src, alt, projectNumber, projectName, description }: TCardProject) => (
-  <VStack w='370px' h='192px'>
-    <Box position='relative' borderRadius='lg' w='100%' h="100%" mb='20px' borderColor='transparent'>
+  <VStack w='370px'>
+    <Box position='relative' borderRadius='lg' w='100%' h='192px' mb='20px' borderColor='transparent'>
       <Image borderRadius='lg' objectFit='cover' w='100%' h="100%" src={src} alt={alt} />
       <Image position='absolute' borderRadius='lg' borderColor='transparent' w='100%' h="100%" top={0} left={0} zIndex={2} bgGradient='linear(to-t, linear.100, linear.200)' />
     </Box>
