@@ -28,7 +28,7 @@ const Navigation = ({
       transition='.2s ease-in-out'
       _hover={{
         boxShadow: '0 5.5px 3.5px rgba(0, 0 , 0, .02)',
-        backgroundColor: 'background.200'
+        backgroundColor: 'background.100'
       }}
     >
       <Link
@@ -38,7 +38,6 @@ const Navigation = ({
         href={destination}
         onClick={onClick}
         aria-label="navigate-item"
-        variant={isActive ? 'primary' : 'default'}
       >
         {leftIcon && (
           <ButtonIcon icon={leftIcon} isActive={isActive} />

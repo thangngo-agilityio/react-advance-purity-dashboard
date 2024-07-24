@@ -21,7 +21,7 @@ export const MENU_ITEM_LIST = () => [
     id: 3,
     leftIcon: CardIcon,
     menuItemContent: 'Billing',
-    destination: `/${ROUTES}`,
+    destination: `/${ROUTES.BILLING}`,
   },
   {
     id: 4,

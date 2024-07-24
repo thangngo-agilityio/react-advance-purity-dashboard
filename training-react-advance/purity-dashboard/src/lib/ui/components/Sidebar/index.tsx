@@ -5,6 +5,7 @@ import { LineIcon, LogoIcon } from "@/lib/icons";
 import { Fragment, ReactElement } from "react";
 import { ROUTES } from "@/lib/constants";
 import Navigation from "../Navigation";
+import CardHelp from "../CardHelp";
 
 export type TMenuItem = {
   id: number;
@@ -28,37 +29,23 @@ const Sidebar = ({ listItem = [] }: TSidebarProps) => (
       mt={2.5}
       aria-label="list-icon"
       w="full"
+      mb='70px'
+      px='16px'
     >
       {listItem.map(
         ({ leftIcon, destination, menuItemContent, id }) => {
           const LeftIconComponent = leftIcon || Fragment;
           return (
             <ListItem key={id} aria-label="item-icon">
-
-              <Navigation destination={destination} onClick={() => { }}>
-                <Flex alignItems="center" justifyContent="space-between">
-                  <Flex
-                    gap={2.5}
-                    alignItems="center"
-                    justifyContent="space-between"
-                  >
-                    <LeftIconComponent />
-                    <Text
-                      fontSize="lg"
-                      fontWeight="md"
-                      color="text.primary"
-                      transition="all .25s ease-in-out"
-                    >
-                      {menuItemContent}
-                    </Text>
-                  </Flex>
-                </Flex>
+              <Navigation destination={destination} onClick={() => { }} leftIcon={<LeftIconComponent />}>
+                {menuItemContent}
               </Navigation>
             </ListItem>
           );
         },
       )}
     </List>
+    <CardHelp />
   </VStack>
 );
 
