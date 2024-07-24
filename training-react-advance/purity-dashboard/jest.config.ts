@@ -33,9 +33,9 @@ const config: Config = {
   },
   coveragePathIgnorePatterns: [
     '<rootDir>/src/lib/constant',
+    '<rootDir>/src/lib/mocks/',
     '<rootDir>/src/lib/icons/',
     '<rootDir>/src/themes/',
-    '<rootDir>/src/types/',
     '<rootDir>/src/lib/ui/index.ts',
     '<rootDir>/src/lib/ui/components/index.ts',
     '<rootDir>/src/pages/index.ts',
