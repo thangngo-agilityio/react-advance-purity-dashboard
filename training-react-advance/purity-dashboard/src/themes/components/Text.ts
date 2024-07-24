@@ -3,6 +3,7 @@ import { defineStyleConfig } from '@chakra-ui/react';
 export const Text = defineStyleConfig({
   baseStyle: {
     fontWeight: 400,
+    fontFamily: 'body',
   },
   sizes: {
     textSm: {
