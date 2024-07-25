@@ -45,7 +45,13 @@ const AuthForm = ({ isRegister, isDisabled, onChange, handleClickSubmit, handleC
   );
 
   return (
-    <Box w='452px'>
+    <Box
+      w='452px'
+      px='51px'
+      py='46px'
+      borderRadius={isRegister ? 'lg' : 'transparent'}
+      boxShadow={isRegister ? '0 7px 23px rgba(0, 0 , 0, .05)' : 'transparent'}
+    >
       {!isRegister ?
         <Box mb='36px'>
           <Heading as='h1' mb='8px' variant='tertiary' size='xl'>Welcome Back</Heading>

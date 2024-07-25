@@ -81,6 +81,10 @@ export const InputField = memo(forwardRef((
 
         {rightIcon && (
           <InputRightElement
+            w='25px'
+            h='25px'
+            top='11px'
+            right='15px'
             aria-label="The eye icon"
             type="button"
             as="button"
