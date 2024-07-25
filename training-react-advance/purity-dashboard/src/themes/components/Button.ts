@@ -31,6 +31,9 @@ export const Button = defineStyleConfig({
       fontSize: 'xl',
       width: '100%',
     },
+    icon: {
+      p: '22px',
+    },
   },
   variants: {
     primary: {
@@ -67,6 +70,13 @@ export const Button = defineStyleConfig({
       _hover: {
         backgroundColor: 'background.900',
       },
+    },
+    iconSecondary: {
+      backgroundColor: 'transparent',
+      borderRadius: 'lg',
+      borderColor: 'border.200',
+      borderWidth: '1px',
+      opacity: '1 !important',
     },
   },
   defaultProps: {

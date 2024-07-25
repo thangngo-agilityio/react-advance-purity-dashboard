@@ -1,12 +1,12 @@
-import { FormControl, FormLabel, Switch } from "@chakra-ui/react"
+import { FormControl, FormLabel, Switch, SwitchProps } from "@chakra-ui/react"
 
-type TSwitchComponent = {
+type TSwitchComponent = SwitchProps & {
   title: string;
 }
 
-const SwitchComponent = ({ title }: TSwitchComponent) => (
-  <FormControl display='flex' alignItems='center'>
-    <Switch colorScheme="teal" mr='10px' />
+const SwitchComponent = ({ title, ...rest }: TSwitchComponent) => (
+  <FormControl display='flex' alignItems='center' >
+    <Switch colorScheme="teal" mr='10px' {...rest} />
     <FormLabel htmlFor='email-alerts' mb='0'>
       {title}
     </FormLabel>

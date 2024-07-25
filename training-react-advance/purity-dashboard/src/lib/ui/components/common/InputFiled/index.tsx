@@ -45,7 +45,7 @@ export const InputField = memo(forwardRef((
   );
 
   return (
-    <FormControl isInvalid={isError} maxW={430}>
+    <FormControl isInvalid={isError}>
       {label && (
         <FormLabel
           fontSize="md"
@@ -80,7 +80,23 @@ export const InputField = memo(forwardRef((
         />
 
         {rightIcon && (
-          <InputRightElement top={1} pointerEvents="none">
+          <InputRightElement
+            w='25px'
+            h='25px'
+            top='11px'
+            right='15px'
+            aria-label="The eye icon"
+            type="button"
+            as="button"
+            _hover={{
+              borderColor: 'transparent',
+              outline: 'none',
+            }}
+            _focus={{
+              borderColor: 'transparent',
+              outline: 'none',
+            }}
+            data-testid="right-icon-input">
             {rightIcon}
           </InputRightElement>
         )}
