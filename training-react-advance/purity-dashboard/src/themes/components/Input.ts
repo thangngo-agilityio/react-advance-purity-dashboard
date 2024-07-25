@@ -5,6 +5,7 @@ export const Input = defineStyleConfig({
     field: {
       px: '20px',
       py: '15px',
+      height: '50px',
       borderRadius: 'lg',
       borderWidth: '1px',
       borderColor: 'border.200',

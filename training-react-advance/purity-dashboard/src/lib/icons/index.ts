@@ -11,3 +11,6 @@ export * from './rocket';
 export * from './setting';
 export * from './search';
 export * from './line';
+export * from './apple';
+export * from './facebook';
+export * from './google';

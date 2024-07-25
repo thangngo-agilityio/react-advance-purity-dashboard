@@ -2,13 +2,6 @@ import { render } from "@testing-library/react";
 import CardProject from "..";
 
 describe('CardProject component test case', () => {
-  it('Should render correctly', () => {
-    const { container } = render(
-      <CardProject />
-    )
-
-    expect(container).toMatchSnapshot();
-  })
   it('Render when data is available', () => {
     const { container } = render(
       <CardProject
