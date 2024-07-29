@@ -1,17 +1,15 @@
-// 1. import `ChakraProvider` component
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, QueryProvider, RouterProvider } from "./providers";
 
-// Theme
-import { theme } from './themes';
-import AuthForm from './lib/ui/components/AuthForm';
 
 
 const App = () => {
   // 2. Wrap ChakraProvider at the root of your app
   return (
-    <ChakraProvider theme={theme}>
-      <AuthForm />
-    </ChakraProvider>
+    <QueryProvider>
+      <ChakraProvider>
+        <RouterProvider />
+      </ChakraProvider>
+    </QueryProvider>
   )
 }
 

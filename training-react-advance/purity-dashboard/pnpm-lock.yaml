@@ -23,6 +23,15 @@ importers:
       '@jest/globals':
         specifier: ^29.7.0
         version: 29.7.0
+      '@tanstack/query-sync-storage-persister':
+        specifier: ^5.51.15
+        version: 5.51.15
+      '@tanstack/react-query':
+        specifier: ^5.51.15
+        version: 5.51.15(react@18.3.1)
+      '@tanstack/react-query-persist-client':
+        specifier: ^5.51.15
+        version: 5.51.15(@tanstack/react-query@5.51.15(react@18.3.1))(react@18.3.1)
       '@testing-library/user-event':
         specifier: ^14.5.2
         version: 14.5.2(@testing-library/dom@10.3.2)
@@ -1975,6 +1984,26 @@ packages:
     resolution: {integrity: sha512-ksY2/pLfFSMyRiPje1BGC8T3na0QPQUffGINXbnrloK/iyRmHkz+5bnX4e/O+nehevb/erBSCAahivJfhPlZMA==}
     peerDependencies:
       storybook: ^8.2.4
+
+  '@tanstack/query-core@5.51.15':
+    resolution: {integrity: sha512-xyobHDJ0yhPE3+UkSQ2/4X1fLSg7ICJI5J1JyU9yf7F3deQfEwSImCDrB1WSRrauJkMtXW7YIEcC0oA6ZZWt5A==}
+
+  '@tanstack/query-persist-client-core@5.51.15':
+    resolution: {integrity: sha512-y/gsUFINiVkxV06Jz5TqFNrXbKs81lIfj7PDamheEk+vWTmlBKTh0rMXthoDdUIVm4JO0+No9CXYahRSm683pg==}
+
+  '@tanstack/query-sync-storage-persister@5.51.15':
+    resolution: {integrity: sha512-Jrqqv4zBQQmfkuArsx++JQfKi1nobFGry9T702c4h80jA01MGnAd2Eev6uG7mRYor4vnUzjP1CrGS+xzRq5oMQ==}
+
+  '@tanstack/react-query-persist-client@5.51.15':
+    resolution: {integrity: sha512-SxSfGc9JggTUzv/dwIirKdMOe47OAdT0LBaVrkowI9QdVxJByjo+uaPCXZLoTlkaclvzFxd4G3YmmjsHXV/33A==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.51.15
+      react: ^18 || ^19
+
+  '@tanstack/react-query@5.51.15':
+    resolution: {integrity: sha512-UgFg23SrdIYrmfTSxAUn9g+J64VQy11pb9/EefoY/u2+zWuNMeqEOnvpJhf52XQy0yztQoyM9p6x8PFyTNaxXg==}
+    peerDependencies:
+      react: ^18.0.0
 
   '@testing-library/dom@10.1.0':
     resolution: {integrity: sha512-wdsYKy5zupPyLCW2Je5DLHSxSfbIp6h80WoHOQc+RPtmPGA52O9x5MJEkv92Sjonpq+poOAtUKhh1kBGAXBrNA==}
@@ -7726,6 +7755,28 @@ snapshots:
   '@storybook/types@8.2.4(storybook@8.2.4(@babel/preset-env@7.24.8(@babel/core@7.24.9)))':
     dependencies:
       storybook: 8.2.4(@babel/preset-env@7.24.8(@babel/core@7.24.9))
+
+  '@tanstack/query-core@5.51.15': {}
+
+  '@tanstack/query-persist-client-core@5.51.15':
+    dependencies:
+      '@tanstack/query-core': 5.51.15
+
+  '@tanstack/query-sync-storage-persister@5.51.15':
+    dependencies:
+      '@tanstack/query-core': 5.51.15
+      '@tanstack/query-persist-client-core': 5.51.15
+
+  '@tanstack/react-query-persist-client@5.51.15(@tanstack/react-query@5.51.15(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-persist-client-core': 5.51.15
+      '@tanstack/react-query': 5.51.15(react@18.3.1)
+      react: 18.3.1
+
+  '@tanstack/react-query@5.51.15(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-core': 5.51.15
+      react: 18.3.1
 
   '@testing-library/dom@10.1.0':
     dependencies:
