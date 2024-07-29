@@ -4,7 +4,7 @@ import { Box, Flex } from "@chakra-ui/react";
 // Component
 import Navbar from "./NavbarItem";
 import { InputField } from "../common";
-import { NotificationIcon, SearchIcon, SettingIcon } from "@/lib/icons";
+import { NotificationIcon, SearchIcon, SettingIcon } from "@/icons";
 
 type THeaderProps = {
   path?: string;

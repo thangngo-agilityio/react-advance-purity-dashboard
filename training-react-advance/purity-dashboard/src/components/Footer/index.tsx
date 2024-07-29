@@ -1,10 +1,10 @@
 import { HStack, Link, List, ListItem } from "@chakra-ui/react";
 import { Text } from "../common";
-import { FOOTER_LINKS } from "@/lib/constants";
+import { FOOTER_LINKS } from "@/constants";
 
 
 const Footer = () => (
-  <HStack justifyContent='space-between'>
+  <HStack w='100%' h='100%' alignItems='flex-end' justifyContent='space-between'>
     <HStack gap='2px'>
       <Text content='@ 2021, Made with ❤️ by' size='textSm' />
       <Text content='Creative Tim' color='text.300' fontWeight='700' size='textSm' />

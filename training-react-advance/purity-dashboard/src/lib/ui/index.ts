@@ -1,2 +1,0 @@
-// Common
-export * from './components';
