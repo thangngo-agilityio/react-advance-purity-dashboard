@@ -6,26 +6,23 @@ import { ROUTES } from "@/constants";
 
 
 // Pages
-const SignInPage = lazy(() => import('@/pages/Sign-in'));
+const SignInPage = lazy(() => import('@/pages/SignIn'));
+const SignUpPage = lazy(() => import('@/pages/SignUp'));
 
 export const publicRoutes: RouteObject = {
   element: (
-    <SignInPage>
-      <Suspense>
-        <Outlet />
-      </Suspense>
-    </SignInPage>
+    <Suspense>
+      <Outlet />
+    </Suspense>
   ),
   children: [
     {
       path: ROUTES.SIGN_IN,
-      Component: Outlet,
-      children: [
-        {
-          path: ROUTES.SIGN_IN,
-          Component: SignInPage
-        }
-      ]
+      Component: SignInPage,
+    },
+    {
+      path: ROUTES.SIGN_UP,
+      Component: SignUpPage,
     },
   ],
 }

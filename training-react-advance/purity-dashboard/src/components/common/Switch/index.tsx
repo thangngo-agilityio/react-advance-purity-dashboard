@@ -6,8 +6,8 @@ type TSwitchComponent = SwitchProps & {
 
 const SwitchComponent = ({ title, ...rest }: TSwitchComponent) => (
   <FormControl display='flex' alignItems='center' >
-    <Switch colorScheme="teal" mr='10px' {...rest} />
-    <FormLabel htmlFor='email-alerts' mb='0'>
+    <Switch colorScheme="teal" id="remember-me" {...rest} />
+    <FormLabel htmlFor='remember-me' ml='10px' mb='0' color='text.200'>
       {title}
     </FormLabel>
   </FormControl>
