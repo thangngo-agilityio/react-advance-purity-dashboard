@@ -11,6 +11,7 @@ export const Input = defineStyleConfig({
       borderColor: 'border.200',
       borderStyle: 'solid',
       color: 'text.200',
+      bgColor: 'background.100',
       _placeholder: {
         color: 'text.400',
         fontSize: 'sm',

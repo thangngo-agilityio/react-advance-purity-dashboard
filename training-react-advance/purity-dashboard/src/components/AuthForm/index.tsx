@@ -5,10 +5,10 @@ import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 
 // Component
 import { InputField, Switch } from "../common";
-import { AppleIcon, FacebookIcon, GoogleIcon } from "@/lib/icons";
+import { AppleIcon, FacebookIcon, GoogleIcon } from "@/icons";
 
 // Constants
-import { ROUTES } from "@/lib/constants";
+import { ROUTES } from "@/constants";
 
 type TAuthFormProps = {
   isRegister?: boolean;
@@ -46,9 +46,9 @@ const AuthForm = ({ isRegister, isDisabled, onChange, handleClickSubmit, handleC
 
   return (
     <Box
-      w='452px'
-      px='51px'
-      py='46px'
+      w={isRegister ? '452px' : '353px'}
+      px={isRegister ? '51px' : '0px'}
+      py={isRegister ? '46px' : '0px'}
       borderRadius={isRegister ? 'lg' : 'transparent'}
       boxShadow={isRegister ? '0 7px 23px rgba(0, 0 , 0, .05)' : 'transparent'}
     >

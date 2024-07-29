@@ -3,7 +3,7 @@ import { memo } from "react";
 
 // Components
 import ButtonIcon from "../common/ButtonIcon";
-import { HelpIcon } from "@/lib/icons";
+import { HelpIcon } from "@/icons";
 
 // Constant
 
