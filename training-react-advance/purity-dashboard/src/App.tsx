@@ -1,4 +1,4 @@
-import { ChakraProvider, QueryProvider } from "./providers";
+import { ChakraProvider, QueryProvider, RouterProvider } from "./providers";
 
 
 
@@ -7,7 +7,7 @@ const App = () => {
   return (
     <QueryProvider>
       <ChakraProvider>
-
+        <RouterProvider />
       </ChakraProvider>
     </QueryProvider>
   )
