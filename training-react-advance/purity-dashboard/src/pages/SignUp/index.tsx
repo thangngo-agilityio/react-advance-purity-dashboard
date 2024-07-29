@@ -32,11 +32,12 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
         zIndex={1}
         top='24px'
         w='98%'
-        h='520px'
+        h={{ base: 100, md: 220, xl: 320, '2xl': 420, '5xl': 520 }}
+
         borderRadius='lg'
         backgroundImage='/public/imgs/background-signup.svg'
         backgroundRepeat='no-repeat'
-        backgroundSize='auto'
+        backgroundSize='100%'
         objectFit='cover'
       />
     </VStack>
