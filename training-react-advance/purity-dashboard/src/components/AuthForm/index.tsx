@@ -1,6 +1,6 @@
-import { Box, Button, Flex, Heading, HStack, Link, Text, useDisclosure, VStack } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, HStack, Text, useDisclosure, VStack } from "@chakra-ui/react";
 import { ChangeEvent, memo, useCallback } from "react";
-import { Control, Controller, FieldValues, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 
 // Component
@@ -9,17 +9,17 @@ import { AppleIcon, FacebookIcon, GoogleIcon } from "@/icons";
 
 // Constants
 import { ROUTES } from "@/constants";
+import { useNavigate } from "react-router-dom";
 
 type TAuthFormProps = {
   isRegister?: boolean;
   isDisabled?: boolean
   onChange?: (value: string) => void;
-  handleClickSubmit?: () => void;
-  handleClearRootError?: () => void
+  handleClearRootError?: () => void;
 }
 
-const AuthForm = ({ isRegister, isDisabled, onChange, handleClickSubmit, handleClearRootError }: TAuthFormProps) => {
-
+const AuthForm = ({ isRegister = false, isDisabled, onChange, handleClearRootError }: TAuthFormProps) => {
+  const navigate = useNavigate()
   const { control } = useForm()
 
 
@@ -44,6 +44,10 @@ const AuthForm = ({ isRegister, isDisabled, onChange, handleClickSubmit, handleC
     [],
   );
 
+  const handleNavigate = () => {
+    navigate(isRegister ? ROUTES.SIGN_IN : ROUTES.SIGN_UP)
+  }
+
   return (
     <Box
       w={isRegister ? '452px' : '353px'}
@@ -51,6 +55,7 @@ const AuthForm = ({ isRegister, isDisabled, onChange, handleClickSubmit, handleC
       py={isRegister ? '46px' : '0px'}
       borderRadius={isRegister ? 'lg' : 'transparent'}
       boxShadow={isRegister ? '0 7px 23px rgba(0, 0 , 0, .05)' : 'transparent'}
+      bg={isRegister ? 'background.100' : 'transparent'}
     >
       {!isRegister ?
         <Box mb='36px'>
@@ -213,8 +218,7 @@ const AuthForm = ({ isRegister, isDisabled, onChange, handleClickSubmit, handleC
               : 'Already have an account?',
           }}
         />
-        <Link
-          href={!isRegister ? `/${ROUTES.SIGN_UP}` : `/${ROUTES.SIGN_IN}`}
+        <Button
           aria-label={!isRegister ? 'sign up' : 'sign in'}
           w="fit-content"
           p={0}
@@ -226,10 +230,10 @@ const AuthForm = ({ isRegister, isDisabled, onChange, handleClickSubmit, handleC
           bg="transparent"
           fontWeight="semibold"
           ml={1}
-          onClick={handleClickSubmit}
+          onClick={handleNavigate}
         >
           {!isRegister ? 'Sign up' : 'Sign in'}
-        </Link>
+        </Button>
       </Flex>
     </Box>
   )

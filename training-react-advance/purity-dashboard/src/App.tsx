@@ -8,7 +8,7 @@ const App = () => {
         <RouterProvider />
       </ChakraProvider>
     </QueryProvider>
-  )
+  );
 }
 
 export default App;
