@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { ChakraProvider as ChakraUIProvider } from '@chakra-ui/react';
 
 // Customize themes
-import { theme } from '@/themes';
+import { theme } from '@/ui/themes';
 
 
 const ChakraProvider = ({ children }: { children?: ReactNode }) => (

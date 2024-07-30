@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 // Types
-import { QueryOptions } from '@/types';
+import { QueryOptions } from '@/lib/types';
 
 export class HttpService {
   private readonly baseApi: string;

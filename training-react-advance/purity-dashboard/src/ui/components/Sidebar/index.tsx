@@ -2,7 +2,7 @@ import { Link, List, ListItem, VStack } from "@chakra-ui/react";
 import { Fragment, ReactElement } from "react";
 
 // Component
-import { LineIcon, LogoIcon } from "@/icons";
+import { LineIcon, LogoIcon } from "@/ui/icons";
 import Navigation from "../Navigation";
 import CardHelp from "../CardHelp";
 

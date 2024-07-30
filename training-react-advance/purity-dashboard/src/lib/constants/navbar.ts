@@ -1,5 +1,5 @@
 // Component
-import { BuildIcon, CardIcon, ChartIcon, HomeIcon, PersonIcon } from '../icons';
+import { BuildIcon, CardIcon, ChartIcon, HomeIcon, PersonIcon } from '../../ui/icons';
 
 // Constants
 import { ROUTES } from './router';

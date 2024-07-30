@@ -1,6 +1,6 @@
 import { HStack, Link, List, ListItem } from "@chakra-ui/react";
 import { Text } from "../common";
-import { FOOTER_LINKS } from "@/constants";
+import { FOOTER_LINKS } from "@/lib/constants";
 
 
 const Footer = () => (

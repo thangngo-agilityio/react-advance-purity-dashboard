@@ -2,8 +2,8 @@ import { ReactNode } from "react"
 import { Box, Flex, Heading, Text, VStack } from "@chakra-ui/react"
 
 // Components
-import Footer from "@/components/Footer"
-import AuthForm from "@/components/AuthForm"
+import Footer from "@/ui/components/Footer"
+import AuthForm from "@/ui/components/AuthForm"
 
 const SignUpPage = ({ children }: { children?: ReactNode }) => {
 

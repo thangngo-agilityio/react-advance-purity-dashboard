@@ -2,12 +2,12 @@ import { Outlet, RouteObject } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 // Constant
-import { ROUTES } from "@/constants";
+import { ROUTES } from "@/lib/constants";
 
 
 // Pages
-const SignInPage = lazy(() => import('@/pages/SignIn'));
-const SignUpPage = lazy(() => import('@/pages/SignUp'));
+const SignInPage = lazy(() => import('@/ui/pages/SignIn'));
+const SignUpPage = lazy(() => import('@/ui/pages/SignUp'));
 
 export const publicRoutes: RouteObject = {
   element: (

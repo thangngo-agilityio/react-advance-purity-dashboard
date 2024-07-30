@@ -5,10 +5,10 @@ import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 
 // Component
 import { InputField, Switch } from "../common";
-import { AppleIcon, FacebookIcon, GoogleIcon } from "@/icons";
+import { AppleIcon, FacebookIcon, GoogleIcon } from "@/ui/icons";
 
 // Constants
-import { ROUTES } from "@/constants";
+import { ROUTES } from "@/lib/constants";
 import { useNavigate } from "react-router-dom";
 
 type TAuthFormProps = {

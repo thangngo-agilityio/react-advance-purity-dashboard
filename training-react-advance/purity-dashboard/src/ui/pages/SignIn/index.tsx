@@ -2,9 +2,9 @@ import { ReactNode } from "react"
 import { Flex, VStack } from "@chakra-ui/react"
 
 // Components
-import Footer from "@/components/Footer"
-import AuthForm from "@/components/AuthForm"
-import { LogoChakra } from "@/icons/logo-chakra"
+import Footer from "@/ui/components/Footer"
+import AuthForm from "@/ui/components/AuthForm"
+import { LogoChakra } from "@/ui/icons/logo-chakra"
 
 const SignInPage = ({ children }: { children?: ReactNode }) => (
   <VStack position='relative' height='100%' gap='0px'>

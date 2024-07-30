@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { RouterProvider as Provider } from 'react-router-dom';
 
 // Routes
-import { routes } from '@/routes';
+import { routes } from '@/lib/routes';
 
 const RouterProvider = () => <Provider router={routes} />;
 
