@@ -1,7 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
-
-// Types
-import { QueryOptions } from '@/lib/types';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { API_KEY } from '../constants';
 
 export class HttpService {
   private readonly baseApi: string;
@@ -12,39 +10,86 @@ export class HttpService {
 
   private axiosClient = axios.create({
     headers: {
-      accept: 'application/json',
-      Authorization:
-        'patQFREcxs3kTvjRL.839079ebbcd462c630be99563ab8bb575f69e22ca4ff8f73b698cdbbea82603f',
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: API_KEY,
     },
   });
 
-  get<T>({
-    path,
-    configs,
-    page,
-    limit,
-  }: Omit<QueryOptions, 'data'>): Promise<AxiosResponse<T>> {
-    const endpointParts = [path, page, limit]
-      .filter((part) => part !== undefined && part !== '')
-      .join('/');
-    const endpoint = `${endpointParts}`;
+  async get<T>(
+    endpoint: string,
+    configs?: AxiosRequestConfig,
+  ): Promise<AxiosResponse<T>> {
+    try {
+      const url = `${this.baseApi}${endpoint}`;
+      const res = await this.axiosClient.get(url, {
+        ...configs,
+      });
 
-    return this.axiosClient.get<T>(`${this.baseApi}${endpoint}`, configs);
+      return res;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  post<T>({ path, data, configs }: QueryOptions): Promise<AxiosResponse<T>> {
-    return this.axiosClient.post<T>(`${this.baseApi}${path}`, data, configs);
+  async post<TRequestBody, T>(
+    path: string,
+    body: TRequestBody,
+    configs?: AxiosRequestConfig,
+  ): Promise<T> {
+    try {
+      const url = `${this.baseApi}${path}`;
+      console.log(JSON.stringify(body));
+      const res = await this.axiosClient.post(
+        url,
+        JSON.stringify(body),
+        configs,
+      );
+
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  put<T>({ path, data, configs }: QueryOptions): Promise<AxiosResponse<T>> {
-    return this.axiosClient.put<T>(`${this.baseApi}${path}`, data, configs);
+  async put<TRequestBody, T>(
+    path: string,
+    body: TRequestBody,
+    configs?: AxiosRequestConfig,
+  ): Promise<T> {
+    try {
+      const url = `${this.baseApi}${path}`;
+      const res = await this.axiosClient.post(url, body, configs);
+
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  patch<T>({ path, data }: QueryOptions): Promise<AxiosResponse<T>> {
-    return this.axiosClient.patch<T>(`${this.baseApi}${path}`, data);
+  async patch<TRequestBody, T>(
+    endpoint: string,
+    body: TRequestBody,
+    configs?: AxiosRequestConfig,
+  ): Promise<T> {
+    try {
+      const url = `${this.baseApi}${endpoint}`;
+      const res = await this.axiosClient.patch(url, body, configs);
+
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  delete<T>({ path, data }: QueryOptions): Promise<AxiosResponse<T>> {
-    return this.axiosClient.delete<T>(`${this.baseApi}${path}`, data);
+  async delete<TRequestBody, T>(path: string, body: TRequestBody): Promise<T> {
+    try {
+      const url = `${this.baseApi}${path}`;
+      const res = await this.axiosClient.post(url, body);
+
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
   }
 }

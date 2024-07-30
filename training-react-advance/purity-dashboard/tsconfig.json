@@ -24,7 +24,8 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/ui/*": ["src/ui/*"],
       "public/*": ["public/*"]
     }
   },

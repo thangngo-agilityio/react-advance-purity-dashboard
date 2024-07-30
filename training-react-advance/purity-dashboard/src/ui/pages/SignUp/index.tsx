@@ -4,9 +4,22 @@ import { Box, Flex, Heading, Text, VStack } from "@chakra-ui/react"
 // Components
 import Footer from "@/ui/components/Footer"
 import AuthForm from "@/ui/components/AuthForm"
+import { useForm } from "react-hook-form"
+import { AuthFormData } from "@/lib/types"
 
 const SignUpPage = ({ children }: { children?: ReactNode }) => {
-
+  const {
+    control,
+  } = useForm<AuthFormData>({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
+  });
 
   return (
     <VStack position='relative' height='100%' gap='0px'>
@@ -21,7 +34,7 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
               Use these awesome forms to login or create new account in your project for free.
             </Text>
           </VStack>
-          <AuthForm isRegister />
+          <AuthForm isRegister control={control} />
         </VStack>
         <Flex w='100%' h='100%' flex={1}>
           <Footer />

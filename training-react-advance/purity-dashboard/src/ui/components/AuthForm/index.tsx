@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading, HStack, Text, useDisclosure, VStack } from "@chakra-ui/react";
 import { ChangeEvent, memo, useCallback } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Control, Controller, FieldValues, useForm } from "react-hook-form";
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 
 // Component
@@ -11,16 +11,21 @@ import { AppleIcon, FacebookIcon, GoogleIcon } from "@/ui/icons";
 import { ROUTES } from "@/lib/constants";
 import { useNavigate } from "react-router-dom";
 
+// Types
+import { AuthFormData } from "@/lib/types";
+
+
 type TAuthFormProps = {
+  control: Control<AuthFormData>
   isRegister?: boolean;
   isDisabled?: boolean
   onChange?: (value: string) => void;
   handleClearRootError?: () => void;
+  handleSubmit?: () => void
 }
 
-const AuthForm = ({ isRegister = false, isDisabled, onChange, handleClearRootError }: TAuthFormProps) => {
+const AuthForm = ({ control, isRegister = false, isDisabled, onChange, handleClearRootError, handleSubmit }: TAuthFormProps) => {
   const navigate = useNavigate()
-  const { control } = useForm()
 
 
   const { isOpen: isShowPassword, onToggle: onShowPassword } = useDisclosure();
@@ -82,7 +87,7 @@ const AuthForm = ({ isRegister = false, isDisabled, onChange, handleClearRootErr
         </Box>
       }
 
-      <VStack gap={6} alignItems='flex-start' mb='24px'>
+      <VStack gap={6} alignItems='flex-start' mb='24px' as='form' onSubmit={handleSubmit}>
         {isRegister && (
           <Controller
             control={control}
@@ -203,6 +208,7 @@ const AuthForm = ({ isRegister = false, isDisabled, onChange, handleClearRootErr
           textTransform="capitalize"
           form={!isRegister ? 'login-form' : 'register-form'}
           isDisabled={isDisabled}
+          onClick={handleSubmit}
         >
           {!isRegister ? 'SIGN IN' : 'SIGN UP'}
         </Button>
