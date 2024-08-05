@@ -16,20 +16,12 @@ export class HttpService {
     },
   });
 
-  async get<T>(
+  get<T>(
     endpoint: string,
     configs?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
-    try {
-      const url = `${this.baseApi}${endpoint}`;
-      const res = await this.axiosClient.get(url, {
-        ...configs,
-      });
-
-      return res;
-    } catch (error) {
-      throw error;
-    }
+    const url = `${this.baseApi}${endpoint}`;
+    return this.axiosClient.get<T>(url, configs);
   }
 
   async post<TRequestBody, T>(
@@ -39,12 +31,7 @@ export class HttpService {
   ): Promise<T> {
     try {
       const url = `${this.baseApi}${path}`;
-      console.log(JSON.stringify(body));
-      const res = await this.axiosClient.post(
-        url,
-        JSON.stringify(body),
-        configs,
-      );
+      const res = await this.axiosClient.post(url, body, configs);
 
       return res.data;
     } catch (error) {

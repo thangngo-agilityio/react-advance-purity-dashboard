@@ -7,3 +7,6 @@ export const API_PATH = {
   AUTHOR: '/author',
   PROJECT: '/project',
 };
+
+
+export const USER_LOGIN = 'userLogin'

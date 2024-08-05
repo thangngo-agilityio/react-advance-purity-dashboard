@@ -1,50 +1,73 @@
 // Libs
 import { createWithEqualityFn } from 'zustand/traditional';
-import { persist } from 'zustand/middleware';
+import {
+  createJSONStorage,
+  persist,
+  StateStorage,
+  StorageValue,
+} from 'zustand/middleware';
 
-// Constants
-import { ACCESS_TOKEN } from '@/lib/constants';
+// Types
+import { TUser } from '../types';
 
-interface AuthState {
-  isAuthenticated: boolean;
-  accessToken: string;
-  userId: string;
-}
-
-interface AuthStore extends AuthState {
-  setAuthenticated: (isAuthenticated: boolean) => void;
-  setAccessToken: (accessToken: string) => void;
-  setUserId: (id: string) => void;
-  clearAuth: () => void;
-}
-
-const INITIAL_AUTH_STATE = {
-  isAuthenticated: !!localStorage.getItem(ACCESS_TOKEN) || false,
-  accessToken: '',
-  userId: '',
+type TAuthState = {
+  user: TUser | null;
 };
 
-export const useAuthStore = createWithEqualityFn<AuthStore>()(
-  persist<AuthStore>(
+export type TAuthAction = {
+  setUser: (data: Partial<TAuthState>) => void;
+  removeUser: () => void;
+};
+
+const initialState: TAuthState = {
+  user: null,
+};
+
+const getItem: StateStorage['getItem'] = (key: string) => {
+  const response: string = localStorage.getItem(key) as string;
+  const defaultValue: string = JSON.stringify(initialState);
+
+  if (response) return response;
+
+  return defaultValue;
+};
+
+const setItem: StateStorage['setItem'] = (key: string, value: string) => {
+  const {
+    state: { user },
+  }: StorageValue<TAuthState & TAuthAction> = JSON.parse(value);
+  const hasUser: boolean = !!user && !!Object.keys(user).length;
+
+  if (hasUser) {
+    return localStorage.setItem(key, value);
+  }
+
+  return localStorage.removeItem(key);
+};
+
+const removeItem: StateStorage['removeItem'] = (key: string) => {
+  return localStorage.removeItem(key);
+};
+
+const myStore: () => StateStorage = (): StateStorage => ({
+  getItem,
+  setItem,
+  removeItem,
+});
+
+export const authStore = createWithEqualityFn(
+  persist<TAuthState & TAuthAction>(
     (set) => ({
-      ...INITIAL_AUTH_STATE,
-
-      setAuthenticated: (isAuthenticated) => {
-        set({ isAuthenticated });
-      },
-
-      setAccessToken: (accessToken) => {
-        set({ accessToken });
-      },
-
-      setUserId: (id) => {
-        set({ userId: id });
-      },
-
-      clearAuth: () => {
-        set({ ...INITIAL_AUTH_STATE });
+      ...initialState,
+      setUser: (data: Partial<TAuthState>) => set(data),
+      removeUser: () => {
+        set(initialState);
+        authStore.persist.clearStorage();
       },
     }),
-    { name: 'auth' },
+    {
+      name: 'auth',
+      storage: createJSONStorage(myStore),
+    },
   ),
 );

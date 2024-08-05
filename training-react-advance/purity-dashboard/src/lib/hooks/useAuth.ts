@@ -1,38 +1,51 @@
-import { useMutation } from '@tanstack/react-query';
-import { shallow } from 'zustand/shallow';
+import { useCallback } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-// Stores
-import { useAuthStore } from '../stores';
-
-// Models
-import { AuthLoginRequest, LoginResponse } from '../models';
-import { API_PATH } from '../constants';
+// Constants
+import { API_PATH, ROUTES, USER_LOGIN } from '../constants';
 
 // Service
 import { mainHttpService } from '../service';
 
+// Types
+import { AuthFormData, TUser } from '../types';
+import { authStore } from '../stores';
+import { useNavigate } from 'react-router-dom';
+
+export type TUserResponse = {
+  records: TUser[];
+};
+
 export const useAuthLogin = () => {
-  const [setAuthenticated, setAccessToken, setUserId] = useAuthStore(
-    (state) => [state.setAuthenticated, state.setAccessToken, state.setUserId],
-    shallow,
-  );
+  const navigate = useNavigate();
+  const setUser = authStore((state) => state.setUser);
 
-  const { isPending, ...rest } = useMutation<
-    LoginResponse,
-    string,
-    AuthLoginRequest
-  >({
-    mutationFn: (payload) => mainHttpService.post(API_PATH.USER, payload),
-    onSuccess: (res) => {
-      const { user, accessToken } = res;
-      const { id = '' } = user || {};
-
-      setUserId(id.toString());
-      setAccessToken(accessToken);
-      setAuthenticated(true);
-    },
+  const { isPending, data: users } = useQuery({
+    queryKey: [USER_LOGIN],
+    queryFn: () =>
+      mainHttpService.get<TUserResponse>(API_PATH.USER).then((res) => {
+        return res.data.records;
+      }),
   });
 
+  const handleUserSignIn = useCallback(
+    (data: AuthFormData): void => {
+      try {
+        const res = users?.find(
+          (user) =>
+            user.fields.email === data.email &&
+            user.fields.password === data.password,
+        );
+        if (res) {
+          setUser({ user: res });
+          navigate(ROUTES.TABLES);
+        }
+      } catch (err) {
+        throw err;
+      }
+    },
+    [users, navigate, setUser],
+  );
 
-  return { ...rest, isPending };
+  return { users, isPending, handleUserSignIn };
 };

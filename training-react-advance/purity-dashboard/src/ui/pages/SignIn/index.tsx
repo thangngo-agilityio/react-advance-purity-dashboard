@@ -10,11 +10,8 @@ import { LogoChakra } from "@/ui/icons/logo-chakra"
 // Types
 import { AuthFormData } from "@/lib/types"
 import { useAuthLogin } from "@/lib/hooks/useAuth"
-import { ROUTES } from "@/lib/constants"
-import { useNavigate } from "react-router-dom"
 
 const SignInPage = ({ children }: { children?: ReactNode }) => {
-  const navigate = useNavigate();
 
   const {
     control,
@@ -30,20 +27,12 @@ const SignInPage = ({ children }: { children?: ReactNode }) => {
   });
 
   // Sign in api
-  const { mutate: signIn } = useAuthLogin();
+  const { handleUserSignIn } = useAuthLogin();
 
-  const handleLoginSuccess = useCallback(() => {
-    navigate(ROUTES.TABLES);
-  }, [navigate]);
-
-
-  const onSubmit = useCallback(
-    (data: AuthFormData): void => {
-      signIn(data, { onSuccess: handleLoginSuccess });
-    },
-    [handleLoginSuccess, signIn],
-  );
-
+  const onSubmit = useCallback((data: AuthFormData) => {
+    handleUserSignIn(data)
+    console.log(handleUserSignIn(data))
+  }, [handleUserSignIn]);
 
   return (
     <VStack position='relative' height='100%' gap='0px'>
