@@ -31,6 +31,7 @@ export class HttpService {
   ): Promise<T> {
     try {
       const url = `${this.baseApi}${path}`;
+      console.log(body)
       const res = await this.axiosClient.post(url, body, configs);
 
       return res.data;

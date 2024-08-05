@@ -24,7 +24,7 @@ type TAuthFormProps = {
   handleSubmit?: () => void
 }
 
-const AuthForm = ({ control, isRegister = false, isDisabled, onChange, handleClearRootError, handleSubmit }: TAuthFormProps) => {
+const AuthForm = ({ control, isRegister = false, isDisabled= false, onChange, handleClearRootError, handleSubmit }: TAuthFormProps) => {
   const navigate = useNavigate()
 
 
@@ -96,7 +96,6 @@ const AuthForm = ({ control, isRegister = false, isDisabled, onChange, handleCle
               <InputField
                 variant="authentication"
                 placeholder="name"
-                {...field}
                 isError={!!error}
                 errorMessages={error?.message}
                 isDisabled={isDisabled}
@@ -183,7 +182,6 @@ const AuthForm = ({ control, isRegister = false, isDisabled, onChange, handleCle
                     isShowConfirmPassword,
                     onShowConfirmPassword,
                   )}
-                  {...field}
                   isError={!!error}
                   errorMessages={error?.message}
                   isDisabled={isDisabled}

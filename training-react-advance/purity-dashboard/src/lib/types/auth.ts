@@ -15,5 +15,5 @@ export type TUser = {
     location: string;
     phone: string;
   };
-  createdTime: Date;
+  createdTime: string;
 };
