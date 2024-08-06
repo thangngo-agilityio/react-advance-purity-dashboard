@@ -7,13 +7,11 @@ export type AuthFormData = {
 };
 
 export type TUser = {
-  id: string;
   fields: {
     email: string;
-    name: string;
     password: string;
-    location: string;
-    phone: string;
+    name?: string;
+    location?: string;
+    phone?: string;
   };
-  createdTime: Date;
 };

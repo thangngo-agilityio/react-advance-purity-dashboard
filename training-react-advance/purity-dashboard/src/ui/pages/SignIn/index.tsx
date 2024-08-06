@@ -31,7 +31,6 @@ const SignInPage = ({ children }: { children?: ReactNode }) => {
 
   const onSubmit = useCallback((data: AuthFormData) => {
     handleUserSignIn(data)
-    console.log(handleUserSignIn(data))
   }, [handleUserSignIn]);
 
   return (

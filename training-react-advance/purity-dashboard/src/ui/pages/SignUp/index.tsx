@@ -1,15 +1,27 @@
-import { ReactNode } from "react"
+import { ReactNode, useCallback, useEffect } from "react"
 import { Box, Flex, Heading, Text, VStack } from "@chakra-ui/react"
+import { v4 as uuidv4 } from 'uuid';
 
 // Components
 import Footer from "@/ui/components/Footer"
 import AuthForm from "@/ui/components/AuthForm"
 import { useForm } from "react-hook-form"
-import { AuthFormData } from "@/lib/types"
+import { AuthFormData, TUser } from "@/lib/types"
+import { useAuthLogin, useAuthRegister } from "@/lib/hooks/useAuth"
+import { authStore } from "@/lib/stores"
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/lib/constants";
 
 const SignUpPage = ({ children }: { children?: ReactNode }) => {
+
+  const { users } = useAuthLogin();
+  const { createAccount } = useAuthRegister();
+  const setUser = authStore((state) => state.setUser);
+  const navigate = useNavigate()
+
   const {
     control,
+    handleSubmit
   } = useForm<AuthFormData>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
@@ -20,6 +32,42 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
       confirmPassword: '',
     },
   });
+
+  const handleCreateAccount = useCallback(
+    async (data: AuthFormData) => {
+      try {
+        const isUser = users?.some((user) => user.fields.email === data.email);
+
+        if (isUser) {
+          console.log('SIGN_UP_FAILED')
+        } else {
+          const payload: TUser[] = [{
+            fields: {
+              name: data.name,
+              email: data.email,
+              password: data.password,
+            },
+          }];
+
+          await createAccount({ records: payload });
+
+          setUser({ user: payload });
+
+          console.log('Success')
+
+          navigate(ROUTES.SIGN_IN);
+        }
+      } catch (error) {
+        throw error
+      }
+    },
+    [createAccount, navigate, setUser, users],
+  );
+
+  const onSubmit = useCallback((data: AuthFormData) => {
+    handleCreateAccount(data)
+  }, [handleCreateAccount]);
+
 
   return (
     <VStack position='relative' height='100%' gap='0px'>
@@ -34,7 +82,7 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
               Use these awesome forms to login or create new account in your project for free.
             </Text>
           </VStack>
-          <AuthForm isRegister control={control} />
+          <AuthForm isRegister control={control} handleSubmit={handleSubmit(onSubmit)} />
         </VStack>
         <Flex w='100%' h='100%' flex={1}>
           <Footer />

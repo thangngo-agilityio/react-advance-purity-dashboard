@@ -11,7 +11,7 @@ import {
 import { TUser } from '../types';
 
 type TAuthState = {
-  user: TUser | null;
+  user: TUser | TUser[] | null;
 };
 
 export type TAuthAction = {
