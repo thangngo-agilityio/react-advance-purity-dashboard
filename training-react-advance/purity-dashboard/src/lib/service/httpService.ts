@@ -10,6 +10,7 @@ export class HttpService {
 
   private axiosClient = axios.create({
     headers: {
+      // 'Content-Type': 'application/json; charset=UTF-8',
       'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: API_KEY,
@@ -24,20 +25,14 @@ export class HttpService {
     return this.axiosClient.get<T>(url, configs);
   }
 
-  async post<TRequestBody, T>(
-    path: string,
-    body: TRequestBody,
+  async post<T>(
+    endpoint: string,
+    body: Object,
     configs?: AxiosRequestConfig,
-  ): Promise<T> {
-    try {
-      const url = `${this.baseApi}${path}`;
-      console.log(body)
-      const res = await this.axiosClient.post(url, body, configs);
-
-      return res.data;
-    } catch (error) {
-      throw error;
-    }
+  ): Promise<AxiosResponse<T>> {
+    const url = `${this.baseApi}${endpoint}`;
+    const jsonBody = JSON.stringify(body);
+    return await this.axiosClient.post<T>(url, jsonBody, configs);
   }
 
   async put<TRequestBody, T>(

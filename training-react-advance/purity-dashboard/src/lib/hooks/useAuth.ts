@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Constants
 import { API_PATH, ROUTES, USER_LOGIN } from '../constants';
@@ -51,12 +51,17 @@ export const useAuthLogin = () => {
 };
 
 export const useAuthRegister = () => {
-  const setUser = authStore((state) => state.setUser);
-
-  const { mutate: createAccount } = useMutation({
-    mutationFn: (payload) => mainHttpService.post(API_PATH.USER, payload),
+  const { mutateAsync: createAccount } = useMutation({
+    mutationFn: async (user: TUserResponse) =>
+      await mainHttpService
+        .post<TUserResponse>(API_PATH.USER, user)
+        .then((res) => {
+          console.log(res);
+          return res;
+        }),
   });
 
-
-
+  return {
+    createAccount,
+  };
 };

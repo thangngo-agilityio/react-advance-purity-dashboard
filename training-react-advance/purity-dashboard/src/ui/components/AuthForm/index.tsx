@@ -24,7 +24,7 @@ type TAuthFormProps = {
   handleSubmit?: () => void
 }
 
-const AuthForm = ({ control, isRegister = false, isDisabled= false, onChange, handleClearRootError, handleSubmit }: TAuthFormProps) => {
+const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, handleClearRootError, handleSubmit }: TAuthFormProps) => {
   const navigate = useNavigate()
 
 
@@ -92,12 +92,13 @@ const AuthForm = ({ control, isRegister = false, isDisabled= false, onChange, ha
           <Controller
             control={control}
             name="name"
-            render={({ field, fieldState: { error } }) => (
+            render={({ field: { value, onChange }, fieldState: { error } }) => (
               <InputField
                 variant="authentication"
                 placeholder="name"
                 isError={!!error}
                 errorMessages={error?.message}
+                value={value}
                 isDisabled={isDisabled}
                 onChange={onChange}
                 aria-label="name"
