@@ -1,10 +1,16 @@
 // Component
-import { BuildIcon, CardIcon, ChartIcon, HomeIcon, PersonIcon } from '../../ui/icons';
+import {
+  BuildIcon,
+  CardIcon,
+  ChartIcon,
+  HomeIcon,
+  PersonIcon,
+} from '../../ui/icons';
 
 // Constants
 import { ROUTES } from './router';
 
-export const MENU_ITEM_LIST = () => [
+export const MENU_ITEM_LIST = [
   {
     id: 1,
     leftIcon: HomeIcon,
@@ -15,39 +21,39 @@ export const MENU_ITEM_LIST = () => [
     id: 2,
     leftIcon: ChartIcon,
     menuItemContent: 'Tables',
-    destination: `/`,
+    destination: ROUTES.TABLES,
   },
   {
     id: 3,
     leftIcon: CardIcon,
     menuItemContent: 'Billing',
-    destination: `/${ROUTES.BILLING}`,
+    destination: ROUTES.BILLING,
   },
   {
     id: 4,
     leftIcon: BuildIcon,
     menuItemContent: 'RTL',
-    destination: `/${ROUTES.RTL}`,
+    destination: ROUTES.RTL,
   },
 ];
 
-export const ACCOUNT_LIST = () => [
+export const ACCOUNT_LIST = [
   {
     id: 1,
     leftIcon: PersonIcon,
     menuItemContent: 'Profile',
-    destination: `/${ROUTES.PROFILE}`,
+    destination: ROUTES.PROFILE,
   },
 ];
 
 export const SIDEBAR_LIST = [
   {
     id: 1,
-    title: '',
     listItem: MENU_ITEM_LIST,
   },
   {
     id: 2,
     title: 'ACCOUNT PAGES',
+    listItem: ACCOUNT_LIST,
   },
 ];

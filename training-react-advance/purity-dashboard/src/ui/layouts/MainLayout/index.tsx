@@ -4,11 +4,9 @@ import { Outlet } from 'react-router-dom';
 
 // Components
 import Sidebar from '@/ui/components/Sidebar';
-import Header from '@/ui/components/Header';
-
+import Footer from '@/ui/components/Footer';
 
 const MainLayout = () => {
-
   return (
     <Flex
       position="absolute"
@@ -20,7 +18,6 @@ const MainLayout = () => {
       <Sidebar />
 
       <VStack flex={1} alignItems="stretch" overflow="hidden">
-        <Header />
         <Box
           flex={1}
           overflowY="auto"
@@ -30,6 +27,7 @@ const MainLayout = () => {
         >
           <Outlet />
         </Box>
+        <Footer />
       </VStack>
     </Flex>
   );
