@@ -51,7 +51,7 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
 
           await createAccount({ records: payload });
 
-          setUser({ user: payload });
+          setUser(data);
 
           console.log('Success')
 

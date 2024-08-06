@@ -8,14 +8,14 @@ import {
 } from 'zustand/middleware';
 
 // Types
-import { TUser } from '../types';
+import { IUser } from '../types';
 
 type TAuthState = {
-  user: TUser | TUser[] | null;
+  user: IUser | null;
 };
 
 export type TAuthAction = {
-  setUser: (data: Partial<TAuthState>) => void;
+  setUser: (data: IUser) => void;
   removeUser: () => void;
 };
 
@@ -59,7 +59,7 @@ export const authStore = createWithEqualityFn(
   persist<TAuthState & TAuthAction>(
     (set) => ({
       ...initialState,
-      setUser: (data: Partial<TAuthState>) => set(data),
+      setUser: (data: IUser) => set({ user: data }),
       removeUser: () => {
         set(initialState);
         authStore.persist.clearStorage();

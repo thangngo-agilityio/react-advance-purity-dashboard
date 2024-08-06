@@ -15,3 +15,11 @@ export type TUser = {
     phone?: string;
   };
 };
+
+export interface IUser {
+  email: string;
+  password: string;
+  name?: string;
+  location?: string;
+  phone?: string;
+}

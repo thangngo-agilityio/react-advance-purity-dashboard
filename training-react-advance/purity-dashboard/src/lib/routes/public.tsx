@@ -4,8 +4,6 @@ import { lazy, Suspense } from "react";
 // Constants
 import { ROUTES } from "@/lib/constants";
 
-// Stores
-// import { useAuthStore } from "../stores";
 
 // Pages
 const SignInPage = lazy(() => import('@/ui/pages/SignIn'));
