@@ -1,11 +1,10 @@
-import { TDataSource, TProject } from '../types';
-import { TAuthor } from '../types/author';
+import { TAuthor, TDataSource, TProject } from '../types';
 
 export const COLUMNS_AUTHOR = (
   onRenderHead: (title: string, key: string) => void,
   onRenderBody: ({ id, name, avatar, email }: TDataSource) => void,
   onRenderFunction: ({ role, job }: TAuthor) => void,
-  onRenderStatus: (status: TAuthor) => void,
+  onRenderStatus: (status: TDataSource) => void,
   onRenderEmployed: (employed: TAuthor) => void,
   onRenderActionIcon: (data: TAuthor) => void,
 ) => [
@@ -45,7 +44,7 @@ export const COLUMNS_PROJECT = (
   onRenderHead: (title: string, key: string) => void,
   onRenderBody: ({ id, avatar, projectName }: TDataSource) => void,
   onRenderBudget: (budget: TProject) => void,
-  onRenderStatus: (status: TProject) => void,
+  onRenderStatus: (status: TDataSource) => void,
   onRenderCompletion: (completion: TProject) => void,
   onRenderActionIcon: (data: TProject) => void,
 ) => [

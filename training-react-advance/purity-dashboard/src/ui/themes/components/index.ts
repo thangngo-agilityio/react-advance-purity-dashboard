@@ -1,3 +1,4 @@
+import { Badge } from './Badge';
 import { Button } from './Button';
 import { Heading } from './Heading';
 import { Input } from './Input';
@@ -12,4 +13,5 @@ export const components = {
   Text,
   Link,
   Switch: switchTheme,
+  Badge,
 };
