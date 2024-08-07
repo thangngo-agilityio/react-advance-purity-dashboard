@@ -19,7 +19,7 @@ type TSidebarProps = {
 export const Menu = ({ title, listItem = [] }: TSidebarProps) => (
   <VStack w="100%">
     {title && (
-      <Heading as="h2" w="full" fontSize="sm" mb="24px" px="38px">
+      <Heading as="h2" w="full" fontSize="sm" mb="24px" px="22px">
         {title}
       </Heading>
     )}
@@ -28,7 +28,7 @@ export const Menu = ({ title, listItem = [] }: TSidebarProps) => (
       {listItem.map(({ leftIcon, destination, menuItemContent, id }) => {
         const LeftIconComponent = leftIcon || Fragment;
         return (
-          <ListItem key={id} aria-label="item-icon">
+          <ListItem key={menuItemContent} aria-label="item-icon">
             <Navigation
               destination={destination}
               leftIcon={<LeftIconComponent />}

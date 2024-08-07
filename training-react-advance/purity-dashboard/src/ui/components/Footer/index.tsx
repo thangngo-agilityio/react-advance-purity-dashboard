@@ -2,8 +2,12 @@ import { HStack, Link, List, ListItem } from '@chakra-ui/react';
 import { Text } from '../common';
 import { FOOTER_LINKS } from '@/lib/constants';
 
-const Footer = () => (
-  <HStack w="100%" alignItems="flex-end" justifyContent="space-between">
+export type TFooterProps = {
+  isAuth?: boolean
+}
+
+const Footer = ({ isAuth }: TFooterProps) => (
+  <HStack w="100%" px={isAuth ? '30px' : ''} pt={isAuth ? '4px' : ''} pb={isAuth ? '20px' : ''} alignItems="flex-end" justifyContent="space-between">
     <HStack gap="2px">
       <Text content="@ 2021, Made with ❤️ by" size="textSm" />
       <Text

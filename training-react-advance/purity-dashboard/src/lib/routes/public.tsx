@@ -17,6 +17,20 @@ export const publicRoutes: RouteObject = {
   ),
   children: [
     {
+      path: ROUTES.ROOT,
+      Component: Outlet,
+      children: [
+        {
+          index: true,
+          element: <SignInPage />
+        },
+        {
+          path: ROUTES.SIGN_IN,
+          element: <SignInPage />,
+        },
+      ],
+    },
+    {
       path: ROUTES.SIGN_IN,
       element: <SignInPage />,
     },

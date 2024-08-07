@@ -1,13 +1,24 @@
-import { ROUTES } from '@/lib/constants';
+import { useMemo } from 'react';
+import { VStack } from '@chakra-ui/react';
+
+// Components
 import Header from '@/ui/components/Header';
-import { Heading, VStack } from '@chakra-ui/react';
+import ModalTable from '@/ui/components/ModalTable';
+
+// Constants
+import { COLUMNS_AUTHOR, COLUMNS_PROJECT, ROUTES } from '@/lib/constants';
 
 const TablePage = () => {
+
+
   return (
-    <VStack>
+    <VStack alignItems='flex-start'>
       <Header name="Tables" path={ROUTES.TABLES} />
 
-      <Heading>Tables page</Heading>
+      <VStack gap='24px' w='100%'>
+        <ModalTable title='Authors Table' />
+        <ModalTable title='Projects' />
+      </VStack>
     </VStack>
   );
 };

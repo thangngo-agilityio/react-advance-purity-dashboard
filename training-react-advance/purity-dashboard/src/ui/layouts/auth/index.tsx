@@ -13,7 +13,6 @@ interface IAuthLayout {
 
 const AuthLayout = ({ children }: IAuthLayout) => {
   const user = authStore((state) => state.user?.fields);
-  console.log(user);
 
   return user?.email ? children : <Navigate to={ROUTES.SIGN_IN} />;
 };

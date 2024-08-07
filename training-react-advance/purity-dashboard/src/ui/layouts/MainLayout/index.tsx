@@ -27,7 +27,7 @@ const MainLayout = () => {
         >
           <Outlet />
         </Box>
-        <Footer />
+        <Footer isAuth />
       </VStack>
     </Flex>
   );
