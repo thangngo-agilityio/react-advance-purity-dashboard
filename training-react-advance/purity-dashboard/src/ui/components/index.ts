@@ -9,3 +9,4 @@ export * from './CardProject';
 export * from './AuthForm';
 export * from './Table';
 export * from './ModalTable';
+export * from './Table/Body';

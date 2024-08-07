@@ -19,7 +19,7 @@ type TSidebarProps = {
 export const Menu = ({ title, listItem = [] }: TSidebarProps) => (
   <VStack w="100%">
     {title && (
-      <Heading as="h2" w="full" fontSize="sm" mb="24px" px="22px">
+      <Heading as="h2" w="full" fontSize="sm" mb="10px" px="22px">
         {title}
       </Heading>
     )}

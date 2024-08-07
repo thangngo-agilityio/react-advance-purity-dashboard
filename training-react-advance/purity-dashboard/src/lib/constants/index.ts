@@ -7,3 +7,4 @@ export * from './local-storage';
 export * from './columns';
 export * from './author';
 export * from './project';
+export * from './status';

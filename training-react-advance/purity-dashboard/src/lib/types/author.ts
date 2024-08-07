@@ -8,5 +8,5 @@ export type TAuthor = {
   role: string;
   job: string;
   status: AUTHOR_STATUS;
-  employed: Date;
+  employed: string;
 };
