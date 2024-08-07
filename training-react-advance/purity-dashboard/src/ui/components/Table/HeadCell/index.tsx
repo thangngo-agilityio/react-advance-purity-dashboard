@@ -10,7 +10,7 @@ type THeadCellProps = {
 const HeadCellComponent = ({ title }: THeadCellProps): JSX.Element => (
   <Th
     key={title}
-    py={5}
+    py='12px'
     px={0}
     sx={{
       minW: {
@@ -21,9 +21,9 @@ const HeadCellComponent = ({ title }: THeadCellProps): JSX.Element => (
   >
     <Flex alignItems="center" gap={2}>
       <Text
-        color="text.secondary"
         textTransform="none"
         fontSize="xs"
+        fontWeight='bold'
         whiteSpace="break-spaces"
         maxW="200px"
         noOfLines={1}

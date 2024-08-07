@@ -2,8 +2,8 @@ import { TDataSource } from "@/lib/types";
 import { Heading, Td, Text, VStack } from "@chakra-ui/react";
 
 const FunctionCell = ({ job, role }: TDataSource) => (
-  <Td>
-    <VStack>
+  <Td px={0}>
+    <VStack gap={0} alignItems='flex-start'>
       <Heading size='md'>
         {role}
       </Heading>

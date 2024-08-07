@@ -8,5 +8,4 @@ export const API_PATH = {
   PROJECT: '/project',
 };
 
-
-export const USER_LOGIN = 'userLogin'
+export const USER_LOGIN = 'userLogin';
