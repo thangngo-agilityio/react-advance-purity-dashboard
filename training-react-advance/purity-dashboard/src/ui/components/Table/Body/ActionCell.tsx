@@ -50,6 +50,7 @@ const ActionCellComponent = ({
                 bgColor: 'transparent',
               }}
               data-testid="dot-icon"
+              transform='rotate(90deg)'
             >
               <Dot />
             </IconButton>

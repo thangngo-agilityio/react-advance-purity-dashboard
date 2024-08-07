@@ -8,3 +8,13 @@ export type TProject = {
   status: PROJECT_STATUS;
   completion: number;
 };
+
+export type TFiledProject = {
+  fields: {
+    projectName: string;
+    avatar: string;
+    budget: number;
+    status: PROJECT_STATUS;
+    completion: number;
+  };
+};

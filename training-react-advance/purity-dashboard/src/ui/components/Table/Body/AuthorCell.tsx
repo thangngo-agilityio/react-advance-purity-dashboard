@@ -6,10 +6,10 @@ import Avatar from "../../common/Avatar";
 
 
 const AuthorCell = ({ image, name, email }: TDataSource) => (
-  <Td>
+  <Td px={0}>
     <Flex alignItems='center'>
       <Avatar src={`${image}`} alt={`${name}`} />
-      <VStack ml='15px' alignItems='flex-start'>
+      <VStack ml='15px' alignItems='flex-start' gap={0}>
         <Heading size='md'>
           {name}
         </Heading>
