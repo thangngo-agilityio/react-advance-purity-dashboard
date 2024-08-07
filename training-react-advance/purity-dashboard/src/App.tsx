@@ -1,10 +1,16 @@
+// Components
+import ErrorBoundary from "./ui/components/ErrorBoundary";
+
+// Providers
 import { ChakraProvider, QueryProvider, RouterProvider } from "@/lib/providers";
 
 const App = () => {
   return (
     <QueryProvider>
       <ChakraProvider>
-        <RouterProvider />
+        <ErrorBoundary>
+          <RouterProvider />
+        </ErrorBoundary>
       </ChakraProvider>
     </QueryProvider>
   );

@@ -1,5 +1,4 @@
 import { Link, VStack } from '@chakra-ui/react';
-import { Fragment, ReactElement } from 'react';
 
 // Component
 import { LineIcon, LogoIcon } from '@/ui/icons';
@@ -10,7 +9,7 @@ import { Menu } from '../common';
 import { SIDEBAR_LIST } from '@/lib/constants';
 
 const Sidebar = () => (
-  <VStack width="246px">
+  <VStack width="246px" pt='44px'>
     <Link href="/" as="h1" mb="27.5px">
       <LogoIcon />
     </Link>
