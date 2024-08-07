@@ -16,10 +16,10 @@ export type TUser = {
   };
 };
 
-export interface IUser {
+export type IUser = {
   email: string;
   password: string;
   name?: string;
   location?: string;
   phone?: string;
-}
+};

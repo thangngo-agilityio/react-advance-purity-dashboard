@@ -5,3 +5,4 @@ export { default as Text } from './Text';
 export * from './ButtonIcon';
 export * from './InputFiled';
 export * from './Avatar';
+export * from './Menu';

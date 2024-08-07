@@ -23,6 +23,9 @@ export const Text = defineStyleConfig({
     secondary: {
       color: 'text.100',
     },
+    tertiary: {
+      color: 'text.500',
+    },
   },
   defaultProps: {
     size: 'textMd',

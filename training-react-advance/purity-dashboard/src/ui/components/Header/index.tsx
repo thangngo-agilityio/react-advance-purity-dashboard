@@ -14,7 +14,7 @@ type THeaderProps = {
 }
 
 const Header = ({ path, name, colorFill, colorIcon }: THeaderProps) => (
-  <Flex alignItems='center' p='24px' justifyContent='space-between' borderRadius='lg'>
+  <Flex w='100%' alignItems='center' p='24px' justifyContent='space-between' borderRadius='lg'>
     <Box>
       <Navbar path={path} name={name} colorFill={colorFill} />
     </Box>
