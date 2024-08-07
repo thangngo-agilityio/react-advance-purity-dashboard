@@ -4,10 +4,12 @@ import { memo } from 'react';
 
 type TStatusProps = BadgeProps & {
   text?: string | number | boolean;
+  isAuthor?: boolean
 };
 
 const StatusComponent = ({
   text = '',
+  isAuthor,
   ...props
 }: TStatusProps): JSX.Element => {
   return (
@@ -20,11 +22,12 @@ const StatusComponent = ({
       <Tooltip minW="max-content" placement="bottom" label={text}>
         <Badge
           {...props}
-          maxW="65px"
+          maxW={isAuthor ? "65px" : "100px"}
           whiteSpace="break-spaces"
           noOfLines={1}
-          textAlign="center"
+          textAlign={isAuthor ? "center" : 'left'}
           fontSize='md'
+          fontWeight='bold'
           textTransform='unset'
         >
           {text}

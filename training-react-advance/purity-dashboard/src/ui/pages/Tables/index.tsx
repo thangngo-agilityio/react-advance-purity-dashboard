@@ -12,19 +12,20 @@ import StatusCell from '@/ui/components/Table/Body/StatusCell';
 import FunctionCell from '@/ui/components/Table/Body/FunctionCell';
 
 // Hooks
-import { useAuthor } from '@/lib/hooks';
+import { useAuthor, useProject } from '@/lib/hooks';
 
 // Constants
 import { COLUMNS_AUTHOR, COLUMNS_PROJECT, ROUTES, STATUS_LABEL } from '@/lib/constants';
 
 // Types
-import { TDataSource, THeaderTable } from '@/lib/types';
-import { TAuthor } from '../../../lib/types/author';
-import { TProject } from '../../../lib/types/project';
-import { formatAuthorResponse } from '@/lib/utils';
+import { TDataSource, THeaderTable, TAuthor, TProject } from '@/lib/types';
+
+// utils
+import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
 
 const TablePage = () => {
   const { authorData } = useAuthor();
+  const { projectData } = useProject();
 
   const renderHead = useCallback(
     (title: string, key: string): JSX.Element => {
@@ -46,7 +47,7 @@ const TablePage = () => {
   type TStatus = keyof typeof STATUS_LABEL;
 
   const renderAuthorStatus = useCallback(({ authorStatus }: TDataSource) => (
-    <StatusCell variant={STATUS_LABEL[`${authorStatus}` as TStatus]}
+    <StatusCell isAuthor variant={STATUS_LABEL[`${authorStatus}` as TStatus]}
       text={authorStatus as string} />
   ), [])
 
@@ -103,14 +104,16 @@ const TablePage = () => {
       pl={0}
       fontSize="md"
       textAlign="left"
-      w={{ base: '100px', md: '20px' }}
+      w={{ base: '100px', md: '220px' }}
     >
       <Text
+        flex={1}
+        w={{ base: '100px', '3xl': '150px', '5xl': '200px' }}
+        noOfLines={1}
+        color='text.primary'
+        fontWeight='bold'
         fontSize="md"
         whiteSpace="break-spaces"
-        noOfLines={1}
-        w={{ base: '100px', '3xl': '150px', '5xl': '200px' }}
-        flex={1}
       >
         {budget}
       </Text>
@@ -166,7 +169,7 @@ const TablePage = () => {
 
       <VStack gap='24px' w='100%'>
         <ModalTable title='Authors Table' columns={columnAuthor as unknown as THeaderTable[]} dataSource={formatAuthorResponse(authorData)} />
-        <ModalTable title='Projects' columns={columnProject as unknown as THeaderTable[]} dataSource={[]} />
+        <ModalTable title='Projects' columns={columnProject as unknown as THeaderTable[]} dataSource={formatProjectResponse(projectData)} />
       </VStack>
     </VStack>
   );
