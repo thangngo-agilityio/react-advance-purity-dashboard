@@ -11,3 +11,5 @@ export * from './Table';
 export * from './ModalTable';
 export * from './Table/Body';
 export * from './ErrorBoundary';
+export * from './CardInfor';
+export * from './InforItem';

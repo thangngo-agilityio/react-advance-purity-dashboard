@@ -1,13 +1,21 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image } from '@chakra-ui/react';
 
 type TAvatarProps = {
   src?: string;
   alt?: string;
-}
+  width?: string;
+  height?: string;
+};
 
-const Avatar = ({ src, alt }: TAvatarProps) => (
-  <Box w='40px' h='40px' borderRadius='lg'>
-    <Image w='100%' h='100%' borderRadius='lg' src={src} alt={alt} />
+const Avatar = ({
+  src = '/public/imgs/avatar-default.svg',
+  alt,
+  width = '40px',
+  height = '40px',
+  ...props
+}: TAvatarProps) => (
+  <Box w={width} h={height} borderRadius="lg" {...props}>
+    <Image w="100%" h="100%" borderRadius="lg" src={src} alt={alt} />
   </Box>
 );
 

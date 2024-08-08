@@ -78,6 +78,15 @@ export const Button = defineStyleConfig({
       borderWidth: '1px',
       opacity: '1 !important',
     },
+    iconTertiary: {
+      color: 'text.200',
+      backgroundColor: 'transparent',
+      borderRadius: 'md',
+      _hover: {
+        backgroundColor: 'background.100',
+        boxShadow: '0 2px 5.5px rgba(0, 0 , 0, .06)',
+      },
+    },
   },
   defaultProps: {
     size: 'xs',

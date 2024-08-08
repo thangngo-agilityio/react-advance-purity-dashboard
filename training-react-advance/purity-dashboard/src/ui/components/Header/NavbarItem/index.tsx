@@ -1,4 +1,3 @@
-
 import { Box, Flex, Link } from '@chakra-ui/react';
 
 // Components
@@ -8,15 +7,17 @@ type TNavbarProps = {
   path?: string;
   name?: string;
   colorFill?: string;
-}
+};
 
 const Navbar = ({ path, name, colorFill }: TNavbarProps) => (
   <Box>
-    <Flex flexDirection='row' alignItems='center' mb='5px'>
-      <Text size='textSm' content='Pages /' />
-      <Link href={path} variant='secondary' color={colorFill}>{name}</Link>
+    <Flex flexDirection="row" alignItems="center" mb="5px">
+      <Text size="textSm" content="Pages /" color={colorFill} />
+      <Link href={path} variant="secondary" color={colorFill}>
+        {name}
+      </Link>
     </Flex>
-    <Heading as={'h2'} title={name} size='md' color={colorFill} />
+    <Heading as={'h2'} title={name} size="md" color={colorFill} />
   </Box>
 );
 
