@@ -16,7 +16,7 @@ type TSidebarProps = {
   title?: string;
 };
 
-export const Menu = ({ title, listItem = [] }: TSidebarProps) => (
+const Menu = ({ title, listItem = [] }: TSidebarProps) => (
   <VStack w="100%">
     {title && (
       <Heading as="h2" w="full" fontSize="sm" mb="10px" px="22px">
@@ -41,3 +41,5 @@ export const Menu = ({ title, listItem = [] }: TSidebarProps) => (
     </List>
   </VStack>
 );
+
+export default Menu

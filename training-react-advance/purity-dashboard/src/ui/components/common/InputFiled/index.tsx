@@ -27,7 +27,7 @@ type TInputFieldProps = Omit<InputProps, 'onChange'> & {
   onChange?: (value: string) => void;
 };
 
-export const InputField = memo(forwardRef((
+const InputField = memo(forwardRef((
   {
     isError = false,
     errorMessages = 'Default error',
@@ -108,3 +108,4 @@ export const InputField = memo(forwardRef((
   );
 }));
 
+export default InputField;

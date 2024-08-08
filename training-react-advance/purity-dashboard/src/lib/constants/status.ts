@@ -7,3 +7,9 @@ export const STATUS_LABEL = {
   [Status.CANCELED]: 'tertiary',
   [Status.DONE]: 'tertiary',
 };
+
+export const STATUS_SUBMIT = {
+  PENDING: 'pending',
+  ERROR: 'error',
+  SUCCESS: 'success',
+};

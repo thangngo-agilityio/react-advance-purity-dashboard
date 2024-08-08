@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 // Components
-import { InputField } from '.';
+import InputField from '.';
 
 const defaultProps = {
   name: 'title',
