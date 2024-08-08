@@ -12,6 +12,7 @@ export type TAuthor = {
 };
 
 export type TFiledAuthor = {
+  id: string;
   fields: {
     name: string;
     email: string;
@@ -24,6 +25,7 @@ export type TFiledAuthor = {
 };
 
 export type AuthorFormData = {
+  id: string;
   name: string;
   email: string;
   role: string;

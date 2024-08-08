@@ -35,19 +35,13 @@ export class HttpService {
     return await this.axiosClient.post<T>(url, jsonBody, configs);
   }
 
-  async put<TRequestBody, T>(
-    path: string,
-    body: TRequestBody,
+  async put<T>(
+    endpoint: string,
+    body: Object,
     configs?: AxiosRequestConfig,
-  ): Promise<T> {
-    try {
-      const url = `${this.baseApi}${path}`;
-      const res = await this.axiosClient.post(url, body, configs);
-
-      return res.data;
-    } catch (error) {
-      throw error;
-    }
+  ): Promise<AxiosResponse<T>> {
+    const url = `${this.baseApi}${endpoint}`;
+    return await this.axiosClient.put<T>(url, body, configs);
   }
 
   async patch<TRequestBody, T>(

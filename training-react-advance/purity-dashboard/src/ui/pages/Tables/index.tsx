@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { Button, Td, Text, Th, VStack } from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
+import { Td, Text, Th, VStack } from '@chakra-ui/react';
 
 // Components
 import {
@@ -17,7 +16,7 @@ import {
 } from '@/ui/components';
 
 // Hooks
-import { useAuthor, useProject } from '@/lib/hooks';
+import { TCreateAuthorPayload, useAuthor, useProject } from '@/lib/hooks';
 
 // Constants
 import { COLUMNS_AUTHOR, COLUMNS_PROJECT, ROUTES, STATUS_LABEL, TIME_FORMAT } from '@/lib/constants';
@@ -31,60 +30,59 @@ import dayjs from 'dayjs';
 
 const TablePage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [isEdit, setIsEdit] = useState(false)
-  const [isAddProject, setIsAddProject] = useState(false)
+  // const [isAddProject, setIsAddProject] = useState(false)
 
-  const { authorData, createAuthor } = useAuthor();
+  const { authorData, createAuthor, updateAuthor } = useAuthor();
   const { projectData } = useProject();
-
-  const {
-    control,
-    formState: { isDirty },
-    handleSubmit,
-    clearErrors,
-    reset
-  } = useForm<AuthorFormData>({
-    defaultValues: {
-
-    },
-  });
-
 
   const handleToggleAddModal = () => {
     setIsOpenModal((prev) => !prev);
   }
 
-  const handleToggleEditModal = () => {
-    setIsOpenModal((prev) => !prev);
-    setIsEdit((prev) => !prev)
-  }
-
-  const handleToggleAddProject = () => {
-    setIsOpenModal((prev) => !prev);
-    setIsAddProject((prev) => !prev)
-  }
+  // const handleToggleAddProject = () => {
+  //   setIsOpenModal((prev) => !prev);
+  //   setIsAddProject((prev) => !prev)
+  // }
 
   const handleCreateAuthor = useCallback(async (data: AuthorFormData) => {
     try {
-      const payload: TFiledAuthor[] = [
-        {
-          fields: {
-            ...data,
-            employed: dayjs(data.employed).format(TIME_FORMAT)
+      const payload =
+      {
+        records: [
+          {
+            fields: {
+              ...data,
+              employed: dayjs(data.employed).format(TIME_FORMAT)
+            }
           }
-        }
-      ]
+        ]
+      }
 
-      await createAuthor({ records: payload })
+      await createAuthor(payload as unknown as TCreateAuthorPayload)
     } catch (error) {
       throw error
     }
-  }, [createAuthor, reset, setIsOpenModal])
+  }, [createAuthor, setIsOpenModal])
+
+  const handleUpdateAuthor = useCallback(async (data: AuthorFormData) => {
+    console.log(1)
+    console.log(data.id)
+    const payload: TFiledAuthor[] = [
+      {
+        id: data.id,
+        fields: {
+          ...data,
+          employed: dayjs(data.employed).format(TIME_FORMAT)
+        }
+      }
+    ]
+
+    await updateAuthor({ records: payload })
+  }, [])
 
   const onSubmit = useCallback((data: AuthorFormData) => {
-    handleCreateAuthor(data)
-    reset()
-    setIsOpenModal(false)
+    console.log(data.id)
+    data.id ? handleUpdateAuthor(data) : handleCreateAuthor(data)
 
   }, [handleCreateAuthor])
 
@@ -142,25 +140,8 @@ const TablePage = () => {
   ), [])
 
   const renderAuthorAction = useCallback(
-    (data: TAuthor): JSX.Element => (
-      <Td>
-        <Button
-          p={0}
-          bg="none"
-          _hover={{
-            bg: 'none',
-          }}
-          _active={{
-            bg: 'none',
-          }}
-          fontSize='sm'
-          fontWeight='bold'
-          color='text.500'
-          onClick={handleToggleEditModal}
-        >
-          Edit
-        </Button>
-      </Td>
+    (data: AuthorFormData): JSX.Element => (
+      <ActionCell isAuthor data={data} />
     ),
     [],
   );
@@ -248,27 +229,21 @@ const TablePage = () => {
 
       <VStack gap='24px' w='100%'>
         <ModalTable title='Authors Table' columns={columnAuthor as unknown as THeaderTable[]} dataSource={formatAuthorResponse(authorData)} onClickAdd={handleToggleAddModal} />
-        <ModalTable title='Projects' columns={columnProject as unknown as THeaderTable[]} dataSource={formatProjectResponse(projectData)} onClickAdd={handleToggleAddProject} />
+        <ModalTable title='Projects' columns={columnProject as unknown as THeaderTable[]} dataSource={formatProjectResponse(projectData)} onClickAdd={() => { }} />
       </VStack>
       {
         isOpenModal && (
           <Modal isOpen={isOpenModal} onClose={handleToggleAddModal} title='Add Author' haveCloseButton body={
-            <AuthorForm control={control} handleSubmit={handleSubmit(onSubmit)} clearErrors={clearErrors} isDirty={isDirty} onCloseModal={handleToggleAddModal} />
+            <AuthorForm onCloseModal={handleToggleAddModal} onSubmit={onSubmit} />
           } />
         )
       }
-      {
-        isOpenModal && isEdit && (
-          <Modal isOpen={isOpenModal} onClose={handleToggleEditModal} title='Edit Author' haveCloseButton body={
-            <AuthorForm control={control} handleSubmit={handleSubmit(onSubmit)} clearErrors={clearErrors} onCloseModal={handleToggleEditModal} />
-          } />
-        )
-      }
-      {
+
+      {/* {
         isOpenModal && isAddProject && (
           <Modal isOpen={isOpenModal} onClose={handleToggleAddProject} title='Add Project' haveCloseButton />
         )
-      }
+      } */}
     </VStack>
   );
 };

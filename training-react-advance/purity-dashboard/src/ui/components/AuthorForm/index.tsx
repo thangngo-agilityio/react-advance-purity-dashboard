@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, useCallback, useMemo } from 'react';
-import { Control, Controller, useForm, UseFormClearErrors } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import isEqual from 'react-fast-compare';
 
 // Components
@@ -13,28 +13,46 @@ import {
 } from '@chakra-ui/react';
 
 // Types
-import { AuthorFormData, TAuthor, TFiledAuthor } from '@/lib/types';
+import { AuthorFormData } from '@/lib/types';
 
 // constants
-import { STATUS_SUBMIT } from '@/lib/constants';
+import { DATE_FORMAT, STATUS_SUBMIT, TIME_FORMAT } from '@/lib/constants';
 import InputField from '../common/InputFiled';
+import dayjs from 'dayjs';
 
 interface AuthorFormProps {
-  control: Control<AuthorFormData>
-  data?: TFiledAuthor;
-  isDirty?: boolean;
+  data?: AuthorFormData;
   onCloseModal?: () => void;
-  handleSubmit?: () => void
-  clearErrors: UseFormClearErrors<AuthorFormData>
+  onSubmit?: (data: AuthorFormData) => void
 }
 
 const AuthorForm = ({
-  control,
-  isDirty,
+  data,
   onCloseModal,
-  handleSubmit,
-  clearErrors
+  onSubmit
 }: AuthorFormProps) => {
+  const {
+    name = '',
+    email = '',
+    role = '',
+    job = '',
+    employed = ''
+  } = data || {}
+  const {
+    control,
+    formState: { isDirty },
+    handleSubmit,
+    clearErrors,
+    reset
+  } = useForm<AuthorFormData>({
+    defaultValues: {
+      name: name,
+      email: email,
+      role: role,
+      job: job,
+      employed: dayjs(employed).format(DATE_FORMAT)
+    },
+  });
 
   const disabled = useMemo(
     () => !(isDirty) || status === STATUS_SUBMIT.PENDING,
@@ -50,11 +68,20 @@ const AuthorForm = ({
     [clearErrors],
   );
 
+  const handleSubmitForm = useCallback(
+    (data: AuthorFormData) => {
+      onSubmit && onSubmit(data);
+      onCloseModal;
+      reset();
+    },
+    [onSubmit, onCloseModal, reset],
+  );
+
   return (
     <VStack
       as="form"
       id="update-product-form"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(handleSubmitForm)}
     >
       <VStack w='100%' alignItems='flex-start'>
         <Heading fontSize='md' color='text.500'>
@@ -155,8 +182,8 @@ const AuthorForm = ({
             render={({ field, fieldState: { error } }) => (
               <InputField
                 bg="background.100"
+                type='date'
                 placeholder="Employed"
-                type='datetime-local'
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
@@ -194,5 +221,5 @@ const AuthorForm = ({
   );
 };
 
-const ProductFormMemorized = memo(AuthorForm, isEqual);
-export default ProductFormMemorized;
+const AuthorFormMemorized = memo(AuthorForm, isEqual);
+export default AuthorFormMemorized;
