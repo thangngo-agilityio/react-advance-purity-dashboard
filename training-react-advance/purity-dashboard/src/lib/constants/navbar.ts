@@ -15,7 +15,7 @@ export const MENU_ITEM_LIST = [
     id: 1,
     leftIcon: HomeIcon,
     menuItemContent: 'Dashboards',
-    destination: '/',
+    destination: ROUTES.DASHBOARD,
   },
   {
     id: 2,

@@ -13,6 +13,7 @@ export type TUser = {
     name?: string;
     location?: string;
     phone?: string;
+    avatar?: string;
   };
 };
 
@@ -22,4 +23,5 @@ export type IUser = {
   name?: string;
   location?: string;
   phone?: string;
+  avatar?: string;
 };

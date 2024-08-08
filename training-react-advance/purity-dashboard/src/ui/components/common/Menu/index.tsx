@@ -25,7 +25,7 @@ export const Menu = ({ title, listItem = [] }: TSidebarProps) => (
     )}
 
     <List mt={2.5} aria-label="list-icon" w="full" mb="24px" px="16px">
-      {listItem.map(({ leftIcon, destination, menuItemContent, id }) => {
+      {listItem.map(({ leftIcon, destination, menuItemContent }) => {
         const LeftIconComponent = leftIcon || Fragment;
         return (
           <ListItem key={menuItemContent} aria-label="item-icon">

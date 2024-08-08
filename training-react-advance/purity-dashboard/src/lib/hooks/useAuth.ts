@@ -56,7 +56,6 @@ export const useAuthRegister = () => {
       await mainHttpService
         .post<TUserResponse>(API_PATH.USER, user)
         .then((res) => {
-          console.log(res);
           return res;
         }),
   });

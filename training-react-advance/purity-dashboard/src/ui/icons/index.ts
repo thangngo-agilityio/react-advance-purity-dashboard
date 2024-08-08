@@ -15,3 +15,6 @@ export * from './apple';
 export * from './facebook';
 export * from './google';
 export * from './dot';
+export * from './overviewIcon';
+export * from './teamIcon';
+export * from './projectIcon';

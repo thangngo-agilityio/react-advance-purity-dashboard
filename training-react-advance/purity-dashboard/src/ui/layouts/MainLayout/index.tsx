@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, ReactElement } from 'react';
 import { Box, Flex, VStack } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 
@@ -6,7 +6,11 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from '@/ui/components/Sidebar';
 import Footer from '@/ui/components/Footer';
 
-const MainLayout = () => {
+export type TMainLayoutProps = {
+  children: ReactElement
+}
+
+const MainLayout = ({ children }: TMainLayoutProps) => {
   return (
     <Flex
       position="absolute"
@@ -25,7 +29,7 @@ const MainLayout = () => {
           pb={30}
           bgColor="background.table"
         >
-          <Outlet />
+          {children}
         </Box>
         <Footer isAuth />
       </VStack>

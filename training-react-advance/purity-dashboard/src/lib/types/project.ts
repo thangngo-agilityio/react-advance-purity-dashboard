@@ -16,5 +16,7 @@ export type TFiledProject = {
     budget: number;
     status: PROJECT_STATUS;
     completion: number;
+    description: string;
+    image: string;
   };
 };

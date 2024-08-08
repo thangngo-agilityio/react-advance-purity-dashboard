@@ -8,7 +8,7 @@ const baseStyle = definePartsStyle({
   track: {
     bg: 'background.700',
     _checked: {
-      bg: 'background.800',
+      bg: 'background.300',
     },
   },
 });

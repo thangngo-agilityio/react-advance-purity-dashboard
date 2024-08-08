@@ -1,5 +1,7 @@
 import { MouseEvent, ReactElement, ReactNode, memo } from 'react';
-import { Box, Link } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+
 import ButtonIcon from '../common/ButtonIcon';
 
 export type TNavigationProps = {
@@ -32,19 +34,30 @@ const Navigation = ({
       }}
     >
       <Link
-        display='flex'
-        alignItems='center'
-        gap='12px'
-        href={destination}
-        onClick={onClick}
-        aria-label="navigate-item"
+        to={destination}
       >
-        {leftIcon && (
-          <ButtonIcon icon={leftIcon} isActive={isActive} />
-        )}
-        {children}
-      </Link>
-    </Box>
+        <Text
+          display='flex'
+          alignItems='center'
+          gap='12px'
+          aria-label="navigate-item"
+          py='12px'
+          px='16px'
+          textDecoration='none !important'
+          fontFamily='heading'
+          fontWeight='700'
+          fontSize='sm'
+        >
+          {
+            leftIcon && (
+              <ButtonIcon icon={leftIcon} isActive={isActive} />
+            )
+          }
+          {children}
+        </Text>
+
+      </Link >
+    </Box >
   );
 };
 

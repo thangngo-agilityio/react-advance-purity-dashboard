@@ -3,14 +3,16 @@ import { ChakraProvider } from '@chakra-ui/react';
 import type { Preview } from '@storybook/react';
 
 // Theme
-import { theme } from '../src/themes';
+import { theme } from '../src/ui/themes';
 
 const preview: Preview = {
-  decorators: [(Story) => (
-    <ChakraProvider theme={theme}>
-      <Story />
-    </ChakraProvider>
-  )],
+  decorators: [
+    (Story) => (
+      <ChakraProvider theme={theme}>
+        <Story />
+      </ChakraProvider>
+    ),
+  ],
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
@@ -19,7 +21,6 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-
   },
 };
 

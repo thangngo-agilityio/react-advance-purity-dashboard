@@ -14,7 +14,7 @@ export const formatAuthorResponse = (authors: TFiledAuthor[] = []) =>
     return {
       name,
       email,
-      avatar,
+      avatar: avatar || '/public/imgs/avatar-default.svg',
       role,
       job,
       authorStatus: status,

@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 // Types
-import { TDataSource, THeaderTable } from "@/lib/types/table";
+import { TDataSource, THeaderTable } from '@/lib/types/table';
 import { ERROR_MESSAGES } from '@/lib/constants/message';
 
 type TTableProps = TableProps & {
@@ -27,16 +27,14 @@ const Table = ({
   onClickTableRow,
   ...props
 }: TTableProps): JSX.Element => {
-
-  console.log('dataSource 2:', dataSource)
   return (
     <TableContainer
       // overflowX={{
       //   base: 'scroll',
       //   '6xl': 'hidden',
       // }}
-      w='100%'
-      maxH='390px'
+      w="100%"
+      maxH="390px"
     >
       <TableChakra {...props}>
         <Thead>
@@ -114,7 +112,11 @@ const Table = ({
                               fontWeight="semibold"
                               textAlign="left"
                               whiteSpace="break-spaces"
-                              minW={{ base: '250px', xl: '20px', '3xl': '100px' }}
+                              minW={{
+                                base: '250px',
+                                xl: '20px',
+                                '3xl': '100px',
+                              }}
                               noOfLines={1}
                             >
                               {data[column.key as keyof typeof data] as string}
@@ -131,6 +133,6 @@ const Table = ({
       </TableChakra>
     </TableContainer>
   );
-}
+};
 
-export default Table
+export default Table;
