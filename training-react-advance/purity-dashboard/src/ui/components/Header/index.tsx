@@ -3,8 +3,8 @@ import { Box, Flex } from '@chakra-ui/react';
 
 // Component
 import Navbar from './NavbarItem';
-import { InputField } from '../common';
 import { NotificationIcon, SearchIcon, SettingIcon } from '@/ui/icons';
+import InputField from '../common/InputFiled';
 
 type THeaderProps = {
   path?: string;

@@ -4,7 +4,7 @@ import { Control, Controller, FieldValues, useForm } from "react-hook-form";
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 
 // Component
-import { InputField, Switch } from "../common";
+import { Switch } from "../common";
 import { AppleIcon, FacebookIcon, GoogleIcon } from "@/ui/icons";
 
 // Constants
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 // Types
 import { AuthFormData } from "@/lib/types";
+import InputField from "../common/InputFiled";
 
 
 type TAuthFormProps = {

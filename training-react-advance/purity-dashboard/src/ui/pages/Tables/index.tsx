@@ -1,15 +1,19 @@
-import { useCallback, useMemo } from 'react';
-import { Td, Text, Th, VStack } from '@chakra-ui/react';
+import { useCallback, useMemo, useState } from 'react';
+import { Button, Td, Text, Th, VStack } from '@chakra-ui/react';
 
 // Components
-import Header from '@/ui/components/Header';
-import ModalTable from '@/ui/components/ModalTable';
-import HeadCell from '@/ui/components/Table/HeadCell';
-import AuthorCell from '@/ui/components/Table/Body/AuthorCell';
-import CompletionCell from '@/ui/components/Table/Body/CompletionCell';
-import ActionCell from '@/ui/components/Table/Body/ActionCell';
-import StatusCell from '@/ui/components/Table/Body/StatusCell';
-import FunctionCell from '@/ui/components/Table/Body/FunctionCell';
+import {
+  Modal,
+  Header,
+  ModalTable,
+  HeadCell,
+  AuthorCell,
+  CompletionCell,
+  ActionCell,
+  StatusCell,
+  FunctionCell,
+  AuthorForm
+} from '@/ui/components';
 
 // Hooks
 import { useAuthor, useProject } from '@/lib/hooks';
@@ -24,8 +28,26 @@ import { TDataSource, THeaderTable, TAuthor, TProject } from '@/lib/types';
 import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
 
 const TablePage = () => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isEdit, setIsEdit] = useState(false)
+  const [isAddProject, setIsAddProject] = useState(false)
+
   const { authorData } = useAuthor();
   const { projectData } = useProject();
+
+
+  const handleToggleAddModal = () => {
+    setIsOpenModal((prev) => !prev);
+  }
+  const handleToggleEditModal = () => {
+    setIsOpenModal((prev) => !prev);
+    setIsEdit((prev) => !prev)
+  }
+  const handleToggleAddProject = () => {
+    setIsOpenModal((prev) => !prev);
+    setIsAddProject((prev) => !prev)
+  }
+
 
   const renderHead = useCallback(
     (title: string, key: string): JSX.Element => {
@@ -80,8 +102,25 @@ const TablePage = () => {
   ), [])
 
   const renderAuthorAction = useCallback(
-    (data: TAuthor) => (
-      <ActionCell />
+    (data: TAuthor): JSX.Element => (
+      <Td>
+        <Button
+          p={0}
+          bg="none"
+          _hover={{
+            bg: 'none',
+          }}
+          _active={{
+            bg: 'none',
+          }}
+          fontSize='sm'
+          fontWeight='bold'
+          color='text.500'
+          onClick={handleToggleEditModal}
+        >
+          Edit
+        </Button>
+      </Td>
     ),
     [],
   );
@@ -168,9 +207,30 @@ const TablePage = () => {
       <Header name="Tables" path={ROUTES.TABLES} />
 
       <VStack gap='24px' w='100%'>
-        <ModalTable title='Authors Table' columns={columnAuthor as unknown as THeaderTable[]} dataSource={formatAuthorResponse(authorData)} />
-        <ModalTable title='Projects' columns={columnProject as unknown as THeaderTable[]} dataSource={formatProjectResponse(projectData)} />
+        <ModalTable title='Authors Table' columns={columnAuthor as unknown as THeaderTable[]} dataSource={formatAuthorResponse(authorData)} onClickAdd={handleToggleAddModal} />
+        <ModalTable title='Projects' columns={columnProject as unknown as THeaderTable[]} dataSource={formatProjectResponse(projectData)} onClickAdd={handleToggleAddProject} />
       </VStack>
+      {
+        isOpenModal && (
+          <Modal isOpen={isOpenModal} onClose={handleToggleAddModal} title='Add Author' haveCloseButton body={
+            <AuthorForm onCloseModal={handleToggleAddModal} />
+          } />
+        )
+      }
+      {
+        isOpenModal && isEdit && (
+          <Modal isOpen={isOpenModal} onClose={handleToggleEditModal} title='Edit Author' haveCloseButton body={
+            <AuthorForm onCloseModal={handleToggleEditModal} />
+          } />
+        )
+      }
+      {
+        isOpenModal && isAddProject && (
+          <Modal isOpen={isOpenModal} onClose={handleToggleAddProject} title='Add Project' haveCloseButton body={
+            <AuthorForm onCloseModal={handleToggleAddProject} />
+          } />
+        )
+      }
     </VStack>
   );
 };

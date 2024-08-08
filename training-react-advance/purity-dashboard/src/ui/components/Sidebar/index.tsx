@@ -3,10 +3,10 @@ import { Link, VStack } from '@chakra-ui/react';
 // Component
 import { LineIcon, LogoIcon } from '@/ui/icons';
 import CardHelp from '../CardHelp';
-import { Menu } from '../common';
 
 // Constants
 import { SIDEBAR_LIST } from '@/lib/constants';
+import Menu from '../common/Menu';
 
 const Sidebar = () => (
   <VStack width="246px" pt='44px'>
