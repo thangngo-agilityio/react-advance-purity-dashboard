@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, useCallback, useMemo } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Control, Controller, useForm, UseFormClearErrors } from 'react-hook-form';
 import isEqual from 'react-fast-compare';
 
 // Components
@@ -13,37 +13,28 @@ import {
 } from '@chakra-ui/react';
 
 // Types
-import { TAuthor, TFiledAuthor } from '@/lib/types';
+import { AuthorFormData, TAuthor, TFiledAuthor } from '@/lib/types';
 
 // constants
 import { STATUS_SUBMIT } from '@/lib/constants';
 import InputField from '../common/InputFiled';
 
-interface ProductProps {
+interface AuthorFormProps {
+  control: Control<AuthorFormData>
   data?: TFiledAuthor;
-  onCreateProduct?: (authorData: Omit<TAuthor, 'id'>) => void;
-  onUpdateProduct?: (authorData: TAuthor) => void;
+  isDirty?: boolean;
   onCloseModal?: () => void;
+  handleSubmit?: () => void
+  clearErrors: UseFormClearErrors<AuthorFormData>
 }
 
-const ProductForm = ({
-  data,
-  onCreateProduct,
-  onUpdateProduct,
+const AuthorForm = ({
+  control,
+  isDirty,
   onCloseModal,
-}: ProductProps) => {
-
-
-  const {
-    control,
-    formState: { isDirty },
-    handleSubmit,
-    clearErrors
-  } = useForm<TAuthor>({
-    defaultValues: {
-
-    },
-  });
+  handleSubmit,
+  clearErrors
+}: AuthorFormProps) => {
 
   const disabled = useMemo(
     () => !(isDirty) || status === STATUS_SUBMIT.PENDING,
@@ -51,7 +42,7 @@ const ProductForm = ({
   );
 
   const handleChangeValue = useCallback(
-    <T,>(field: keyof TAuthor, changeHandler: (value: T) => void) =>
+    <T,>(field: keyof AuthorFormData, changeHandler: (value: T) => void) =>
       (data: T) => {
         clearErrors(field);
         changeHandler(data);
@@ -63,7 +54,7 @@ const ProductForm = ({
     <VStack
       as="form"
       id="update-product-form"
-      onSubmit={handleSubmit(() => { })}
+      onSubmit={handleSubmit}
     >
       <VStack w='100%' alignItems='flex-start'>
         <Heading fontSize='md' color='text.500'>
@@ -165,6 +156,7 @@ const ProductForm = ({
               <InputField
                 bg="background.100"
                 placeholder="Employed"
+                type='datetime-local'
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
@@ -202,5 +194,5 @@ const ProductForm = ({
   );
 };
 
-const ProductFormMemorized = memo(ProductForm, isEqual);
+const ProductFormMemorized = memo(AuthorForm, isEqual);
 export default ProductFormMemorized;

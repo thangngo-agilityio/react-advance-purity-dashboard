@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { API_PATH } from '../constants';
 import { mainHttpService } from '../service';
 import { TFiledAuthor } from '../types';
@@ -18,5 +18,14 @@ export const useAuthor = () => {
 
   const authorData: TFiledAuthor[] = data?.records || [];
 
-  return { authorData };
+  const { mutateAsync: createAuthor } = useMutation({
+    mutationFn: async (author: TAuthorResponse) =>
+      await mainHttpService
+        .post<TAuthorResponse>(API_PATH.AUTHOR, author)
+        .then((res) => {
+          return res;
+        }),
+  });
+
+  return { authorData, createAuthor };
 };

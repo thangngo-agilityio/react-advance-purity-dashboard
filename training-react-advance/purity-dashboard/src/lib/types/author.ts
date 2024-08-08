@@ -15,10 +15,18 @@ export type TFiledAuthor = {
   fields: {
     name: string;
     email: string;
-    avatar: string;
+    avatar?: string;
     role: string;
     job: string;
-    status: AUTHOR_STATUS;
+    status?: AUTHOR_STATUS;
     employed: string;
   };
+};
+
+export type AuthorFormData = {
+  name: string;
+  email: string;
+  role: string;
+  job: string;
+  employed: string;
 };
