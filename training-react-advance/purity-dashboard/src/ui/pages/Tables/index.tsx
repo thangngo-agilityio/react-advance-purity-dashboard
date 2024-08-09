@@ -111,7 +111,7 @@ const TablePage = () => {
     (data: TRecordAuthor) => {
       data.id ? handleUpdateAuthor(data) : handleCreateAuthor(data);
     },
-    [handleCreateAuthor],
+    [handleCreateAuthor, handleUpdateAuthor],
   );
 
   const renderHead = useCallback((title: string, key: string): JSX.Element => {
@@ -283,6 +283,7 @@ const TablePage = () => {
 
       <VStack gap="24px" w="100%">
         <ModalTable
+          isAuthor
           title="Authors Table"
           columns={columnAuthor as unknown as THeaderTable[]}
           dataSource={formatAuthorResponse(authorData)}
@@ -292,7 +293,6 @@ const TablePage = () => {
           title="Projects"
           columns={columnProject as unknown as THeaderTable[]}
           dataSource={formatProjectResponse(projectData)}
-          onClickAdd={() => { }}
         />
       </VStack>
       {isOpenModal && (
@@ -309,12 +309,6 @@ const TablePage = () => {
           }
         />
       )}
-
-      {/* {
-        isOpenModal && isAddProject && (
-          <Modal isOpen={isOpenModal} onClose={handleToggleAddProject} title='Add Project' haveCloseButton />
-        )
-      } */}
     </VStack>
   );
 };

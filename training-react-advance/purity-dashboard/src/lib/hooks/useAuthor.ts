@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { API_PATH, AUTHOR_STATUS } from '../constants';
 import { mainHttpService } from '../service';
-import { TAuthorRequest, TRecordAuthor } from '../types';
+import { TRecordAuthor } from '../types';
 
 export type TAuthorResponse = {
   records: TRecordAuthor[];
@@ -31,8 +31,8 @@ export const useAuthor = () => {
   const authorData = data?.records || [];
 
   const { mutateAsync: createAuthor } = useMutation({
-    mutationFn: async (author: Omit<TCreateAuthorPayload, '_id'>) =>
-      (await mainHttpService.post<TAuthorResponse>(API_PATH.AUTHOR, author))
+    mutationFn: async (payload: Omit<TCreateAuthorPayload, '_id'>) =>
+      (await mainHttpService.post<TAuthorResponse>(API_PATH.AUTHOR, payload))
         .data,
 
     onSuccess: (dataResponse) => {
