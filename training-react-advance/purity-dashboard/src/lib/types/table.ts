@@ -1,6 +1,8 @@
+import { TAuthor } from './author';
+
 export type TDataSource = {
   id?: string | number;
-  [key: string]: string | string[] | number | boolean | undefined;
+  [key: string]: string | string[] | number | boolean | TAuthor | undefined;
 };
 
 export type THeaderTable = {

@@ -1,4 +1,4 @@
 export enum AUTHOR_STATUS {
-  ONLINE = 'online',
-  OFFLINE = 'offline',
+  ONLINE = 'Online',
+  OFFLINE = 'Offline',
 }

@@ -15,7 +15,14 @@ const Avatar = ({
   ...props
 }: TAvatarProps) => (
   <Box w={width} h={height} borderRadius="lg" {...props}>
-    <Image w="100%" h="100%" borderRadius="lg" src={src} alt={alt} />
+    <Image
+      w="100%"
+      h="100%"
+      borderRadius="lg"
+      objectFit="cover"
+      src={src}
+      alt={alt}
+    />
   </Box>
 );
 

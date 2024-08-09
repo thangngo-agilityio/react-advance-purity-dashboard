@@ -5,53 +5,74 @@ import { Controller, useForm } from 'react-hook-form';
 import isEqual from 'react-fast-compare';
 
 // Components
-import {
-  Button,
-  Flex,
-  Heading,
-  VStack,
-} from '@chakra-ui/react';
+import { Button, Flex, Heading, VStack } from '@chakra-ui/react';
 
 // Types
-import { TAuthor, TFiledAuthor } from '@/lib/types';
+import { TRecordAuthor } from '@/lib/types';
 
 // constants
-import { STATUS_SUBMIT } from '@/lib/constants';
+import { DATE_FORMAT, STATUS_SUBMIT } from '@/lib/constants';
 import InputField from '../common/InputFiled';
+import dayjs from 'dayjs';
 
-interface ProductProps {
-  data?: TFiledAuthor;
-  onCreateProduct?: (authorData: Omit<TAuthor, 'id'>) => void;
-  onUpdateProduct?: (authorData: TAuthor) => void;
-  onCloseModal?: () => void;
+interface AuthorFormProps {
+  data?: TRecordAuthor;
+  onCloseModal: () => void;
+  onSubmit?: (data: TRecordAuthor) => void;
 }
 
-const ProductForm = ({
-  data,
-  onCreateProduct,
-  onUpdateProduct,
-  onCloseModal,
-}: ProductProps) => {
-
-
+const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
+  const { id, fields, createdTime } = data || {};
+  const {
+    name = '',
+    email = '',
+    avatar = '',
+    role = '',
+    job = '',
+    employed = '',
+  } = fields || {};
   const {
     control,
     formState: { isDirty },
     handleSubmit,
-    clearErrors
-  } = useForm<TAuthor>({
+    clearErrors,
+    reset,
+  } = useForm<TRecordAuthor>({
     defaultValues: {
-
+      id: id,
+      fields: {
+        name: name,
+        email: email,
+        avatar: avatar,
+        role: role,
+        job: job,
+        employed: dayjs(employed).format(DATE_FORMAT),
+      },
+      createdTime: createdTime,
     },
   });
 
   const disabled = useMemo(
-    () => !(isDirty) || status === STATUS_SUBMIT.PENDING,
+    () => !isDirty || status === STATUS_SUBMIT.PENDING,
     [isDirty],
   );
 
   const handleChangeValue = useCallback(
-    <T,>(field: keyof TAuthor, changeHandler: (value: T) => void) =>
+    <T,>(
+      field:
+        | 'id'
+        | 'fields'
+        | 'createdTime'
+        | 'fields.name'
+        | 'fields.email'
+        | 'fields.avatar'
+        | 'fields.role'
+        | 'fields.job'
+        | 'fields.employed'
+        | 'fields._id'
+        | 'fields.status',
+      changeHandler: (value: T) => void,
+    ) =>
       (data: T) => {
         clearErrors(field);
         changeHandler(data);
@@ -59,24 +80,36 @@ const ProductForm = ({
     [clearErrors],
   );
 
+  const handleSubmitForm = useCallback(
+    (data: TRecordAuthor) => {
+      onSubmit && onSubmit(data);
+      onCloseModal();
+      reset();
+    },
+    [onSubmit, onCloseModal, reset],
+  );
+
   return (
     <VStack
       as="form"
       id="update-product-form"
-      onSubmit={handleSubmit(() => { })}
+      onSubmit={handleSubmit(handleSubmitForm)}
     >
-      <VStack w='100%' alignItems='flex-start'>
-        <Heading fontSize='md' color='text.500'>
+      <VStack w="100%" alignItems="flex-start">
+        <Heading fontSize="md" color="text.500">
           Author
         </Heading>
-        <Flex w='100%'>
-
+        <Flex w="100%">
           <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
             <Controller
               control={control}
               // rules={AUTH_SCHEMA.NAME}
-              name="name"
-              render={({ field, field: { onChange }, fieldState: { error } }) => (
+              name="fields.name"
+              render={({
+                field,
+                field: { onChange },
+                fieldState: { error },
+              }) => (
                 <InputField
                   bg="background.100"
                   placeholder="Name"
@@ -84,7 +117,7 @@ const ProductForm = ({
                   {...field}
                   isError={!!error}
                   errorMessages={error?.message}
-                  onChange={handleChangeValue('name', onChange)}
+                  onChange={handleChangeValue('fields.name', onChange)}
                   data-testid="edit-field-name"
                 />
               )}
@@ -94,25 +127,49 @@ const ProductForm = ({
             <Controller
               control={control}
               // rules={AUTH_SCHEMA.NAME}
-              name="email"
-              render={({ field, field: { onChange }, fieldState: { error } }) => (
+              name="fields.email"
+              render={({
+                field,
+                field: { onChange },
+                fieldState: { error },
+              }) => (
                 <InputField
                   bg="background.100"
-                  placeholder='Email'
+                  placeholder="Email"
                   mr={{ md: 2 }}
                   {...field}
                   isError={!!error}
                   errorMessages={error?.message}
-                  onChange={handleChangeValue('name', onChange)}
-                  data-testid="edit-field-name"
+                  onChange={handleChangeValue('fields.email', onChange)}
+                  data-testid="edit-field-email"
                 />
               )}
             />
           </Flex>
         </Flex>
+        <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
+          <Controller
+            control={control}
+            // rules={AUTH_SCHEMA.NAME}
+            name="fields.avatar"
+            render={({ field, field: { onChange }, fieldState: { error } }) => (
+              <InputField
+                bg="background.100"
+                placeholder="Avatar"
+                accept="image/*"
+                mr={{ md: 2 }}
+                {...field}
+                isError={!!error}
+                errorMessages={error?.message}
+                onChange={handleChangeValue('fields.avatar', onChange)}
+                data-testid="edit-field-avatar"
+              />
+            )}
+          />
+        </Flex>
       </VStack>
-      <VStack w='100%' alignItems='flex-start'>
-        <Heading fontSize='md' color='text.500'>
+      <VStack w="100%" alignItems="flex-start">
+        <Heading fontSize="md" color="text.500">
           Function
         </Heading>
         <Flex>
@@ -120,16 +177,20 @@ const ProductForm = ({
             <Controller
               control={control}
               // rules={AUTH_SCHEMA.NAME}
-              name="role"
-              render={({ field, field: { onChange }, fieldState: { error } }) => (
+              name="fields.role"
+              render={({
+                field,
+                field: { onChange },
+                fieldState: { error },
+              }) => (
                 <InputField
                   bg="background.100"
-                  placeholder='Role'
+                  placeholder="Role"
                   mr={{ md: 2 }}
                   {...field}
                   isError={!!error}
                   errorMessages={error?.message}
-                  onChange={handleChangeValue('role', onChange)}
+                  onChange={handleChangeValue('fields.role', onChange)}
                   data-testid="edit-field-role"
                 />
               )}
@@ -138,7 +199,7 @@ const ProductForm = ({
           <Flex w="100%" mb={{ sm: '5px' }}>
             <Controller
               control={control}
-              name="job"
+              name="fields.job"
               render={({ field, fieldState: { error } }) => (
                 <InputField
                   bg="background.100"
@@ -146,29 +207,30 @@ const ProductForm = ({
                   {...field}
                   isError={!!error}
                   errorMessages={error?.message}
-                  onChange={handleChangeValue('job', field.onChange)}
+                  onChange={handleChangeValue('fields.job', field.onChange)}
                 />
               )}
             />
           </Flex>
         </Flex>
       </VStack>
-      <VStack w='100%' alignItems='flex-start'>
-        <Heading fontSize='md' color='text.500'>
+      <VStack w="100%" alignItems="flex-start">
+        <Heading fontSize="md" color="text.500">
           Employed
         </Heading>
         <Flex w="100%" mb={{ sm: '5px' }}>
           <Controller
             control={control}
-            name="employed"
+            name="fields.employed"
             render={({ field, fieldState: { error } }) => (
               <InputField
                 bg="background.100"
+                type="date"
                 placeholder="Employed"
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
-                onChange={handleChangeValue('employed', field.onChange)}
+                onChange={handleChangeValue('fields.employed', field.onChange)}
               />
             )}
           />
@@ -181,7 +243,7 @@ const ProductForm = ({
           form="update-product-form"
           data-testid="submit-product-form"
           w={44}
-          h='full'
+          h="full"
           bg="green.600"
           mr={3}
           isDisabled={disabled}
@@ -190,7 +252,7 @@ const ProductForm = ({
         </Button>
         <Button
           w={44}
-          h='full'
+          h="full"
           bg="orange.300"
           _hover={{ bg: 'orange.400' }}
           onClick={onCloseModal}
@@ -202,5 +264,5 @@ const ProductForm = ({
   );
 };
 
-const ProductFormMemorized = memo(ProductForm, isEqual);
-export default ProductFormMemorized;
+const AuthorFormMemorized = memo(AuthorForm, isEqual);
+export default AuthorFormMemorized;

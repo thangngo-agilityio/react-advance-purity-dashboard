@@ -1,4 +1,5 @@
 import { Link, VStack } from '@chakra-ui/react';
+import { memo } from 'react';
 
 // Component
 import { LineIcon, LogoIcon } from '@/ui/icons';
@@ -9,7 +10,7 @@ import { SIDEBAR_LIST } from '@/lib/constants';
 import Menu from '../common/Menu';
 
 const Sidebar = () => (
-  <VStack width="246px" pt='44px'>
+  <VStack width="246px" pt="44px">
     <Link href="/" as="h1" mb="27.5px">
       <LogoIcon />
     </Link>
@@ -21,4 +22,4 @@ const Sidebar = () => (
   </VStack>
 );
 
-export default Sidebar;
+export default memo(Sidebar);

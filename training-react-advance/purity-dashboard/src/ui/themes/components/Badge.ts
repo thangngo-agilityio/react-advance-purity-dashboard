@@ -23,4 +23,7 @@ export const Badge = defineStyleConfig({
       backgroundColor: 'transparent',
     },
   },
+  defaultProps: {
+    variant: 'secondary',
+  },
 });
