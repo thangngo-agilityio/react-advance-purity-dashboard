@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import { TRecordAuthor } from '../types';
 
 // Constants
-import { DATE_FORMAT } from '../constants';
+import { AUTHOR_STATUS, DATE_FORMAT, STATUS_LABEL } from '../constants';
 
 export const formatAuthorResponse = (authors: TRecordAuthor[] = []) =>
   authors.map((author) => {
@@ -30,7 +30,7 @@ export const formatAuthorResponse = (authors: TRecordAuthor[] = []) =>
       avatar: avatar || '/public/imgs/avatar-default.svg',
       role,
       job,
-      status,
+      authorStatus: status || AUTHOR_STATUS.OFFLINE,
       employed: dayjs(employed).format(DATE_FORMAT),
     };
   });

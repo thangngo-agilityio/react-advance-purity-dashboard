@@ -30,6 +30,10 @@ export interface TRecordAuthor {
   fields: TAuthor;
 }
 
+export type TAuthorRequest = {
+  records: TRecordAuthor
+}
+
 export type AuthorFormData = {
   _id: number;
   name: string;

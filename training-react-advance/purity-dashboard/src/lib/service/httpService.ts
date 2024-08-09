@@ -41,7 +41,8 @@ export class HttpService {
     configs?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
     const url = `${this.baseApi}${endpoint}`;
-    return await this.axiosClient.put<T>(url, body, configs);
+    const jsonBody = JSON.stringify(body);
+    return await this.axiosClient.put<T>(url, jsonBody, configs);
   }
 
   async patch<TRequestBody, T>(

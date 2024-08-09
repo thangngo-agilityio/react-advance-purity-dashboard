@@ -27,8 +27,6 @@ const ActionCellComponent = ({
     setIsOpenModal((prev) => !prev);
   };
 
-  console.log(data)
-
   return (
     <>
       <Td

@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { useCallback, useMemo, useState } from 'react';
 import { Td, Text, Th, VStack } from '@chakra-ui/react';
 
@@ -16,7 +17,7 @@ import {
 } from '@/ui/components';
 
 // Hooks
-import { TCreateAuthorPayload, useAuthor, useProject } from '@/lib/hooks';
+import { TAuthorResponse, TCreateAuthorPayload, useAuthor, useProject } from '@/lib/hooks';
 
 // Constants
 import {
@@ -34,11 +35,11 @@ import {
   TAuthor,
   TProject,
   TRecordAuthor,
+  TAuthorRequest,
 } from '@/lib/types';
 
 // utils
 import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
-import dayjs from 'dayjs';
 
 const TablePage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -79,36 +80,35 @@ const TablePage = () => {
         throw error;
       }
     },
-    [createAuthor, setIsOpenModal],
+    [createAuthor],
   );
 
   const handleUpdateAuthor = useCallback(async (data: TRecordAuthor) => {
-    console.log(1);
-    console.log(data);
-    console.log(data.id);
     try {
       const payload = {
         records: [
           {
             id: data.id,
             fields: {
-              ...data,
+              name: data.fields.name,
+              email: data.fields.email,
+              avatar: data.fields.avatar,
+              role: data.fields.role,
+              job: data.fields.job,
               employed: dayjs(data.fields.employed).format(TIME_FORMAT),
             },
           },
         ],
       };
 
-      await updateAuthor(payload as unknown as TCreateAuthorPayload);
+      await updateAuthor(payload as unknown as TAuthorResponse);
     } catch (err) {
       throw err;
     }
-  }, []);
+  }, [updateAuthor]);
 
   const onSubmit = useCallback(
     (data: TRecordAuthor) => {
-      console.log(data);
-      console.log(data.id);
       data.id ? handleUpdateAuthor(data) : handleCreateAuthor(data);
     },
     [handleCreateAuthor],
@@ -292,7 +292,7 @@ const TablePage = () => {
           title="Projects"
           columns={columnProject as unknown as THeaderTable[]}
           dataSource={formatProjectResponse(projectData)}
-          onClickAdd={() => {}}
+          onClickAdd={() => { }}
         />
       </VStack>
       {isOpenModal && (
