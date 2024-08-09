@@ -1,22 +1,38 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { API_PATH } from '../constants';
 import { mainHttpService } from '../service';
-import { TFiledProject } from '../types';
+import { TFiledProject, TRecordProject } from '../types';
 
 export type TProjectResponse = {
-  records: TFiledProject[];
+  records: TRecordProject[];
 };
 
 export const useProject = () => {
+  const queryClient = useQueryClient();
   const { data } = useQuery({
     queryKey: [API_PATH.PROJECT],
-    queryFn: () =>
-      mainHttpService.get<TProjectResponse>(API_PATH.PROJECT).then((res) => {
-        return res.data;
-      }),
+    queryFn: async () =>
+      (await mainHttpService.get<TProjectResponse>(API_PATH.PROJECT)).data,
   });
 
   const projectData: TFiledProject[] = data?.records || [];
 
-  return { projectData };
+  const { mutateAsync: createProject } = useMutation({
+    mutationFn: async (payload: TProjectResponse) =>
+      (await mainHttpService.post<TProjectResponse>(API_PATH.PROJECT, payload))
+        .data,
+
+    onSuccess: (dataResponse) => {
+      const newData = dataResponse.records;
+
+      queryClient.setQueryData(
+        [API_PATH.AUTHOR],
+        (oldData: TProjectResponse) => ({
+          records: [...newData, ...oldData.records],
+        }),
+      );
+    },
+  });
+
+  return { projectData, createProject };
 };

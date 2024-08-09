@@ -8,6 +8,7 @@ type TModalTableProps = {
   title?: string;
   columns?: THeaderTable[];
   dataSource?: TDataSource[];
+  isAuthor?: boolean,
   onClickTableRow?: (id: string) => void;
   onClickAdd?: () => void;
 };
@@ -16,6 +17,7 @@ const ModalTable = ({
   title,
   columns,
   dataSource,
+  isAuthor,
   onClickTableRow,
   onClickAdd,
 }: TModalTableProps) => {
@@ -31,9 +33,9 @@ const ModalTable = ({
     >
       <Flex w="100%" justifyContent="space-between">
         <Heading mt="4px">{title}</Heading>
-        <Button gap="4px" onClick={onClickAdd}>
+        {isAuthor && <Button gap="4px" onClick={onClickAdd}>
           Add new <AddIcon />
-        </Button>
+        </Button>}
       </Flex>
       <Table
         columns={columns}

@@ -1,12 +1,14 @@
 import { PROJECT_STATUS } from '../constants';
 
 export type TProject = {
-  id: string;
+  _id: string;
   projectName: string;
   avatar: string;
   budget: number;
   status: PROJECT_STATUS;
   completion: number;
+  image: string;
+  description: string;
 };
 
 export type TFiledProject = {
@@ -19,4 +21,14 @@ export type TFiledProject = {
     description: string;
     image: string;
   };
+};
+
+export interface TRecordProject {
+  id: string;
+  createdTime: string;
+  fields: TProject;
+}
+
+export type TProjectRequest = {
+  records: TRecordProject;
 };

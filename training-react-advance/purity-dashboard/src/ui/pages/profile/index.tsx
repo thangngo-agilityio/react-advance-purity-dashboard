@@ -12,7 +12,7 @@ import {
 
 // Components
 import Header from '@/ui/components/Header';
-import { Switch } from '@/ui/components';
+import { Modal, ProjectForm, Switch } from '@/ui/components';
 import { LineIcon, OverviewIcon, ProjectIcon, TeamIcon } from '@/ui/icons';
 import Avatar from '@/ui/components/common/Avatar';
 
@@ -24,13 +24,49 @@ import { authStore } from '@/lib/stores';
 import CardInfor from '@/ui/components/CardInfor';
 import InforItem from '@/ui/components/InforItem';
 import CardProject from '@/ui/components/CardProject';
-import { useProject } from '@/lib/hooks';
+import { TProjectResponse, useProject } from '@/lib/hooks';
 import { AddIcon } from '@chakra-ui/icons';
+import { useCallback, useState } from 'react';
+import { TRecordProject } from '@/lib/types';
 
 const ProfilePage = () => {
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
   const user = authStore((state) => state.user);
 
-  const { projectData } = useProject();
+  const { projectData, createProject } = useProject();
+
+  const handleCreateProject = useCallback(async (data: TRecordProject) => {
+    try {
+      const payload = {
+        records: [
+          {
+            fields: {
+              projectName: data.fields.projectName,
+              budget: Number(data.fields.budget),
+              avatar: data.fields.avatar,
+              status: data.fields.status,
+              completion: Number(data.fields.completion),
+              image: data.fields.image,
+              description: data.fields.description,
+            },
+          },
+        ],
+      };
+
+      await createProject(payload as unknown as TProjectResponse)
+    } catch (err) {
+      throw err
+    }
+  }, [])
+
+  const handleToggleModal = () => {
+    setIsOpenModal((prev) => !prev)
+  }
+
+  const HandleSubmitProject = useCallback((data: TRecordProject) => {
+    handleCreateProject(data)
+  }, [])
 
   return (
     <VStack mt="24px">
@@ -222,13 +258,13 @@ const ProfilePage = () => {
           ))}
           <GridItem>
             <VStack
-              width="100%"
-              height="100%"
+              w="100%"
+              h="385px"
               borderRadius="lg"
               borderWidth="1px"
               borderColor="border.400"
               gap="10px"
-              onClick={() => {}}
+              onClick={handleToggleModal}
               justifyContent="center"
               opacity={1}
               cursor="pointer"
@@ -243,6 +279,17 @@ const ProfilePage = () => {
           </GridItem>
         </Grid>
       </VStack>
+      {isOpenModal && (
+        <Modal
+          isOpen={isOpenModal}
+          onClose={handleToggleModal}
+          title="Add Project"
+          haveCloseButton
+          body={
+            <ProjectForm onCloseModal={handleToggleModal} onSubmit={HandleSubmitProject} />
+          }
+        />
+      )}
     </VStack>
   );
 };
