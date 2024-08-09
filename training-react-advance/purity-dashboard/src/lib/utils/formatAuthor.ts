@@ -1,23 +1,36 @@
 import dayjs from 'dayjs';
 
 // Types
-import { TFiledAuthor } from '../types';
+import { TRecordAuthor } from '../types';
 
 // Constants
-import { TIME_FORMAT } from '../constants';
+import { DATE_FORMAT } from '../constants';
 
-export const formatAuthorResponse = (authors: TFiledAuthor[] = []) =>
+export const formatAuthorResponse = (authors: TRecordAuthor[] = []) =>
   authors.map((author) => {
-    const { fields } = author || {};
-    const { name, email, avatar, role, job, status, employed } = fields || {};
+    const { id, fields, createdTime } = author || {};
+    const { _id, name, email, avatar, role, job, status, employed } =
+      fields || {};
 
     return {
+      id,
+      createdTime,
+      fields: {
+        _id,
+        name,
+        email,
+        avatar: avatar || '/public/imgs/avatar-default.svg',
+        role,
+        job,
+        status,
+        employed: dayjs(employed).format(DATE_FORMAT),
+      },
       name,
       email,
       avatar: avatar || '/public/imgs/avatar-default.svg',
       role,
       job,
-      authorStatus: status,
-      employed: dayjs(employed).format(TIME_FORMAT),
+      status,
+      employed: dayjs(employed).format(DATE_FORMAT),
     };
   });

@@ -12,17 +12,29 @@ import {
   ActionCell,
   StatusCell,
   FunctionCell,
-  AuthorForm
+  AuthorForm,
 } from '@/ui/components';
 
 // Hooks
 import { TCreateAuthorPayload, useAuthor, useProject } from '@/lib/hooks';
 
 // Constants
-import { COLUMNS_AUTHOR, COLUMNS_PROJECT, ROUTES, STATUS_LABEL, TIME_FORMAT } from '@/lib/constants';
+import {
+  COLUMNS_AUTHOR,
+  COLUMNS_PROJECT,
+  ROUTES,
+  STATUS_LABEL,
+  TIME_FORMAT,
+} from '@/lib/constants';
 
 // Types
-import { TDataSource, THeaderTable, TAuthor, TProject, AuthorFormData, TFiledAuthor } from '@/lib/types';
+import {
+  TDataSource,
+  THeaderTable,
+  TAuthor,
+  TProject,
+  TRecordAuthor,
+} from '@/lib/types';
 
 // utils
 import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
@@ -37,207 +49,266 @@ const TablePage = () => {
 
   const handleToggleAddModal = () => {
     setIsOpenModal((prev) => !prev);
-  }
+  };
 
   // const handleToggleAddProject = () => {
   //   setIsOpenModal((prev) => !prev);
   //   setIsAddProject((prev) => !prev)
   // }
 
-  const handleCreateAuthor = useCallback(async (data: AuthorFormData) => {
-    try {
-      const payload =
-      {
-        records: [
-          {
-            fields: {
-              ...data,
-              employed: dayjs(data.employed).format(TIME_FORMAT)
-            }
-          }
-        ]
+  const handleCreateAuthor = useCallback(
+    async (data: TRecordAuthor) => {
+      try {
+        const payload = {
+          records: [
+            {
+              fields: {
+                name: data.fields.name,
+                email: data.fields.email,
+                avatar: data.fields.avatar,
+                role: data.fields.role,
+                job: data.fields.job,
+                employed: dayjs(data.fields.employed).format(TIME_FORMAT),
+              },
+            },
+          ],
+        };
+
+        await createAuthor(payload as unknown as TCreateAuthorPayload);
+      } catch (error) {
+        throw error;
       }
-
-      await createAuthor(payload as unknown as TCreateAuthorPayload)
-    } catch (error) {
-      throw error
-    }
-  }, [createAuthor, setIsOpenModal])
-
-  const handleUpdateAuthor = useCallback(async (data: AuthorFormData) => {
-    console.log(1)
-    console.log(data.id)
-    const payload: TFiledAuthor[] = [
-      {
-        id: data.id,
-        fields: {
-          ...data,
-          employed: dayjs(data.employed).format(TIME_FORMAT)
-        }
-      }
-    ]
-
-    await updateAuthor({ records: payload })
-  }, [])
-
-  const onSubmit = useCallback((data: AuthorFormData) => {
-    console.log(data.id)
-    data.id ? handleUpdateAuthor(data) : handleCreateAuthor(data)
-
-  }, [handleCreateAuthor])
-
-
-  const renderHead = useCallback(
-    (title: string, key: string): JSX.Element => {
-      return title ? (
-        <HeadCell key={key} title={title} />
-      ) : (
-        <Th w={50} maxW={50} />
-      );
-    }, [],
+    },
+    [createAuthor, setIsOpenModal],
   );
 
-  const renderAuthor = useCallback(({ id, name, avatar, email }: TDataSource): JSX.Element => (
-    <AuthorCell id={id} key={id} name={name} image={avatar} email={email} />
-  ), [])
+  const handleUpdateAuthor = useCallback(async (data: TRecordAuthor) => {
+    console.log(1);
+    console.log(data);
+    console.log(data.id);
+    try {
+      const payload = {
+        records: [
+          {
+            id: data.id,
+            fields: {
+              ...data,
+              employed: dayjs(data.fields.employed).format(TIME_FORMAT),
+            },
+          },
+        ],
+      };
 
-  const renderFunction = useCallback(({ role, job }: TAuthor): JSX.Element =>
-    (<FunctionCell role={role} job={job} />), [])
+      await updateAuthor(payload as unknown as TCreateAuthorPayload);
+    } catch (err) {
+      throw err;
+    }
+  }, []);
+
+  const onSubmit = useCallback(
+    (data: TRecordAuthor) => {
+      console.log(data);
+      console.log(data.id);
+      data.id ? handleUpdateAuthor(data) : handleCreateAuthor(data);
+    },
+    [handleCreateAuthor],
+  );
+
+  const renderHead = useCallback((title: string, key: string): JSX.Element => {
+    return title ? (
+      <HeadCell key={key} title={title} />
+    ) : (
+      <Th w={50} maxW={50} />
+    );
+  }, []);
+
+  const renderAuthor = useCallback(
+    ({ id, name, avatar, email }: TDataSource): JSX.Element => (
+      <AuthorCell id={id} key={id} name={name} image={avatar} email={email} />
+    ),
+    [],
+  );
+
+  const renderFunction = useCallback(
+    ({ role, job }: TAuthor): JSX.Element => (
+      <FunctionCell role={role} job={job} />
+    ),
+    [],
+  );
 
   type TStatus = keyof typeof STATUS_LABEL;
 
-  const renderAuthorStatus = useCallback(({ authorStatus }: TDataSource) => (
-    <StatusCell isAuthor variant={STATUS_LABEL[`${authorStatus}` as TStatus]}
-      text={authorStatus as string} />
-  ), [])
+  const renderAuthorStatus = useCallback(
+    ({ authorStatus }: TDataSource) => (
+      <StatusCell
+        isAuthor
+        variant={STATUS_LABEL[`${authorStatus}` as TStatus]}
+        text={authorStatus as string}
+      />
+    ),
+    [],
+  );
 
-  const renderProjectStatus = useCallback(({ projectStatus }: TDataSource) => (
-    <StatusCell variant={STATUS_LABEL[`${projectStatus}` as TStatus]}
-      text={projectStatus as string} />
-  ), [])
+  const renderProjectStatus = useCallback(
+    ({ projectStatus }: TDataSource) => (
+      <StatusCell
+        variant={STATUS_LABEL[`${projectStatus}` as TStatus]}
+        text={projectStatus as string}
+      />
+    ),
+    [],
+  );
 
-  const renderEmployed = useCallback(({ employed }: TAuthor): JSX.Element => (
-    <Td
-      py='5px'
-      pr='5px'
-      pl={0}
-      fontSize="md"
-      textAlign="left"
-      w={{ base: '100px', md: '220px' }}
-    >
-      <Text
+  const renderEmployed = useCallback(
+    ({ employed }: TAuthor): JSX.Element => (
+      <Td
+        py="5px"
+        pr="5px"
+        pl={0}
         fontSize="md"
-        whiteSpace="break-spaces"
-        noOfLines={1}
-        w={{ base: '100px', '3xl': '150px', '5xl': '200px' }}
-        flex={1}
-        color='text.200'
-        fontWeight='bold'
+        textAlign="left"
+        w={{ base: '100px', md: '220px' }}
       >
-        {dayjs(employed).format(TIME_FORMAT)}
-      </Text>
-    </Td>
-  ), [])
+        <Text
+          fontSize="md"
+          whiteSpace="break-spaces"
+          noOfLines={1}
+          w={{ base: '100px', '3xl': '150px', '5xl': '200px' }}
+          flex={1}
+          color="text.200"
+          fontWeight="bold"
+        >
+          {dayjs(employed).format(TIME_FORMAT)}
+        </Text>
+      </Td>
+    ),
+    [],
+  );
 
   const renderAuthorAction = useCallback(
-    (data: AuthorFormData): JSX.Element => (
-      <ActionCell isAuthor data={data} />
+    (data: TRecordAuthor): JSX.Element => (
+      <ActionCell isAuthor data={data} onUpdateAuthor={handleUpdateAuthor} />
     ),
     [],
   );
 
   const renderProjectActionIcon = useCallback(
-    (data: TProject) => (
-      <ActionCell />
+    (data: TProject) => <ActionCell />,
+    [],
+  );
+
+  const renderCompanies = useCallback(
+    ({ id, avatar, projectName }: TDataSource): JSX.Element => (
+      <AuthorCell id={id} key={id} name={projectName} image={avatar} />
     ),
     [],
   );
 
-  const renderCompanies = useCallback(({ id, avatar, projectName }: TDataSource): JSX.Element => (
-    <AuthorCell id={id} key={id} name={projectName} image={avatar} />
-  ), [])
-
-  const renderBudget = useCallback(({ budget }: TProject): JSX.Element => (
-    <Td
-      py='5px'
-      pr='5px'
-      pl={0}
-      fontSize="md"
-      textAlign="left"
-      w={{ base: '100px', md: '220px' }}
-    >
-      <Text
-        flex={1}
-        w={{ base: '100px', '3xl': '150px', '5xl': '200px' }}
-        noOfLines={1}
-        color='text.primary'
-        fontWeight='bold'
+  const renderBudget = useCallback(
+    ({ budget }: TProject): JSX.Element => (
+      <Td
+        py="5px"
+        pr="5px"
+        pl={0}
         fontSize="md"
-        whiteSpace="break-spaces"
+        textAlign="left"
+        w={{ base: '100px', md: '220px' }}
       >
-        {budget}
-      </Text>
-    </Td>
-  ), [])
+        <Text
+          flex={1}
+          w={{ base: '100px', '3xl': '150px', '5xl': '200px' }}
+          noOfLines={1}
+          color="text.primary"
+          fontWeight="bold"
+          fontSize="md"
+          whiteSpace="break-spaces"
+        >
+          {budget}
+        </Text>
+      </Td>
+    ),
+    [],
+  );
 
-  const renderCompletion = useCallback(({ completion }: TProject): JSX.Element => (
-    <CompletionCell completion={completion} />
-  ), [])
+  const renderCompletion = useCallback(
+    ({ completion }: TProject): JSX.Element => (
+      <CompletionCell completion={completion} />
+    ),
+    [],
+  );
 
   const columnAuthor = useMemo(
     () =>
-      COLUMNS_AUTHOR
-        (
-          renderHead,
-          renderAuthor,
-          renderFunction,
-          renderAuthorStatus,
-          renderEmployed,
-          renderAuthorAction
-        )
-    , [
+      COLUMNS_AUTHOR(
+        renderHead,
+        renderAuthor,
+        renderFunction,
+        renderAuthorStatus,
+        renderEmployed,
+        renderAuthorAction,
+      ),
+    [
       renderHead,
       renderAuthor,
       renderFunction,
       renderAuthorStatus,
       renderEmployed,
       renderAuthorAction,
-    ])
+    ],
+  );
 
-  const columnProject = useMemo(() =>
-    COLUMNS_PROJECT
-      (
+  const columnProject = useMemo(
+    () =>
+      COLUMNS_PROJECT(
         renderHead,
         renderCompanies,
         renderBudget,
         renderProjectStatus,
         renderCompletion,
         renderProjectActionIcon,
-      )
-    , [
+      ),
+    [
       renderHead,
       renderCompanies,
       renderBudget,
       renderProjectStatus,
       renderCompletion,
-      renderProjectActionIcon
-    ])
+      renderProjectActionIcon,
+    ],
+  );
 
   return (
-    <VStack alignItems='flex-start'>
+    <VStack alignItems="flex-start">
       <Header name="Tables" path={ROUTES.TABLES} />
 
-      <VStack gap='24px' w='100%'>
-        <ModalTable title='Authors Table' columns={columnAuthor as unknown as THeaderTable[]} dataSource={formatAuthorResponse(authorData)} onClickAdd={handleToggleAddModal} />
-        <ModalTable title='Projects' columns={columnProject as unknown as THeaderTable[]} dataSource={formatProjectResponse(projectData)} onClickAdd={() => { }} />
+      <VStack gap="24px" w="100%">
+        <ModalTable
+          title="Authors Table"
+          columns={columnAuthor as unknown as THeaderTable[]}
+          dataSource={formatAuthorResponse(authorData)}
+          onClickAdd={handleToggleAddModal}
+        />
+        <ModalTable
+          title="Projects"
+          columns={columnProject as unknown as THeaderTable[]}
+          dataSource={formatProjectResponse(projectData)}
+          onClickAdd={() => {}}
+        />
       </VStack>
-      {
-        isOpenModal && (
-          <Modal isOpen={isOpenModal} onClose={handleToggleAddModal} title='Add Author' haveCloseButton body={
-            <AuthorForm onCloseModal={handleToggleAddModal} onSubmit={onSubmit} />
-          } />
-        )
-      }
+      {isOpenModal && (
+        <Modal
+          isOpen={isOpenModal}
+          onClose={handleToggleAddModal}
+          title="Add Author"
+          haveCloseButton
+          body={
+            <AuthorForm
+              onCloseModal={handleToggleAddModal}
+              onSubmit={onSubmit}
+            />
+          }
+        />
+      )}
 
       {/* {
         isOpenModal && isAddProject && (

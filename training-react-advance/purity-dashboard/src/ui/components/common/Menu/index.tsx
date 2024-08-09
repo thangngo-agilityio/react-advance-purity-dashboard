@@ -1,5 +1,5 @@
 import { Heading, List, ListItem, VStack } from '@chakra-ui/react';
-import { Fragment, ReactElement } from 'react';
+import { Fragment, memo, ReactElement } from 'react';
 
 // Components
 import Navigation from '../../Navigation';
@@ -42,4 +42,4 @@ const Menu = ({ title, listItem = [] }: TSidebarProps) => (
   </VStack>
 );
 
-export default Menu
+export default memo(Menu);
