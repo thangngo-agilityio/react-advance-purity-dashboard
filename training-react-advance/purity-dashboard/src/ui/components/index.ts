@@ -20,6 +20,7 @@ export { default as StatusCell } from './Table/Body/StatusCell';
 export { default as HeadCell } from './Table/HeadCell';
 export { default as AuthorForm } from './AuthorForm';
 export { default as ProjectForm } from './ProjectForm';
+export { default as Indicator } from './Indicator';
 
 // Common
 export { default as Avatar } from './common/Avatar';

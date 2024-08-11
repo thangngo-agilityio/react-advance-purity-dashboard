@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Constants
@@ -11,6 +11,7 @@ import { mainHttpService } from '../service';
 import { AuthFormData, TUser } from '../types';
 import { authStore } from '../stores';
 import { useNavigate } from 'react-router-dom';
+import { clearCookie } from '../utils/cookie';
 
 export type TUserResponse = {
   records: TUser[];
@@ -62,5 +63,24 @@ export const useAuthRegister = () => {
 
   return {
     createAccount,
+  };
+};
+
+export const useAuthLogout = () => {
+  const [isLogout, setIsLogout] = useState(false);
+
+  const navigate = useNavigate();
+  const handleLogout = useCallback(async () => {
+    setIsLogout(true);
+
+    setTimeout(() => {
+      setIsLogout(false);
+      navigate(ROUTES.SIGN_IN);
+    }, 1000);
+  }, []);
+
+  return {
+    isLogoutHandling: isLogout,
+    signOut: handleLogout,
   };
 };

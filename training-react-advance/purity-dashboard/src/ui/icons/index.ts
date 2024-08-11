@@ -18,3 +18,4 @@ export * from './dot';
 export * from './overviewIcon';
 export * from './teamIcon';
 export * from './projectIcon';
+export * from './signOut';

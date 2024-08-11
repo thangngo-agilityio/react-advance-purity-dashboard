@@ -1,5 +1,5 @@
-import { ROUTES } from '../../constants';
-import { BuildIcon, CardIcon, ChartIcon, HomeIcon } from '../../icons';
+import { HomeIcon, ChartIcon, CardIcon, BuildIcon } from '@/ui/icons';
+import { ROUTES } from '../constants';
 
 export const SIDEBAR_LIST_MOCK = [
   {
