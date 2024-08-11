@@ -19,47 +19,37 @@ const Navigation = ({
   destination = '/',
   onClick,
 }: TNavigationProps) => {
-
-
   return (
     <Box
-      borderRadius='lg'
+      borderRadius="lg"
       color={isActive ? 'text.200' : 'text.400'}
       backgroundColor={isActive ? 'background.200' : 'transparent'}
       boxShadow={isActive ? '0 5.5px 3.5px rgba(0, 0 , 0, .02)' : 'transparent'}
-      transition='.2s ease-in-out'
+      transition=".2s ease-in-out"
       _hover={{
         boxShadow: '0 5.5px 3.5px rgba(0, 0 , 0, .02)',
-        backgroundColor: 'background.100'
+        backgroundColor: 'background.100',
       }}
     >
-      <Link
-        to={destination}
-      >
+      <Link to={destination} onClick={onClick}>
         <Text
-          display='flex'
-          alignItems='center'
-          gap='12px'
+          display="flex"
+          alignItems="center"
+          gap="12px"
           aria-label="navigate-item"
-          py='12px'
-          px='16px'
-          textDecoration='none !important'
-          fontFamily='heading'
-          fontWeight='700'
-          fontSize='sm'
+          py="12px"
+          px="16px"
+          textDecoration="none !important"
+          fontFamily="heading"
+          fontWeight="700"
+          fontSize="sm"
         >
-          {
-            leftIcon && (
-              <ButtonIcon icon={leftIcon} isActive={isActive} />
-            )
-          }
+          {leftIcon && <ButtonIcon icon={leftIcon} isActive={isActive} />}
           {children}
         </Text>
-
-      </Link >
-    </Box >
+      </Link>
+    </Box>
   );
 };
 
 export default memo(Navigation);
-
