@@ -5,13 +5,18 @@ import { Controller, useForm } from 'react-hook-form';
 import isEqual from 'react-fast-compare';
 
 // Components
-import { Button, Flex, FormLabel, Heading, HStack, Select, VStack } from '@chakra-ui/react';
+import { Button, Flex, FormLabel, Select, VStack } from '@chakra-ui/react';
 
 // Types
-import { TRecordAuthor, TRecordProject } from '@/lib/types';
+import { TRecordProject } from '@/lib/types';
 
 // constants
-import { PROJECT_STATUS, PROJECT_STATUS_LIST, STATUS_SUBMIT } from '@/lib/constants';
+import {
+  AUTH_SCHEMA,
+  PROJECT_STATUS,
+  PROJECT_STATUS_LIST,
+  STATUS_SUBMIT,
+} from '@/lib/constants';
 import InputField from '../common/InputFiled';
 
 interface AuthorFormProps {
@@ -25,9 +30,9 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
   const {
     projectName = '',
     avatar = '',
-    budget = 0,
+    budget = '',
     status = PROJECT_STATUS.TODO,
-    completion = 0,
+    completion = '',
     image = '',
     description = '',
   } = fields || {};
@@ -43,9 +48,9 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
       fields: {
         projectName: projectName,
         avatar: avatar,
-        budget: budget,
+        budget: Number(budget),
         status: status,
-        completion: completion,
+        completion: Number(completion),
         image: image,
         description: description,
       },
@@ -100,15 +105,11 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
         <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
           <Controller
             control={control}
-            // rules={AUTH_SCHEMA.NAME}
+            rules={AUTH_SCHEMA.PROJECT_NAME}
             name="fields.projectName"
-            render={({
-              field,
-              field: { onChange },
-              fieldState: { error },
-            }) => (
+            render={({ field, field: { onChange }, fieldState: { error } }) => (
               <InputField
-                label='Project Name'
+                label="Project Name"
                 bg="background.100"
                 placeholder="Project Name"
                 {...field}
@@ -123,17 +124,14 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
         <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
           <Controller
             control={control}
-            // rules={AUTH_SCHEMA.NAME}
+            rules={AUTH_SCHEMA.BUDGET}
             name="fields.budget"
-            render={({
-              field,
-              field: { onChange },
-              fieldState: { error },
-            }) => (
+            render={({ field, field: { onChange }, fieldState: { error } }) => (
               <InputField
-                label='Budget'
+                label="Budget"
                 bg="background.100"
                 placeholder="Budget"
+                type="number"
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
@@ -146,11 +144,11 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
         <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
           <Controller
             control={control}
-            // rules={AUTH_SCHEMA.NAME}
+            rules={AUTH_SCHEMA.IMAGE}
             name="fields.avatar"
             render={({ field, field: { onChange }, fieldState: { error } }) => (
               <InputField
-                label='Avatar'
+                label="Avatar"
                 bg="background.100"
                 placeholder="Avatar"
                 accept="image/*"
@@ -165,27 +163,28 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
         </Flex>
       </VStack>
       <VStack w="100%" alignItems="flex-start">
-        <Flex flexDirection='column' w="100%" h='100%' mb={{ base: '5px', sm: '5px' }}>
-          <FormLabel>
-            Status
-          </FormLabel>
+        <Flex
+          flexDirection="column"
+          w="100%"
+          h="100%"
+          mb={{ base: '5px', sm: '5px' }}
+        >
+          <FormLabel>Status</FormLabel>
           <Controller
             control={control}
             // rules={AUTH_SCHEMA.NAME}
             name="fields.status"
-            render={({
-              field,
-              field: { onChange },
-            }) => (
+            render={({ field, field: { onChange } }) => (
               <Select
-                w='100%'
-                placeholder='Status'
+                w="100%"
                 bg="background.100"
                 {...field}
                 onChange={handleChangeValue('fields.status', onChange)}
               >
                 {PROJECT_STATUS_LIST.map((list, index) => (
-                  <option key={index} value={list.value}>{list.name}</option>
+                  <option key={index} value={list.value}>
+                    {list.name}
+                  </option>
                 ))}
               </Select>
             )}
@@ -193,18 +192,22 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
         </Flex>
         <Flex w="100%" mb={{ sm: '5px' }}>
           <Controller
+            rules={AUTH_SCHEMA.COMPLETION}
             control={control}
             name="fields.completion"
             render={({ field, fieldState: { error } }) => (
               <InputField
-                label='Completion'
-                type='number'
+                label="Completion"
+                type="number"
                 bg="background.100"
                 placeholder="Completion"
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
-                onChange={handleChangeValue('fields.completion', field.onChange)}
+                onChange={handleChangeValue(
+                  'fields.completion',
+                  field.onChange,
+                )}
               />
             )}
           />
@@ -213,11 +216,12 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
       <VStack w="100%" alignItems="flex-start">
         <Flex w="100%" mb={{ sm: '5px' }}>
           <Controller
+            rules={AUTH_SCHEMA.IMAGE}
             control={control}
             name="fields.image"
             render={({ field, fieldState: { error } }) => (
               <InputField
-                label='Image'
+                label="Image"
                 bg="background.100"
                 placeholder="Image"
                 {...field}
@@ -234,13 +238,16 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
             name="fields.description"
             render={({ field, fieldState: { error } }) => (
               <InputField
-                label='Description'
+                label="Description"
                 bg="background.100"
                 placeholder="Description"
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
-                onChange={handleChangeValue('fields.description', field.onChange)}
+                onChange={handleChangeValue(
+                  'fields.description',
+                  field.onChange,
+                )}
               />
             )}
           />

@@ -9,7 +9,7 @@ export type TProjectResponse = {
 
 export const useProject = () => {
   const queryClient = useQueryClient();
-  const { data } = useQuery({
+  const { data, isLoading, isFetching } = useQuery({
     queryKey: [API_PATH.PROJECT],
     queryFn: async () =>
       (await mainHttpService.get<TProjectResponse>(API_PATH.PROJECT)).data,
@@ -26,7 +26,7 @@ export const useProject = () => {
       const newData = dataResponse.records;
 
       queryClient.setQueryData(
-        [API_PATH.AUTHOR],
+        [API_PATH.PROJECT],
         (oldData: TProjectResponse) => ({
           records: [...newData, ...oldData.records],
         }),
@@ -34,5 +34,5 @@ export const useProject = () => {
     },
   });
 
-  return { projectData, createProject };
+  return { projectData, isLoading, isFetching, createProject };
 };

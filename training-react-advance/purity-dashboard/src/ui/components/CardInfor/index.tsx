@@ -16,6 +16,7 @@ const CardInfor = ({ title, children, ...props }: TCardInforProps) => (
     py="28px"
     boxShadow="0 3.5px 5.5px rgba(0, 0, 0, .02)"
     {...props}
+    overflowY="scroll"
   >
     <Heading as="h2" mb="16px">
       {title}

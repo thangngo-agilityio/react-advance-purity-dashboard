@@ -7,11 +7,25 @@ import { memo } from 'react';
 
 const AuthorCell = ({ image, name, email }: TDataSource) => (
   <Td px={0}>
-    <Flex alignItems="center">
+    <Flex alignItems="center" pr="20px">
       <Avatar src={`${image}`} alt={`${name}`} />
       <VStack ml="15px" alignItems="flex-start" gap={0}>
-        <Heading size="md">{name as string}</Heading>
-        <Text variant="tertiary">{email as string}</Text>
+        <Heading
+          size="md"
+          textOverflow="ellipsis"
+          overflow="hidden"
+          w={{ base: '200px', xl: '220px', '3xl': '200px', '6xl': '250px' }}
+        >
+          {name as string}
+        </Heading>
+        <Text
+          w={{ base: '200px', xl: '220px', '3xl': '200px', '6xl': '250px' }}
+          variant="tertiary"
+          textOverflow="ellipsis"
+          overflow="hidden"
+        >
+          {email as string}
+        </Text>
       </VStack>
     </Flex>
   </Td>

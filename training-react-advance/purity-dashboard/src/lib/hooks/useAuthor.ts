@@ -22,7 +22,7 @@ export type TCreateAuthorPayload = {
 
 export const useAuthor = () => {
   const queryClient = useQueryClient();
-  const { data } = useQuery({
+  const { data, isLoading, isFetching } = useQuery({
     queryKey: [API_PATH.AUTHOR],
     queryFn: async () =>
       (await mainHttpService.get<TAuthorResponse>(API_PATH.AUTHOR)).data,
@@ -78,5 +78,5 @@ export const useAuthor = () => {
     },
   });
 
-  return { authorData, createAuthor, updateAuthor };
+  return { authorData, isLoading, isFetching, createAuthor, updateAuthor };
 };

@@ -11,7 +11,7 @@ import { Button, Flex, Heading, VStack } from '@chakra-ui/react';
 import { TRecordAuthor } from '@/lib/types';
 
 // constants
-import { DATE_FORMAT, STATUS_SUBMIT } from '@/lib/constants';
+import { AUTH_SCHEMA, DATE_FORMAT, STATUS_SUBMIT } from '@/lib/constants';
 import InputField from '../common/InputFiled';
 import dayjs from 'dayjs';
 
@@ -102,8 +102,8 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
         <Flex w="100%">
           <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
             <Controller
+              rules={AUTH_SCHEMA.NAME}
               control={control}
-              // rules={AUTH_SCHEMA.NAME}
               name="fields.name"
               render={({
                 field,
@@ -126,7 +126,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
           <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
             <Controller
               control={control}
-              // rules={AUTH_SCHEMA.NAME}
+              rules={AUTH_SCHEMA.EMAIL}
               name="fields.email"
               render={({
                 field,
@@ -150,7 +150,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
         <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
           <Controller
             control={control}
-            // rules={AUTH_SCHEMA.NAME}
+            rules={AUTH_SCHEMA.IMAGE}
             name="fields.avatar"
             render={({ field, field: { onChange }, fieldState: { error } }) => (
               <InputField
@@ -176,7 +176,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
           <Flex w="100%" mb={{ base: '5px', sm: '5px' }}>
             <Controller
               control={control}
-              // rules={AUTH_SCHEMA.NAME}
+              rules={AUTH_SCHEMA.ROLE}
               name="fields.role"
               render={({
                 field,
@@ -198,6 +198,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
           </Flex>
           <Flex w="100%" mb={{ sm: '5px' }}>
             <Controller
+              rules={AUTH_SCHEMA.JOB}
               control={control}
               name="fields.job"
               render={({ field, fieldState: { error } }) => (
@@ -220,6 +221,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
         </Heading>
         <Flex w="100%" mb={{ sm: '5px' }}>
           <Controller
+            rules={AUTH_SCHEMA.EMPOLYED}
             control={control}
             name="fields.employed"
             render={({ field, fieldState: { error } }) => (

@@ -1,33 +1,66 @@
-import { Box, Button, Flex, Heading, HStack, Text, useDisclosure, VStack } from "@chakra-ui/react";
-import { ChangeEvent, memo, useCallback } from "react";
-import { Control, Controller, FieldValues, useForm } from "react-hook-form";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  HStack,
+  Text,
+  useDisclosure,
+  VStack,
+} from '@chakra-ui/react';
+import { ChangeEvent, memo, useCallback } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 
 // Component
-import { Switch } from "../common";
-import { AppleIcon, FacebookIcon, GoogleIcon } from "@/ui/icons";
+import { Switch } from '../common';
+import { AppleIcon, FacebookIcon, GoogleIcon } from '@/ui/icons';
 
 // Constants
-import { ROUTES } from "@/lib/constants";
-import { useNavigate } from "react-router-dom";
+import { AUTH_SCHEMA, ROUTES } from '@/lib/constants';
+import { useNavigate } from 'react-router-dom';
 
 // Types
-import { AuthFormData } from "@/lib/types";
-import InputField from "../common/InputFiled";
-
+import { AuthFormData } from '@/lib/types';
+import InputField from '../common/InputFiled';
 
 type TAuthFormProps = {
-  control: Control<AuthFormData>
   isRegister?: boolean;
-  isDisabled?: boolean
+  isDisabled?: boolean;
+  errorMessage?: string;
   onChange?: (value: string) => void;
   handleClearRootError?: () => void;
-  handleSubmit?: () => void
-}
+  handleSubmit?: () => void;
+  onSubmit: (data: AuthFormData) => void;
+};
 
-const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, handleClearRootError, handleSubmit }: TAuthFormProps) => {
-  const navigate = useNavigate()
+const AuthForm = ({
+  isRegister = false,
+  isDisabled = false,
+  errorMessage = '',
+  handleClearRootError,
+  onSubmit,
+}: TAuthFormProps) => {
+  const navigate = useNavigate();
 
+  const {
+    control,
+    formState: { dirtyFields, isSubmitting },
+    handleSubmit,
+    clearErrors,
+  } = useForm<AuthFormData>({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    defaultValues: {
+      email: '',
+      password: '',
+
+      ...(isRegister && {
+        name: '',
+        confirmPassword: '',
+      }),
+    },
+  });
 
   const { isOpen: isShowPassword, onToggle: onShowPassword } = useDisclosure();
   const { isOpen: isShowConfirmPassword, onToggle: onShowConfirmPassword } =
@@ -51,8 +84,22 @@ const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, h
   );
 
   const handleNavigate = () => {
-    navigate(isRegister ? ROUTES.SIGN_IN : ROUTES.SIGN_UP)
-  }
+    navigate(isRegister ? ROUTES.SIGN_IN : ROUTES.SIGN_UP);
+  };
+
+  const handleClearErrorMessage = useCallback(
+    (
+      field: keyof AuthFormData,
+      isError: boolean,
+      onChange: (value: string) => void,
+    ) =>
+      (data: string) => {
+        isError && clearErrors(field);
+
+        onChange(data);
+      },
+    [clearErrors],
+  );
 
   return (
     <Box
@@ -63,51 +110,66 @@ const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, h
       boxShadow={isRegister ? '0 7px 23px rgba(0, 0 , 0, .05)' : 'transparent'}
       bg={isRegister ? 'background.100' : 'transparent'}
     >
-      {!isRegister ?
-        <Box mb='36px'>
-          <Heading as='h1' mb='8px' variant='tertiary' size='xl'>Welcome Back</Heading>
-          <Text fontWeight='700'>Enter your email and password to sign in</Text>
+      {!isRegister ? (
+        <Box mb="36px">
+          <Heading as="h1" mb="8px" variant="tertiary" size="xl">
+            Welcome Back
+          </Heading>
+          <Text fontWeight="700">Enter your email and password to sign in</Text>
         </Box>
-        :
+      ) : (
         <Box>
-          <Box textAlign='center' mb='22px'>
+          <Box textAlign="center" mb="22px">
             <Heading>Register with</Heading>
           </Box>
-          <HStack gap='15px' justifyContent='center' mb='22px'>
-            <Button size='icon' variant='iconSecondary' isDisabled={true}>
+          <HStack gap="15px" justifyContent="center" mb="22px">
+            <Button size="icon" variant="iconSecondary" isDisabled={true}>
               <FacebookIcon />
             </Button>
-            <Button size='icon' variant='iconSecondary' isDisabled={true}>
+            <Button size="icon" variant="iconSecondary" isDisabled={true}>
               <AppleIcon />
             </Button>
-            <Button size='icon' variant='iconSecondary' isDisabled={true}>
+            <Button size="icon" variant="iconSecondary" isDisabled={true}>
               <GoogleIcon />
             </Button>
           </HStack>
-          <Text size='textLg' fontWeight='700' textAlign='center' mb='16px'>Or</Text>
+          <Text size="textLg" fontWeight="700" textAlign="center" mb="16px">
+            Or
+          </Text>
         </Box>
-      }
+      )}
 
-      <VStack gap={6} alignItems='flex-start' mb='24px' as='form' onSubmit={handleSubmit}>
+      <VStack
+        gap={6}
+        alignItems="flex-start"
+        mb="24px"
+        as="form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {isRegister && (
           <Controller
+            rules={AUTH_SCHEMA.NAME}
             control={control}
             name="name"
-            render={({ field: { value, onChange }, fieldState: { error } }) => (
+            render={({ field, fieldState: { error } }) => (
               <InputField
                 variant="authentication"
                 placeholder="name"
                 isError={!!error}
                 errorMessages={error?.message}
-                value={value}
-                isDisabled={isDisabled}
-                onChange={onChange}
+                isDisabled={isSubmitting}
+                onChange={handleClearErrorMessage(
+                  'name',
+                  !!error,
+                  field.onChange,
+                )}
                 aria-label="name"
               />
             )}
           />
         )}
         <Controller
+          rules={AUTH_SCHEMA.EMAIL}
           control={control}
           name="email"
           render={({ field: { value, onChange }, fieldState: { error } }) => {
@@ -133,6 +195,7 @@ const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, h
         />
 
         <Controller
+          rules={AUTH_SCHEMA.PASSWORD}
           control={control}
           name="password"
           render={({ field, fieldState: { error } }) => (
@@ -174,6 +237,7 @@ const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, h
           <>
             <Controller
               control={control}
+              rules={AUTH_SCHEMA.CONFIRM_PASSWORD}
               name="confirmPassword"
               render={({ field, fieldState: { error } }) => (
                 <InputField
@@ -184,10 +248,15 @@ const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, h
                     isShowConfirmPassword,
                     onShowConfirmPassword,
                   )}
+                  {...field}
                   isError={!!error}
                   errorMessages={error?.message}
-                  isDisabled={isDisabled}
-                  onChange={onChange}
+                  isDisabled={isSubmitting}
+                  onChange={handleClearErrorMessage(
+                    'confirmPassword',
+                    !!error,
+                    field.onChange,
+                  )}
                 />
               )}
             />
@@ -196,19 +265,22 @@ const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, h
       </VStack>
 
       <Box mb={7}>
+        <Text color="red" textAlign="center" py={2} h={10}>
+          {errorMessage}
+        </Text>
         <Button
-          width='100%'
+          width="100%"
           type="submit"
           role="button"
           aria-label={!isRegister ? 'Sign In' : 'Sign Up'}
-          size='xl'
-          fontSize='10px'
+          size="xl"
+          fontSize="10px"
           colorScheme="primary"
           bg="primary.300"
           textTransform="capitalize"
           form={!isRegister ? 'login-form' : 'register-form'}
           isDisabled={isDisabled}
-          onClick={handleSubmit}
+          onClick={handleSubmit(onSubmit)}
         >
           {!isRegister ? 'SIGN IN' : 'SIGN UP'}
         </Button>
@@ -232,7 +304,7 @@ const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, h
             bg: 'transparent',
           }}
           color="text.300"
-          fontSize='md'
+          fontSize="md"
           bg="transparent"
           fontWeight="semibold"
           ml={1}
@@ -242,7 +314,7 @@ const AuthForm = ({ control, isRegister = false, isDisabled = false, onChange, h
         </Button>
       </Flex>
     </Box>
-  )
+  );
 };
 
 export default memo(AuthForm);

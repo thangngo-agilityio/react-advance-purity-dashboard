@@ -5,6 +5,7 @@ export const STATUS_LABEL = {
   [Status.OFFLINE]: 'secondary',
   [Status.WORKING]: 'tertiary',
   [Status.CANCELED]: 'tertiary',
+  [Status.TODO]: 'tertiary',
   [Status.DONE]: 'tertiary',
 };
 
