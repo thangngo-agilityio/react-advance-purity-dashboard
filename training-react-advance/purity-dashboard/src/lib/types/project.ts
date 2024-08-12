@@ -13,6 +13,7 @@ export type TProject = {
 
 export type TFiledProject = {
   fields: {
+    _id: string;
     projectName: string;
     avatar: string;
     budget: number;

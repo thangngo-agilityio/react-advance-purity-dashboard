@@ -16,7 +16,7 @@ import { EditIcon, ViewIcon } from '@chakra-ui/icons';
 
 // Components
 import { Dot } from '@/ui/icons';
-import { AuthorForm, Modal } from '../..';
+import { AuthorForm, Modal, ProjectDetail } from '../..';
 
 // Types
 import { TRecordAuthor, TRecordProject } from '@/lib/types';
@@ -31,6 +31,7 @@ type TActionCellComponent = {
 
 const ActionCellComponent = ({
   data,
+  dataProject,
   isAuthor,
   isOpenOption,
   onUpdateAuthor,
@@ -40,6 +41,10 @@ const ActionCellComponent = ({
   const handleToggleEditModal = () => {
     setIsOpenModal((prev) => !prev);
   };
+
+  const handleToggleViewModal = () => {
+    setIsOpenModal((prev) => !prev)
+  }
 
   return (
     <>
@@ -119,7 +124,7 @@ const ActionCellComponent = ({
                         <ViewIcon
                           w="18px"
                           h="18px"
-                          onClick={() => { }}
+                          onClick={handleToggleViewModal}
                           data-testid="View-icon"
                         />
                       </Flex>
@@ -131,7 +136,7 @@ const ActionCellComponent = ({
           </Menu>
         )}
       </Td>
-      {isOpenModal && (
+      {isOpenModal && data && (
         <Modal
           isOpen={isOpenModal}
           onClose={handleToggleEditModal}
@@ -143,6 +148,19 @@ const ActionCellComponent = ({
               onSubmit={onUpdateAuthor}
               onCloseModal={handleToggleEditModal}
             />
+          }
+        />
+      )}
+
+      {isOpenModal && dataProject && (
+        <Modal
+          isOpen={isOpenModal}
+          onClose={handleToggleEditModal}
+          title="View Detail Project"
+          haveCloseButton
+          isProjectDetail
+          body={
+            <ProjectDetail data={dataProject} />
           }
         />
       )}

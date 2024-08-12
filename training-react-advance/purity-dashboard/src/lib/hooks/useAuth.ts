@@ -22,6 +22,7 @@ export const useAuthLogin = () => {
       mainHttpService.get<TUserResponse>(API_PATH.USER).then((res) => {
         return res.data.records;
       }),
+    refetchOnWindowFocus: false,
   });
 
   return { users, isPending };

@@ -11,22 +11,24 @@ import isEqual from 'react-fast-compare';
 
 export type TModalProps = {
   isOpen: boolean;
-  onClose: () => void;
   title?: string;
   body?: JSX.Element;
+  isProjectDetail?: boolean;
   haveCloseButton?: boolean;
+  onClose: () => void;
 };
 
 const ModalComponent = ({
   isOpen,
-  onClose,
   body,
   title = '',
+  isProjectDetail,
   haveCloseButton = false,
+  onClose,
 }: TModalProps) => (
   <Modal isCentered isOpen={isOpen} onClose={onClose}>
     <ModalOverlay />
-    <ModalContent minW={320} maxW="fit-content">
+    <ModalContent minW={isProjectDetail ? '0' : '320px'} maxW={isProjectDetail ? '30%' :"fit-content"}>
       <ModalHeader
         display="flex"
         justifyContent={haveCloseButton ? 'space-between' : 'center'}

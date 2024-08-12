@@ -26,6 +26,7 @@ export const useAuthor = () => {
     queryKey: [API_PATH.AUTHOR],
     queryFn: async () =>
       (await mainHttpService.get<TAuthorResponse>(API_PATH.AUTHOR)).data,
+    refetchOnWindowFocus: false,
   });
 
   const authorData = data?.records || [];
