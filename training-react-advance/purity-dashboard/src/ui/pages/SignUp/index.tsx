@@ -103,7 +103,7 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
         w="98%"
         h={{ base: 100, md: 220, xl: 320, '2xl': 420, '5xl': 520 }}
         borderRadius="lg"
-        backgroundImage="/public/imgs/background-signup.svg"
+        backgroundImage="/src/assets/imgs/background-signup.svg"
         backgroundRepeat="no-repeat"
         backgroundSize="100%"
         objectFit="cover"

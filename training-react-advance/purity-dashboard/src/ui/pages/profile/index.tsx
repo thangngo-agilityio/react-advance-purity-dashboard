@@ -74,7 +74,7 @@ const ProfilePage = () => {
       <VStack
         w="100%"
         height="300px"
-        bgImage="/public/imgs/background-profile.svg"
+        bgImage="/src/assets/imgs/background-profile.svg"
         borderRadius="lg"
         justifyContent="space-between"
         mb="74px"
