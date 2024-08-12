@@ -21,6 +21,7 @@ import {
 import {
   TAuthorResponse,
   TCreateAuthorPayload,
+  TProjectResponse,
   useAuthor,
   useProject,
 } from '@/lib/hooks';
@@ -56,6 +57,7 @@ const TablePage = () => {
     projectData,
     isLoading: loadingProject,
     isFetching: fetchingProject,
+    updateProject
   } = useProject();
 
   const handleToggleAddModal = () => {
@@ -113,6 +115,33 @@ const TablePage = () => {
       }
     },
     [updateAuthor],
+  );
+
+  const handleUpdateProject = useCallback(
+    async (data: TRecordProject) => {
+      try {
+        const payload = {
+          records: [
+            {
+              id: data.id,
+              fields: {
+                projectName: data.fields.projectName,
+                avatar: data.fields.avatar,
+                budget: data.fields.budget,
+                status: data.fields.status,
+                completion: data.fields.completion,
+                description: data.fields.description,
+              },
+            },
+          ],
+        };
+
+        await updateProject(payload as unknown as TProjectResponse);
+      } catch (err) {
+        throw err;
+      }
+    },
+    [updateProject],
   );
 
   const onSubmit = useCallback(
@@ -197,11 +226,11 @@ const TablePage = () => {
     (data: TRecordAuthor): JSX.Element => (
       <ActionCell isAuthor data={data} onUpdateAuthor={handleUpdateAuthor} />
     ),
-    [],
+    [handleUpdateAuthor],
   );
 
   const renderProjectActionIcon = useCallback(
-    (data: TRecordProject) => <ActionCell dataProject={data} isOpenOption={true} />,
+    (data: TRecordProject) => <ActionCell dataProject={data} isOpenOption={true} onUpdateProject={handleUpdateProject} />,
     [],
   );
 
@@ -220,7 +249,7 @@ const TablePage = () => {
         pl={0}
         fontSize="md"
         textAlign="left"
-        w={{ base: '100px', md: '220px' }}
+        w={{ base: '200px', xl: '220px', '3xl': '250px', '6xl': '350px' }}
       >
         <Text
           flex={1}

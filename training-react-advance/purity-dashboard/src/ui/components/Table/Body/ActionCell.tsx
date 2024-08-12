@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import {
   Button,
@@ -11,12 +11,13 @@ import {
   MenuItem,
   MenuList,
   Td,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { EditIcon, ViewIcon } from '@chakra-ui/icons';
 
 // Components
 import { Dot } from '@/ui/icons';
-import { AuthorForm, Modal, ProjectDetail } from '../..';
+import { AuthorForm, Modal, ProjectDetail, ProjectForm } from '../..';
 
 // Types
 import { TRecordAuthor, TRecordProject } from '@/lib/types';
@@ -27,6 +28,7 @@ type TActionCellComponent = {
   isAuthor?: boolean;
   isOpenOption?: boolean;
   onUpdateAuthor?: (author: TRecordAuthor) => void;
+  onUpdateProject?: (project: TRecordProject) => void;
 };
 
 const ActionCellComponent = ({
@@ -35,16 +37,15 @@ const ActionCellComponent = ({
   isAuthor,
   isOpenOption,
   onUpdateAuthor,
+  onUpdateProject
 }: TActionCellComponent) => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isView, setIsView] = useState(false);
+  const { isOpen, onToggle } = useDisclosure()
 
-  const handleToggleEditModal = () => {
-    setIsOpenModal((prev) => !prev);
-  };
-
-  const handleToggleViewModal = () => {
-    setIsOpenModal((prev) => !prev)
-  }
+  const handleToggleModalProject = useCallback((isViewModal: boolean) => () => {
+    onToggle()
+    setIsView(isViewModal)
+  }, [])
 
   return (
     <>
@@ -69,7 +70,7 @@ const ActionCellComponent = ({
             fontSize="sm"
             fontWeight="bold"
             color="text.500"
-            onClick={handleToggleEditModal}
+            onClick={onToggle}
           >
             Edit
           </Button>
@@ -118,13 +119,13 @@ const ActionCellComponent = ({
                         <EditIcon
                           w="18px"
                           h="18px"
-                          onClick={() => { }}
+                          onClick={handleToggleModalProject(false)}
                           data-testid="edit-icon"
                         />
                         <ViewIcon
                           w="18px"
                           h="18px"
-                          onClick={handleToggleViewModal}
+                          onClick={handleToggleModalProject(true)}
                           data-testid="View-icon"
                         />
                       </Flex>
@@ -136,26 +137,42 @@ const ActionCellComponent = ({
           </Menu>
         )}
       </Td>
-      {isOpenModal && data && (
+      {isOpen && data && (
         <Modal
-          isOpen={isOpenModal}
-          onClose={handleToggleEditModal}
+          isOpen={isOpen}
+          onClose={onToggle}
           title="Edit Author"
           haveCloseButton
           body={
             <AuthorForm
               data={data}
               onSubmit={onUpdateAuthor}
-              onCloseModal={handleToggleEditModal}
+              onCloseModal={onToggle}
             />
           }
         />
       )}
 
-      {isOpenModal && dataProject && (
+      {isOpen && dataProject && !isView && (
         <Modal
-          isOpen={isOpenModal}
-          onClose={handleToggleEditModal}
+          isOpen={isOpen}
+          onClose={onToggle}
+          title="Edit Project"
+          haveCloseButton
+          body={
+            <ProjectForm
+              data={dataProject}
+              onSubmit={onUpdateProject}
+              onCloseModal={onToggle}
+            />
+          }
+        />
+      )}
+
+      {isOpen && isView && dataProject && (
+        <Modal
+          isOpen={isOpen}
+          onClose={onToggle}
           title="View Detail Project"
           haveCloseButton
           isProjectDetail
