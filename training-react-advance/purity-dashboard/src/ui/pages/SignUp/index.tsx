@@ -25,17 +25,6 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
   const setUser = authStore((state) => state.setUser);
   const navigate = useNavigate();
 
-  const { control, handleSubmit } = useForm<AuthFormData>({
-    mode: 'onBlur',
-    reValidateMode: 'onBlur',
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-    },
-  });
-
   const handleCreateAccount = useCallback(
     async (data: AuthFormData) => {
       try {
@@ -102,11 +91,7 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
               project for free.
             </Text>
           </VStack>
-          <AuthForm
-            isRegister
-            control={control}
-            handleSubmit={handleSubmit(onSubmit)}
-          />
+          <AuthForm isRegister onSubmit={onSubmit} />
         </VStack>
         <Flex w="100%" h="100%" flex={1}>
           <Footer />

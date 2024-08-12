@@ -14,10 +14,16 @@ import {
   StatusCell,
   FunctionCell,
   AuthorForm,
+  Indicator,
 } from '@/ui/components';
 
 // Hooks
-import { TAuthorResponse, TCreateAuthorPayload, useAuthor, useProject } from '@/lib/hooks';
+import {
+  TAuthorResponse,
+  TCreateAuthorPayload,
+  useAuthor,
+  useProject,
+} from '@/lib/hooks';
 
 // Constants
 import {
@@ -35,7 +41,6 @@ import {
   TAuthor,
   TProject,
   TRecordAuthor,
-  TAuthorRequest,
 } from '@/lib/types';
 
 // utils
@@ -43,19 +48,18 @@ import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
 
 const TablePage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  // const [isAddProject, setIsAddProject] = useState(false)
 
-  const { authorData, createAuthor, updateAuthor } = useAuthor();
-  const { projectData } = useProject();
+  const { authorData, isLoading, isFetching, createAuthor, updateAuthor } =
+    useAuthor();
+  const {
+    projectData,
+    isLoading: loadingProject,
+    isFetching: fetchingProject,
+  } = useProject();
 
   const handleToggleAddModal = () => {
     setIsOpenModal((prev) => !prev);
   };
-
-  // const handleToggleAddProject = () => {
-  //   setIsOpenModal((prev) => !prev);
-  //   setIsAddProject((prev) => !prev)
-  // }
 
   const handleCreateAuthor = useCallback(
     async (data: TRecordAuthor) => {
@@ -83,29 +87,32 @@ const TablePage = () => {
     [createAuthor],
   );
 
-  const handleUpdateAuthor = useCallback(async (data: TRecordAuthor) => {
-    try {
-      const payload = {
-        records: [
-          {
-            id: data.id,
-            fields: {
-              name: data.fields.name,
-              email: data.fields.email,
-              avatar: data.fields.avatar,
-              role: data.fields.role,
-              job: data.fields.job,
-              employed: dayjs(data.fields.employed).format(TIME_FORMAT),
+  const handleUpdateAuthor = useCallback(
+    async (data: TRecordAuthor) => {
+      try {
+        const payload = {
+          records: [
+            {
+              id: data.id,
+              fields: {
+                name: data.fields.name,
+                email: data.fields.email,
+                avatar: data.fields.avatar,
+                role: data.fields.role,
+                job: data.fields.job,
+                employed: dayjs(data.fields.employed).format(TIME_FORMAT),
+              },
             },
-          },
-        ],
-      };
+          ],
+        };
 
-      await updateAuthor(payload as unknown as TAuthorResponse);
-    } catch (err) {
-      throw err;
-    }
-  }, [updateAuthor]);
+        await updateAuthor(payload as unknown as TAuthorResponse);
+      } catch (err) {
+        throw err;
+      }
+    },
+    [updateAuthor],
+  );
 
   const onSubmit = useCallback(
     (data: TRecordAuthor) => {
@@ -193,7 +200,7 @@ const TablePage = () => {
   );
 
   const renderProjectActionIcon = useCallback(
-    (data: TProject) => <ActionCell />,
+    (data: TProject) => <ActionCell isOpenOption={true} />,
     [],
   );
 
@@ -278,38 +285,42 @@ const TablePage = () => {
   );
 
   return (
-    <VStack alignItems="flex-start">
-      <Header name="Tables" path={ROUTES.TABLES} />
+    <Indicator isOpen={isLoading && loadingProject}>
+      <VStack alignItems="flex-start">
+        <Header name="Tables" path={ROUTES.TABLES} />
 
-      <VStack gap="24px" w="100%">
-        <ModalTable
-          isAuthor
-          title="Authors Table"
-          columns={columnAuthor as unknown as THeaderTable[]}
-          dataSource={formatAuthorResponse(authorData)}
-          onClickAdd={handleToggleAddModal}
-        />
-        <ModalTable
-          title="Projects"
-          columns={columnProject as unknown as THeaderTable[]}
-          dataSource={formatProjectResponse(projectData)}
-        />
+        <VStack gap="24px" w="100%">
+          <ModalTable
+            isAuthor
+            title="Authors Table"
+            columns={columnAuthor as unknown as THeaderTable[]}
+            dataSource={formatAuthorResponse(authorData)}
+            onClickAdd={handleToggleAddModal}
+            isFetching={isFetching}
+          />
+          <ModalTable
+            title="Projects"
+            columns={columnProject as unknown as THeaderTable[]}
+            dataSource={formatProjectResponse(projectData)}
+            isFetching={fetchingProject}
+          />
+        </VStack>
+        {isOpenModal && (
+          <Modal
+            isOpen={isOpenModal}
+            onClose={handleToggleAddModal}
+            title="Add Author"
+            haveCloseButton
+            body={
+              <AuthorForm
+                onCloseModal={handleToggleAddModal}
+                onSubmit={onSubmit}
+              />
+            }
+          />
+        )}
       </VStack>
-      {isOpenModal && (
-        <Modal
-          isOpen={isOpenModal}
-          onClose={handleToggleAddModal}
-          title="Add Author"
-          haveCloseButton
-          body={
-            <AuthorForm
-              onCloseModal={handleToggleAddModal}
-              onSubmit={onSubmit}
-            />
-          }
-        />
-      )}
-    </VStack>
+    </Indicator>
   );
 };
 

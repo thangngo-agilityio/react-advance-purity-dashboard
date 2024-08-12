@@ -4,4 +4,5 @@ export enum Status {
   WORKING = 'Working',
   CANCELED = 'Canceled',
   DONE = 'Done',
+  TODO = 'Todo',
 }

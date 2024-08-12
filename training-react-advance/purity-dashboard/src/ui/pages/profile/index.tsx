@@ -12,7 +12,7 @@ import {
 
 // Components
 import Header from '@/ui/components/Header';
-import { Modal, ProjectForm, Switch } from '@/ui/components';
+import { FetchingModal, Modal, ProjectForm, Switch } from '@/ui/components';
 import { LineIcon, OverviewIcon, ProjectIcon, TeamIcon } from '@/ui/icons';
 import Avatar from '@/ui/components/common/Avatar';
 
@@ -30,11 +30,11 @@ import { useCallback, useState } from 'react';
 import { TRecordProject } from '@/lib/types';
 
 const ProfilePage = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const user = authStore((state) => state.user);
 
-  const { projectData, createProject } = useProject();
+  const { projectData, createProject, isFetching } = useProject();
 
   const handleCreateProject = useCallback(async (data: TRecordProject) => {
     try {
@@ -54,19 +54,19 @@ const ProfilePage = () => {
         ],
       };
 
-      await createProject(payload as unknown as TProjectResponse)
+      await createProject(payload as unknown as TProjectResponse);
     } catch (err) {
-      throw err
+      throw err;
     }
-  }, [])
+  }, []);
 
   const handleToggleModal = () => {
-    setIsOpenModal((prev) => !prev)
-  }
+    setIsOpenModal((prev) => !prev);
+  };
 
   const HandleSubmitProject = useCallback((data: TRecordProject) => {
-    handleCreateProject(data)
-  }, [])
+    handleCreateProject(data);
+  }, []);
 
   return (
     <VStack mt="24px">
@@ -246,15 +246,17 @@ const ProfilePage = () => {
         </Box>
         <Grid w="100%" templateColumns="repeat(4, 1fr)" gap="24px">
           {projectData.map((project, index) => (
-            <GridItem>
-              <CardProject
-                projectNumber={index}
-                src={`${project.fields.image}`}
-                alt={`${project.fields.projectName}`}
-                projectName={project.fields.projectName}
-                description={project.fields.description}
-              />
-            </GridItem>
+            <FetchingModal isLoading={isFetching}>
+              <GridItem>
+                <CardProject
+                  projectNumber={index}
+                  src={`${project.fields.image}`}
+                  alt={`${project.fields.projectName}`}
+                  projectName={project.fields.projectName}
+                  description={project.fields.description}
+                />
+              </GridItem>
+            </FetchingModal>
           ))}
           <GridItem>
             <VStack
@@ -274,7 +276,7 @@ const ProfilePage = () => {
               }}
             >
               <AddIcon />
-              <Heading>Create a New Project</Heading>
+              <Heading textAlign="center">Create a New Project</Heading>
             </VStack>
           </GridItem>
         </Grid>
@@ -286,7 +288,10 @@ const ProfilePage = () => {
           title="Add Project"
           haveCloseButton
           body={
-            <ProjectForm onCloseModal={handleToggleModal} onSubmit={HandleSubmitProject} />
+            <ProjectForm
+              onCloseModal={handleToggleModal}
+              onSubmit={HandleSubmitProject}
+            />
           }
         />
       )}

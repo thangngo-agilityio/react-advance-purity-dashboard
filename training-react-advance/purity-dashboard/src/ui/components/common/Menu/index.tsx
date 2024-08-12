@@ -18,7 +18,7 @@ type TSidebarProps = {
   onSignOut?: () => void;
 };
 
-const Menu = ({ title, listItem = [], onSignOut }: TSidebarProps) => {
+const MenuComponent = ({ title, listItem = [], onSignOut }: TSidebarProps) => {
   const handleSignOut = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
@@ -57,4 +57,4 @@ const Menu = ({ title, listItem = [], onSignOut }: TSidebarProps) => {
   );
 };
 
-export default memo(Menu);
+export default memo(MenuComponent);

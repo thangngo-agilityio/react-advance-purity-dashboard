@@ -2,23 +2,36 @@
 
 import { memo, useState } from 'react';
 import isEqual from 'react-fast-compare';
-import { Button, IconButton, Menu, MenuButton, Td } from '@chakra-ui/react';
-// import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import {
+  Button,
+  Flex,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Td,
+} from '@chakra-ui/react';
+import { EditIcon, ViewIcon } from '@chakra-ui/icons';
 
 // Components
 import { Dot } from '@/ui/icons';
 import { AuthorForm, Modal } from '../..';
+
+// Types
 import { TRecordAuthor } from '@/lib/types';
 
 type TActionCellComponent = {
   data?: TRecordAuthor;
   isAuthor?: boolean;
+  isOpenOption?: boolean;
   onUpdateAuthor?: (author: TRecordAuthor) => void;
 };
 
 const ActionCellComponent = ({
   data,
   isAuthor,
+  isOpenOption,
   onUpdateAuthor,
 }: TActionCellComponent) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -84,6 +97,34 @@ const ActionCellComponent = ({
                     <Dot />
                   </IconButton>
                 </MenuButton>
+                {isOpenOption && (
+                  <MenuList border="none" mt="-2.5" bg="transparent" minW={65}>
+                    <MenuItem bg="transparent">
+                      <Flex
+                        position="absolute"
+                        right={4}
+                        minW={12}
+                        alignItems="center"
+                        justifyContent="center"
+                        flexDirection="column"
+                        gap="10px"
+                      >
+                        <EditIcon
+                          w="18px"
+                          h="18px"
+                          onClick={() => {}}
+                          data-testid="edit-icon"
+                        />
+                        <ViewIcon
+                          w="18px"
+                          h="18px"
+                          onClick={() => {}}
+                          data-testid="View-icon"
+                        />
+                      </Flex>
+                    </MenuItem>
+                  </MenuList>
+                )}
               </>
             )}
           </Menu>

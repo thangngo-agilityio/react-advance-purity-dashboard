@@ -3,12 +3,14 @@ import Table from '../Table';
 import { TDataSource, THeaderTable } from '@/lib/types/table';
 import { AddIcon } from '@chakra-ui/icons';
 import { memo } from 'react';
+import Fetching from '../Skeleton/TableList';
 
 type TModalTableProps = {
   title?: string;
   columns?: THeaderTable[];
   dataSource?: TDataSource[];
-  isAuthor?: boolean,
+  isAuthor?: boolean;
+  isFetching?: boolean;
   onClickTableRow?: (id: string) => void;
   onClickAdd?: () => void;
 };
@@ -18,6 +20,7 @@ const ModalTable = ({
   columns,
   dataSource,
   isAuthor,
+  isFetching,
   onClickTableRow,
   onClickAdd,
 }: TModalTableProps) => {
@@ -33,15 +36,19 @@ const ModalTable = ({
     >
       <Flex w="100%" justifyContent="space-between">
         <Heading mt="4px">{title}</Heading>
-        {isAuthor && <Button gap="4px" onClick={onClickAdd}>
-          Add new <AddIcon />
-        </Button>}
+        {isAuthor && (
+          <Button gap="4px" onClick={onClickAdd}>
+            Add new <AddIcon />
+          </Button>
+        )}
       </Flex>
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        onClickTableRow={onClickTableRow}
-      />
+      <Fetching quality={15} isLoading={isFetching}>
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          onClickTableRow={onClickTableRow}
+        />
+      </Fetching>
     </VStack>
   );
 };

@@ -21,6 +21,8 @@ export { default as HeadCell } from './Table/HeadCell';
 export { default as AuthorForm } from './AuthorForm';
 export { default as ProjectForm } from './ProjectForm';
 export { default as Indicator } from './Indicator';
+export { default as Fetching } from './Skeleton/TableList';
+export { default as FetchingModal } from './Skeleton/Modal';
 
 // Common
 export { default as Avatar } from './common/Avatar';
