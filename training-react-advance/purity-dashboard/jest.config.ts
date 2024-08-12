@@ -32,7 +32,7 @@ const config: Config = {
     '^@/lib(.*)$': '<rootDir>src/lib/$1',
   },
   coveragePathIgnorePatterns: [
-    '<rootDir>/src/assets/',
+    '<rootDir>/',
     '<rootDir>/src/lib/constants/',
     '<rootDir>/src/lib/mocks/',
     '<rootDir>/src/lib/models/',
