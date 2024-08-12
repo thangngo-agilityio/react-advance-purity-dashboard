@@ -65,6 +65,7 @@ const ProfilePage = () => {
     setIsOpenModal((prev) => !prev);
   };
 
+
   const HandleSubmitProject = useCallback((data: TRecordProject) => {
     handleCreateProject(data);
   }, []);
@@ -246,19 +247,22 @@ const ProfilePage = () => {
           <Text>Architects design houses</Text>
         </Box>
         <Grid w="100%" templateColumns="repeat(4, 1fr)" gap="24px">
-          {projectData.map((project, index) => (
+          {projectData.map((project) => (
             <FetchingModal isLoading={isFetching}>
               <GridItem>
                 <CardProject
-                  projectNumber={index}
+                  key={project.fields.projectName}
+                  projectData={project}
                   src={`${project.fields.image}`}
                   alt={`${project.fields.projectName}`}
                   projectName={project.fields.projectName}
+                  projectNumber={project.fields._id}
                   description={project.fields.description}
                 />
               </GridItem>
             </FetchingModal>
-          ))}
+          )
+          )}
           <GridItem>
             <VStack
               w="100%"

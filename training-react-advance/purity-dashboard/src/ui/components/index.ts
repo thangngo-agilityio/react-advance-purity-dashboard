@@ -23,6 +23,7 @@ export { default as ProjectForm } from './ProjectForm';
 export { default as Indicator } from './Indicator';
 export { default as Fetching } from './Skeleton/TableList';
 export { default as FetchingModal } from './Skeleton/Modal';
+export { default as ProjectDetail } from './ModalDetail';
 
 // Common
 export { default as Avatar } from './common/Avatar';

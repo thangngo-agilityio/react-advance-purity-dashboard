@@ -1,19 +1,44 @@
 // Types
-import { TFiledProject } from '../types';
+import { TRecordProject } from '../types';
 
 // Utils
 import { formatDecimalNumber } from './formatNumber';
 
-export const formatProjectResponse = (projects: TFiledProject[] = []) =>
+export const formatProjectResponse = (projects: TRecordProject[] = []) =>
   projects.map((project) => {
-    const { fields } = project || {};
-    const { projectName, avatar, budget, status, completion } = fields || {};
+    const { id, fields, createdTime } = project || {};
+    const {
+      _id,
+      projectName,
+      avatar,
+      budget,
+      status,
+      completion,
+      description,
+      image,
+    } = fields || {};
 
     return {
+      id,
+      createdTime,
+      fields: {
+        _id,
+        projectName,
+        avatar,
+        budget,
+        status,
+        projectStatus: status,
+        completion,
+        description,
+        image,
+      },
       projectName,
       avatar,
       budget: `$${formatDecimalNumber(budget)}`,
+      status,
       projectStatus: status,
       completion,
+      description,
+      image,
     };
   });

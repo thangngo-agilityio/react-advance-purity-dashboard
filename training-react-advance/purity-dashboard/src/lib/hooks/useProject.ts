@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { API_PATH } from '../constants';
 import { mainHttpService } from '../service';
-import { TFiledProject, TRecordProject } from '../types';
+import { TRecordProject } from '../types';
 
 export type TProjectResponse = {
   records: TRecordProject[];
@@ -13,9 +13,10 @@ export const useProject = () => {
     queryKey: [API_PATH.PROJECT],
     queryFn: async () =>
       (await mainHttpService.get<TProjectResponse>(API_PATH.PROJECT)).data,
+    refetchOnWindowFocus: false,
   });
 
-  const projectData: TFiledProject[] = data?.records || [];
+  const projectData = data?.records || [];
 
   const { mutateAsync: createProject } = useMutation({
     mutationFn: async (payload: TProjectResponse) =>
