@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 
 // Constants
 import { ROUTES } from '@/lib/constants';
+import { Indicator } from '@chakra-ui/react';
 
 // Pages
 const MainLayout = lazy(() => import('@/ui/layouts/MainLayout'));
@@ -13,11 +14,11 @@ const ProfilePage = lazy(() => import('@/ui/pages/profile'));
 export const privateRoutes: RouteObject = {
   element: (
     <AuthLayout>
-      <Suspense>
-        <MainLayout>
+      <MainLayout>
+        <Suspense fallback={<Indicator />}>
           <Outlet />
-        </MainLayout>
-      </Suspense>
+        </Suspense>
+      </MainLayout>
     </AuthLayout>
   ),
   children: [
