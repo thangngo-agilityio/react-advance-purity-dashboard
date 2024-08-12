@@ -12,7 +12,7 @@ const StatusComponent = ({
   ...props
 }: TStatusProps): JSX.Element => {
   return (
-    <Td py="5px" px={0} fontSize="md" w="220px">
+    <Td py="5px" px={0} fontSize="md" w={{ base: '200px', xl: '220px', '3xl': '250px', '6xl': '350px' }}>
       <Tooltip minW="max-content" placement="bottom" label={text}>
         <Badge
           {...props}

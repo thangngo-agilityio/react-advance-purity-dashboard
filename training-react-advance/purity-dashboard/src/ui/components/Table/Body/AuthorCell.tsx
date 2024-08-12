@@ -6,7 +6,7 @@ import Avatar from '../../common/Avatar';
 import { memo } from 'react';
 
 const AuthorCell = ({ image, name, email }: TDataSource) => (
-  <Td px={0}>
+  <Td px={0} w={{ base: '200px', xl: '220px', '3xl': '450px', '6xl': '450px' }}>
     <Flex alignItems="center" pr="20px">
       <Avatar src={`${image}`} alt={`${name}`} />
       <VStack ml="15px" alignItems="flex-start" gap={0}>
@@ -14,12 +14,12 @@ const AuthorCell = ({ image, name, email }: TDataSource) => (
           size="md"
           textOverflow="ellipsis"
           overflow="hidden"
-          w={{ base: '200px', xl: '220px', '3xl': '200px', '6xl': '250px' }}
+          w={{ base: '200px', xl: '220px', '3xl': '450px', '6xl': '450px' }}
         >
           {name as string}
         </Heading>
         <Text
-          w={{ base: '200px', xl: '220px', '3xl': '200px', '6xl': '250px' }}
+          w={{ base: '200px', xl: '220px', '3xl': '450px', '6xl': '450px' }}
           variant="tertiary"
           textOverflow="ellipsis"
           overflow="hidden"

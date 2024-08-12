@@ -35,5 +35,36 @@ export const useProject = () => {
     },
   });
 
-  return { projectData, isLoading, isFetching, createProject };
+  const { mutateAsync: updateProject } = useMutation({
+    mutationFn: async (project: TProjectResponse) =>
+      (await mainHttpService.put<TProjectResponse>(API_PATH.PROJECT, project))
+        .data,
+    onSuccess: async (_, variables) => {
+      const newData = variables.records.map((data) => data);
+
+      queryClient.setQueryData(
+        [API_PATH.PROJECT],
+        (oldData: TProjectResponse) => ({
+          records: oldData.records.map((item) =>
+            item.id === newData[0].id
+              ? {
+                  ...item,
+                  fields: {
+                    ...item.fields,
+                    projectName: newData[0].fields.projectName,
+                    avatar: newData[0].fields.avatar,
+                    budget: newData[0].fields.budget,
+                    status: newData[0].fields.status,
+                    completion: newData[0].fields.completion,
+                    description: newData[0].fields.description,
+                  },
+                }
+              : item,
+          ),
+        }),
+      );
+    },
+  });
+
+  return { projectData, isLoading, isFetching, createProject, updateProject };
 };

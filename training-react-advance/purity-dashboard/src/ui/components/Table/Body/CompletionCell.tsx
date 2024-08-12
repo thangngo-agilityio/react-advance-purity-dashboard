@@ -6,7 +6,7 @@ type TCompletionCellProps = {
 };
 
 const CompletionCell = ({ completion }: TCompletionCellProps) => (
-  <Td px={0}>
+  <Td px={0} w={{ base: '200px', xl: '220px', '3xl': '250px', '6xl': '350px' }}>
     <VStack alignItems="flex-start">
       <Text color="#38A169" fontWeight="bold">
         {completion}%
