@@ -38,8 +38,6 @@ next-env.d.ts
 # storybook
 /storybook-static
 
-.env
-
 coverage
 
 *storybook.log
