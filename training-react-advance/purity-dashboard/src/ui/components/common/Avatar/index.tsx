@@ -8,7 +8,7 @@ type TAvatarProps = {
 };
 
 const Avatar = ({
-  src = '/src/assets/imgs/avatar-default.svg',
+  src = '/imgs/avatar-default.svg',
   alt,
   width = '40px',
   height = '40px',

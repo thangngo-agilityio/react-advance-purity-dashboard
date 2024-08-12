@@ -8,7 +8,7 @@ import { HelpIcon } from "@/ui/icons";
 // Constant
 
 const CardHelp = () => (
-  <VStack alignItems='flex-start' w='218px' p='15px' borderRadius='lg' backgroundImage='/src/assets/imgs/Background.svg' gap='0'>
+  <VStack alignItems='flex-start' w='218px' p='15px' borderRadius='lg' backgroundImage='/imgs/Background.svg' gap='0'>
     <Box mb='20px'>
       <ButtonIcon icon={<HelpIcon />} />
     </Box>

@@ -95,7 +95,7 @@ const SignInPage = ({ children }: { children?: ReactNode }) => {
         alignItems="center"
         justifyContent="center"
         borderBottomLeftRadius="25px"
-        backgroundImage="/src/assets/imgs/background-login.svg"
+        backgroundImage="/imgs/background-login.svg"
         backgroundRepeat="no-repeat"
         backgroundSize="100%"
         objectFit="cover"
