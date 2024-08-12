@@ -1,13 +1,12 @@
 import { ReactNode, useCallback } from 'react';
 import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 // Components
 import Footer from '@/ui/components/Footer';
 import AuthForm from '@/ui/components/AuthForm';
 
-// Contants
+// Constants
 import { ROUTES } from '@/lib/constants';
 
 // Types

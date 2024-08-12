@@ -41,9 +41,10 @@ import {
   TAuthor,
   TProject,
   TRecordAuthor,
+  TRecordProject,
 } from '@/lib/types';
 
-// utils
+// Utils
 import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
 
 const TablePage = () => {
@@ -200,7 +201,7 @@ const TablePage = () => {
   );
 
   const renderProjectActionIcon = useCallback(
-    (data: TProject) => <ActionCell isOpenOption={true} />,
+    (data: TRecordProject) => <ActionCell dataProject={data} isOpenOption={true} />,
     [],
   );
 

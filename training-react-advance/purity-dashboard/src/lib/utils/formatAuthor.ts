@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import { TRecordAuthor } from '../types';
 
 // Constants
-import { AUTHOR_STATUS, DATE_FORMAT, STATUS_LABEL } from '../constants';
+import { AUTHOR_STATUS, DATE_FORMAT } from '../constants';
 
 export const formatAuthorResponse = (authors: TRecordAuthor[] = []) =>
   authors.map((author) => {

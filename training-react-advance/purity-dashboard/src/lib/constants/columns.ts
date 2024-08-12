@@ -1,4 +1,10 @@
-import { TAuthor, TDataSource, TProject, TRecordAuthor } from '../types';
+import {
+  TAuthor,
+  TDataSource,
+  TProject,
+  TRecordAuthor,
+  TRecordProject,
+} from '../types';
 
 export const COLUMNS_AUTHOR = (
   onRenderHead: (title: string, key: string) => void,
@@ -46,7 +52,7 @@ export const COLUMNS_PROJECT = (
   onRenderBudget: (budget: TProject) => void,
   onRenderStatus: (status: TDataSource) => void,
   onRenderCompletion: (completion: TProject) => void,
-  onRenderActionIcon: (data: TProject) => void,
+  onRenderActionIcon: (data: TRecordProject) => void,
 ) => [
   {
     title: 'COMPANIES',
