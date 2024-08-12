@@ -9,24 +9,25 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
+import { useCallback, useState } from 'react';
 
 // Components
 import Header from '@/ui/components/Header';
-import { FetchingModal, Modal, ProjectForm, Switch } from '@/ui/components';
+import { FetchingModal, Modal, ProjectForm, Switch, CardInfor, InforItem, CardProject } from '@/ui/components';
 import { LineIcon, OverviewIcon, ProjectIcon, TeamIcon } from '@/ui/icons';
 import Avatar from '@/ui/components/common/Avatar';
+
+// Hooks
+import { TProjectResponse, useProject } from '@/lib/hooks';
 
 // Constants
 import { ROUTES } from '@/lib/constants';
 
 // Stores
 import { authStore } from '@/lib/stores';
-import CardInfor from '@/ui/components/CardInfor';
-import InforItem from '@/ui/components/InforItem';
-import CardProject from '@/ui/components/CardProject';
-import { TProjectResponse, useProject } from '@/lib/hooks';
-import { AddIcon } from '@chakra-ui/icons';
-import { useCallback, useState } from 'react';
+
+// Types
 import { TRecordProject } from '@/lib/types';
 
 const ProfilePage = () => {

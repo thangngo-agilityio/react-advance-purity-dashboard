@@ -19,10 +19,11 @@ import { Dot } from '@/ui/icons';
 import { AuthorForm, Modal } from '../..';
 
 // Types
-import { TRecordAuthor } from '@/lib/types';
+import { TRecordAuthor, TRecordProject } from '@/lib/types';
 
 type TActionCellComponent = {
   data?: TRecordAuthor;
+  dataProject?: TRecordProject;
   isAuthor?: boolean;
   isOpenOption?: boolean;
   onUpdateAuthor?: (author: TRecordAuthor) => void;
@@ -112,13 +113,13 @@ const ActionCellComponent = ({
                         <EditIcon
                           w="18px"
                           h="18px"
-                          onClick={() => {}}
+                          onClick={() => { }}
                           data-testid="edit-icon"
                         />
                         <ViewIcon
                           w="18px"
                           h="18px"
-                          onClick={() => {}}
+                          onClick={() => { }}
                           data-testid="View-icon"
                         />
                       </Flex>

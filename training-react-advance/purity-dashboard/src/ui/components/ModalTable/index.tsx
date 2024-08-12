@@ -1,9 +1,13 @@
-import { Button, Flex, Heading, VStack } from '@chakra-ui/react';
-import Table from '../Table';
-import { TDataSource, THeaderTable } from '@/lib/types/table';
-import { AddIcon } from '@chakra-ui/icons';
 import { memo } from 'react';
+import { Button, Flex, Heading, VStack } from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
+
+// Components
+import Table from '../Table';
 import Fetching from '../Skeleton/TableList';
+
+// types
+import { TDataSource, THeaderTable } from '@/lib/types/table';
 
 type TModalTableProps = {
   title?: string;

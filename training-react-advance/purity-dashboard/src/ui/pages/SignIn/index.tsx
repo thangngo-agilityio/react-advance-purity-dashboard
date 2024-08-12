@@ -1,7 +1,6 @@
 import { ReactNode, useCallback, useState } from 'react';
 import { Flex, VStack } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
 
 // Components
 import Footer from '@/ui/components/Footer';
@@ -13,13 +12,15 @@ import { useAuthLogin } from '@/lib/hooks';
 
 // Constants
 import { ROUTES } from '@/lib/constants';
+import { ERROR_MESSAGES } from '@/lib/constants/message';
 
 // Types
 import { AuthFormData } from '@/lib/types';
 
 // Store
 import { authStore } from '@/lib/stores';
-import { ERROR_MESSAGES } from '@/lib/constants/message';
+
+// Utils
 import { formatUppercaseFirstLetter } from '@/lib/utils';
 
 const SignInPage = ({ children }: { children?: ReactNode }) => {

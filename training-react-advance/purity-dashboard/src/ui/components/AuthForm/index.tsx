@@ -45,7 +45,7 @@ const AuthForm = ({
 
   const {
     control,
-    formState: { dirtyFields, isSubmitting },
+    formState: { isSubmitting },
     handleSubmit,
     clearErrors,
   } = useForm<AuthFormData>({
