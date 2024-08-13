@@ -17,5 +17,8 @@ export const SUCCESS_MESSAGE = {
   TITLE_MESSAGE_CREATE: (fieldName: string) => `${fieldName} created.`,
   TITLE_MESSAGE_UPDATE: (fieldName: string) => `${fieldName} updated.`,
   PROJECT_SUCCESS: 'Project created successfully',
+  AUTHOR_SUCCESS: 'Author created successfully',
   USER_UPDATE: 'User update successfully',
+  AUTHOR_UPDATE: 'Author update successfully',
+  PROJECT_UPDATE: 'Project update successfully',
 };
