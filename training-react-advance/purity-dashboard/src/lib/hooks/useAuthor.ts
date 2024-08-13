@@ -3,6 +3,10 @@ import { API_PATH, AUTHOR_STATUS } from '../constants';
 import { mainHttpService } from '../service';
 import { TRecordAuthor } from '../types';
 
+export type TSearchAuthor = {
+  name: string;
+};
+
 export type TAuthorResponse = {
   records: TRecordAuthor[];
 };
@@ -20,14 +24,27 @@ export type TCreateAuthorPayload = {
   };
 }[];
 
-export const useAuthor = () => {
+export const useAuthor = (queryParam?: TSearchAuthor) => {
   const queryClient = useQueryClient();
+
+  const { name: searchName }: TSearchAuthor = Object.assign(
+    {
+      name: '',
+    },
+    queryParam,
+  );
+
+  const configs = {
+    params: searchName,
+  };
+
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: [API_PATH.AUTHOR],
+    queryKey: [API_PATH.AUTHOR, searchName],
     queryFn: async () =>
       (
         await mainHttpService.get<TAuthorResponse>(
           `${API_PATH.AUTHOR}?view=Grid%20view`,
+          configs,
         )
       ).data,
     refetchOnWindowFocus: false,

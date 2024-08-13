@@ -23,6 +23,7 @@ import {
   TCreateAuthorPayload,
   TProjectResponse,
   useAuthor,
+  useDebounce,
   useProject,
 } from '@/lib/hooks';
 
@@ -46,15 +47,22 @@ import {
 } from '@/lib/types';
 
 // Utils
-import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
+import {
+  formatAuthorResponse,
+  formatProjectResponse,
+  getSearchParams,
+} from '@/lib/utils';
 import { SUCCESS_MESSAGE } from '@/lib/constants/message';
+import { useSearchParams } from 'react-router-dom';
 
 const TablePage = () => {
+  const [searchValue, setSearchValue] = useState<string>('');
   const [isOpenModal, setIsOpenModal] = useState(false);
   const toast = useToast();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const { authorData, isLoading, isFetching, createAuthor, updateAuthor } =
-    useAuthor();
+    useAuthor({ name: searchValue });
   const {
     projectData,
     isLoading: loadingProject,
@@ -175,6 +183,13 @@ const TablePage = () => {
       data.id ? handleUpdateAuthor(data) : handleCreateAuthor(data);
     },
     [handleCreateAuthor, handleUpdateAuthor],
+  );
+
+  const handleChangeSearch = useDebounce(
+    (value: string) => {
+      setSearchValue(value);
+    },
+    [setSearchValue],
   );
 
   const renderHead = useCallback((title: string, key: string): JSX.Element => {
@@ -349,7 +364,12 @@ const TablePage = () => {
   return (
     <Indicator isOpen={isLoading && loadingProject}>
       <VStack alignItems="flex-start">
-        <Header name="Tables" path={ROUTES.TABLES} />
+        <Header
+          name="Tables"
+          path={ROUTES.TABLES}
+          onSearch={handleChangeSearch}
+          searchValue={searchValue}
+        />
 
         <VStack gap="24px" w="100%">
           <ModalTable
