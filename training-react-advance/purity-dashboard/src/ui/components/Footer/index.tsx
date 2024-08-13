@@ -1,4 +1,4 @@
-import { HStack, Link, List, ListItem } from '@chakra-ui/react';
+import { HStack, Link, List, ListItem, Stack } from '@chakra-ui/react';
 import { Text } from '../common';
 import { FOOTER_LINKS } from '@/lib/constants';
 
@@ -7,7 +7,7 @@ export type TFooterProps = {
 }
 
 const Footer = ({ isAuth }: TFooterProps) => (
-  <HStack w="100%" px={isAuth ? '30px' : ''} pt={isAuth ? '4px' : ''} pb={isAuth ? '20px' : ''} alignItems="flex-end" justifyContent="space-between">
+  <Stack w="100%" flexDirection={{ base: 'column', lg: 'row' }} px={isAuth ? '30px' : ''} pt={isAuth ? '4px' : ''} pb={isAuth ? '20px' : ''} alignItems={{ base: "center", lg: 'flex-end' }} justifyContent={{ base: "center", lg: "space-between"}}>
     <HStack gap="2px">
       <Text content="@ 2021, Made with ❤️ by" size="textSm" />
       <Text
@@ -36,7 +36,7 @@ const Footer = ({ isAuth }: TFooterProps) => (
         </ListItem>
       ))}
     </List>
-  </HStack>
+  </Stack>
 );
 
 export default Footer;
