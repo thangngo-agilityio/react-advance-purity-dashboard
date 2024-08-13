@@ -35,6 +35,7 @@ import {
   STATUS_LABEL,
   TIME_FORMAT,
 } from '@/lib/constants';
+import { SUCCESS_MESSAGE } from '@/lib/constants/message';
 
 // Types
 import {
@@ -47,19 +48,12 @@ import {
 } from '@/lib/types';
 
 // Utils
-import {
-  formatAuthorResponse,
-  formatProjectResponse,
-  getSearchParams,
-} from '@/lib/utils';
-import { SUCCESS_MESSAGE } from '@/lib/constants/message';
-import { useSearchParams } from 'react-router-dom';
+import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
 
 const TablePage = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [isOpenModal, setIsOpenModal] = useState(false);
   const toast = useToast();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const { authorData, isLoading, isFetching, createAuthor, updateAuthor } =
     useAuthor({ name: searchValue });
