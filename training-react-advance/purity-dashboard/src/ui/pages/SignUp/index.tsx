@@ -1,5 +1,5 @@
 import { ReactNode, useCallback } from 'react';
-import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, useToast, VStack } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 // Components
@@ -17,20 +17,28 @@ import { useAuthLogin, useAuthRegister } from '@/lib/hooks/useAuth';
 
 // Stores
 import { authStore } from '@/lib/stores';
+import { ERROR_MESSAGES, SUCCESS_MESSAGE } from '@/lib/constants/message';
 
 const SignUpPage = ({ children }: { children?: ReactNode }) => {
   const { users } = useAuthLogin();
   const { createAccount } = useAuthRegister();
   const setUser = authStore((state) => state.setUser);
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleCreateAccount = useCallback(
     async (data: AuthFormData) => {
       try {
-        const isUser = users?.some((user) => user.fields.email === data.email);
+        const isUser = users?.records.some((user) => user.fields.email === data.email);
 
         if (isUser) {
-          console.log('SIGN_UP_FAILED');
+          toast({
+            title: ERROR_MESSAGES.CREATE_ACCOUNT,
+            description: ERROR_MESSAGES.ACCOUNT_CREATED,
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+          })
         } else {
           const payload: TUser[] = [
             {
@@ -44,7 +52,13 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
 
           await createAccount({ records: payload });
 
-          console.log('Success');
+          toast({
+            title: SUCCESS_MESSAGE.TITLE_MESSAGE_CREATE('Account'),
+            description: SUCCESS_MESSAGE.ACCOUNT_SUCCESS,
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+          })
 
           navigate(ROUTES.SIGN_IN);
         }
