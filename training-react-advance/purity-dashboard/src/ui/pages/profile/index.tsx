@@ -7,6 +7,8 @@ import {
   Heading,
   HStack,
   Text,
+  useDisclosure,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
@@ -14,12 +16,32 @@ import { useCallback, useState } from 'react';
 
 // Components
 import Header from '@/ui/components/Header';
-import { FetchingModal, Modal, ProjectForm, Switch, CardInfor, InforItem, CardProject } from '@/ui/components';
-import { LineIcon, OverviewIcon, ProjectIcon, TeamIcon } from '@/ui/icons';
+import {
+  FetchingModal,
+  Modal,
+  ProjectForm,
+  Switch,
+  CardInfor,
+  InforItem,
+  CardProject,
+  UserForm,
+} from '@/ui/components';
+import {
+  EditIcon,
+  LineIcon,
+  OverviewIcon,
+  ProjectIcon,
+  TeamIcon,
+} from '@/ui/icons';
 import Avatar from '@/ui/components/common/Avatar';
 
 // Hooks
-import { TProjectResponse, useProject } from '@/lib/hooks';
+import {
+  TProjectResponse,
+  TUserRecordResponse,
+  useProject,
+  useUpdateUser,
+} from '@/lib/hooks';
 
 // Constants
 import { ROUTES } from '@/lib/constants';
@@ -28,14 +50,20 @@ import { ROUTES } from '@/lib/constants';
 import { authStore } from '@/lib/stores';
 
 // Types
-import { TRecordProject } from '@/lib/types';
+import { TRecordProject, TRecordUser } from '@/lib/types';
+import { SUCCESS_MESSAGE } from '@/lib/constants/message';
 
 const ProfilePage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
+  const { isOpen, onToggle } = useDisclosure();
+
   const user = authStore((state) => state.user);
+  const setUser = authStore((state) => state.setUser);
+  const toast = useToast();
 
   const { projectData, createProject, isFetching } = useProject();
+  const { updateUser } = useUpdateUser();
 
   const handleCreateProject = useCallback(async (data: TRecordProject) => {
     try {
@@ -56,6 +84,48 @@ const ProfilePage = () => {
       };
 
       await createProject(payload as unknown as TProjectResponse);
+
+      toast({
+        title: SUCCESS_MESSAGE.TITLE_MESSAGE_CREATE('Project'),
+        description: SUCCESS_MESSAGE.PROJECT_SUCCESS,
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      });
+    } catch (err) {
+      throw err;
+    }
+  }, []);
+
+  const handleUpdateUser = useCallback(async (data: TRecordUser) => {
+    try {
+      const payload = {
+        records: [
+          {
+            id: data.id,
+            fields: {
+              name: data.fields.name,
+              email: data.fields.email,
+              avatar: data.fields.avatar,
+              password: data.fields.password,
+              location: data.fields.location,
+              phone: data.fields.phone,
+            },
+            createdTime: data.createdTime,
+          },
+        ],
+      };
+
+      setUser({ user: payload as unknown as TRecordUser });
+      await updateUser(payload as unknown as TUserRecordResponse);
+
+      toast({
+        title: SUCCESS_MESSAGE.TITLE_MESSAGE_UPDATE('User'),
+        description: SUCCESS_MESSAGE.USER_UPDATE,
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      });
     } catch (err) {
       throw err;
     }
@@ -65,9 +135,12 @@ const ProfilePage = () => {
     setIsOpenModal((prev) => !prev);
   };
 
-
-  const HandleSubmitProject = useCallback((data: TRecordProject) => {
+  const handleSubmitProject = useCallback((data: TRecordProject) => {
     handleCreateProject(data);
+  }, []);
+
+  const handleSubmitUser = useCallback((data: TRecordUser) => {
+    handleUpdateUser(data);
   }, []);
 
   return (
@@ -98,12 +171,30 @@ const ProfilePage = () => {
         >
           {
             <Flex alignItems="center">
-              <Avatar
-                width="80px"
-                height="80px"
-                src={`${user?.fields.avatar}`}
-                alt={`${user?.fields.name}`}
-              />
+              <Box position="relative">
+                <Avatar
+                  width="80px"
+                  height="80px"
+                  src={`${user?.fields.avatar}`}
+                  alt={`${user?.fields.name}`}
+                />
+                <Flex
+                  w="26px"
+                  h="26px"
+                  borderRadius="8px"
+                  boxShadow="0 2px 5.5px 0 rgba(0, 0, 0, .06)"
+                  cursor="pointer"
+                  bgColor="background.100"
+                  position="absolute"
+                  bottom="-4px"
+                  right="-6px"
+                  alignItems="center"
+                  justifyContent="center"
+                  onClick={onToggle}
+                >
+                  <EditIcon />
+                </Flex>
+              </Box>
               <VStack ml="22px" alignItems="flex-start" gap={0}>
                 <Heading size="lg">{user?.fields.name}</Heading>
                 <Text variant="tertiary">{user?.fields.email}</Text>
@@ -261,8 +352,7 @@ const ProfilePage = () => {
                 />
               </GridItem>
             </FetchingModal>
-          )
-          )}
+          ))}
           <GridItem>
             <VStack
               w="100%"
@@ -295,8 +385,20 @@ const ProfilePage = () => {
           body={
             <ProjectForm
               onCloseModal={handleToggleModal}
-              onSubmit={HandleSubmitProject}
+              onSubmit={handleSubmitProject}
             />
+          }
+        />
+      )}
+
+      {isOpen && (
+        <Modal
+          isOpen={isOpen}
+          onClose={onToggle}
+          title="Update Profile"
+          haveCloseButton
+          body={
+            <UserForm onCloseModal={onToggle} onSubmit={handleSubmitUser} />
           }
         />
       )}

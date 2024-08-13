@@ -1,17 +1,12 @@
 // Libs
 import { createWithEqualityFn } from 'zustand/traditional';
-import {
-  createJSONStorage,
-  persist,
-  StateStorage,
-  StorageValue,
-} from 'zustand/middleware';
+import { createJSONStorage, persist, StateStorage } from 'zustand/middleware';
 
 // Types
-import { TUser } from '../types';
+import { TRecordUser } from '../types';
 
 type TAuthState = {
-  user: TUser | null;
+  user: TRecordUser | null;
 };
 
 export type TAuthAction = {
@@ -23,43 +18,35 @@ const initialState: TAuthState = {
   user: null,
 };
 
-const getItem: StateStorage['getItem'] = (key: string) => {
-  const response: string = localStorage.getItem(key) as string;
-  const defaultValue: string = JSON.stringify(initialState);
+// Create custom storage implementation
+const myStore: () => StateStorage = () => ({
+  getItem: (key: string) => {
+    const response = localStorage.getItem(key);
+    return response ? response : JSON.stringify(initialState);
+  },
+  setItem: (key: string, value: string) => {
+    const parsedValue: TAuthState = JSON.parse(value);
+    const hasUser =
+      !!parsedValue.user && Object.keys(parsedValue.user).length > 0;
 
-  if (response) return response;
-
-  return defaultValue;
-};
-
-const setItem: StateStorage['setItem'] = (key: string, value: string) => {
-  const {
-    state: { user },
-  }: StorageValue<TAuthState & TAuthAction> = JSON.parse(value);
-  const hasUser: boolean = !!user && !!Object.keys(user).length;
-
-  if (hasUser) {
-    return localStorage.setItem(key, value);
-  }
-
-  return localStorage.removeItem(key);
-};
-
-const removeItem: StateStorage['removeItem'] = (key: string) => {
-  return localStorage.removeItem(key);
-};
-
-const myStore: () => StateStorage = (): StateStorage => ({
-  getItem,
-  setItem,
-  removeItem,
+    if (hasUser) {
+      localStorage.setItem(key, value);
+    } else {
+      localStorage.removeItem(key);
+    }
+  },
+  removeItem: (key: string) => {
+    localStorage.removeItem(key);
+  },
 });
 
+// Create the store
 export const authStore = createWithEqualityFn(
   persist<TAuthState & TAuthAction>(
     (set) => ({
       ...initialState,
-      setUser: (data: Partial<TAuthState>) => set(data),
+      setUser: (data: Partial<TAuthState>) =>
+        set((state) => ({ ...state, ...data })),
       removeUser: () => {
         set(initialState);
         authStore.persist.clearStorage();

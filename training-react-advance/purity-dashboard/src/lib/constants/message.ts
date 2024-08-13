@@ -10,4 +10,12 @@ export const ERROR_MESSAGES = {
   LIMIT_BUDGET: 'Budget must not exceed 1 million',
   LIMIT_COMPLETION: 'Budget must not exceed 100%',
   SOMETHING_ERROR: 'Something went wrong!!',
+  PHONE_NUMBER_INVALID: 'Phone number is invalid',
+};
+
+export const SUCCESS_MESSAGE = {
+  TITLE_MESSAGE_CREATE: (fieldName: string) => `${fieldName} created.`,
+  TITLE_MESSAGE_UPDATE: (fieldName: string) => `${fieldName} updated.`,
+  PROJECT_SUCCESS: 'Project created successfully',
+  USER_UPDATE: 'User update successfully',
 };

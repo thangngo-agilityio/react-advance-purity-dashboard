@@ -33,7 +33,7 @@ const SignInPage = ({ children }: { children?: ReactNode }) => {
   // Sign in api
   const handleUserSignIn = useCallback(
     (data: AuthFormData): void => {
-      const res = users?.find(
+      const res = users?.records.find(
         (user) =>
           user.fields.email === data.email &&
           user.fields.password === data.password,

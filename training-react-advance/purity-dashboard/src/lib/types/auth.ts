@@ -17,6 +17,12 @@ export type TUser = {
   };
 };
 
+export type TRecordUser = {
+  id: string;
+  createdTime: string;
+  fields: IUser;
+};
+
 export type IUser = {
   email: string;
   password: string;

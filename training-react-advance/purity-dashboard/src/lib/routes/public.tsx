@@ -1,17 +1,17 @@
-import { Outlet, RouteObject } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { Outlet, RouteObject } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { Indicator } from '@chakra-ui/react';
 
 // Constants
-import { ROUTES } from "@/lib/constants";
+import { ROUTES } from '@/lib/constants';
 
 // Pages
 const SignInPage = lazy(() => import('@/ui/pages/SignIn'));
 const SignUpPage = lazy(() => import('@/ui/pages/SignUp'));
 
-
 export const publicRoutes: RouteObject = {
   element: (
-    <Suspense>
+    <Suspense fallback={<Indicator />}>
       <Outlet />
     </Suspense>
   ),
@@ -22,7 +22,7 @@ export const publicRoutes: RouteObject = {
       children: [
         {
           index: true,
-          element: <SignInPage />
+          element: <SignInPage />,
         },
         {
           path: ROUTES.SIGN_IN,
@@ -39,4 +39,4 @@ export const publicRoutes: RouteObject = {
       element: <SignUpPage />,
     },
   ],
-}
+};
