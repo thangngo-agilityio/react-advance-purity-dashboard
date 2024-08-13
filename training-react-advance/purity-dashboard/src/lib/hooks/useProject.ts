@@ -2,17 +2,24 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { API_PATH } from '../constants';
 import { mainHttpService } from '../service';
 import { TRecordProject } from '../types';
+import { useState } from 'react';
 
 export type TProjectResponse = {
   records: TRecordProject[];
+  offset: string;
 };
 
 export const useProject = () => {
   const queryClient = useQueryClient();
+
   const { data, isLoading, isFetching } = useQuery({
     queryKey: [API_PATH.PROJECT],
     queryFn: async () =>
-      (await mainHttpService.get<TProjectResponse>(API_PATH.PROJECT)).data,
+      (
+        await mainHttpService.get<TProjectResponse>(
+          `${API_PATH.PROJECT}?view=Grid%20view`,
+        )
+      ).data,
     refetchOnWindowFocus: false,
   });
 
@@ -30,6 +37,7 @@ export const useProject = () => {
         [API_PATH.PROJECT],
         (oldData: TProjectResponse) => ({
           records: [...newData, ...oldData.records],
+          offset: oldData.offset,
         }),
       );
     },

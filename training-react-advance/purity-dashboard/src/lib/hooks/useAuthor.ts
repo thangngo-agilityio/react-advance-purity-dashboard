@@ -25,7 +25,11 @@ export const useAuthor = () => {
   const { data, isLoading, isFetching } = useQuery({
     queryKey: [API_PATH.AUTHOR],
     queryFn: async () =>
-      (await mainHttpService.get<TAuthorResponse>(API_PATH.AUTHOR)).data,
+      (
+        await mainHttpService.get<TAuthorResponse>(
+          `${API_PATH.AUTHOR}?view=Grid%20view`,
+        )
+      ).data,
     refetchOnWindowFocus: false,
   });
 

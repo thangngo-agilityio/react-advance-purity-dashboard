@@ -54,7 +54,6 @@ export const authStore = createWithEqualityFn(
     }),
     {
       name: 'auth',
-      storage: createJSONStorage(myStore),
     },
   ),
 );
