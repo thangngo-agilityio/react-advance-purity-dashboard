@@ -215,7 +215,7 @@ const ProfilePage = () => {
         </HStack>
       </VStack>
 
-      <Grid w="100%" templateColumns="repeat(3, 1fr)" gap="24px" mb="24px">
+      <Grid w="100%" templateColumns={{ base: "", lg: "repeat(3, 1fr)" }} gap="24px" mb="24px">
         <GridItem>
           <CardInfor title="Platform Settings">
             <VStack alignItems="flex-start" gap="20px" mb="20px">
@@ -336,7 +336,7 @@ const ProfilePage = () => {
           <Heading>Project</Heading>
           <Text>Architects design houses</Text>
         </Box>
-        <Grid w="100%" templateColumns="repeat(4, 1fr)" gap="24px">
+        <Grid w="100%" templateColumns={{ base: '', lg: "repeat(4, 1fr)" }} gap="24px">
           {projectData.map((project) => (
             <FetchingModal isLoading={isFetching}>
               <GridItem>

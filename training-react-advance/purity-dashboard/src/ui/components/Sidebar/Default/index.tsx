@@ -3,11 +3,11 @@ import { memo } from 'react';
 
 // Component
 import { LineIcon, LogoIcon } from '@/ui/icons';
-import CardHelp from '../CardHelp';
+import CardHelp from '../../CardHelp';
 
 // Constants
 import { SIDEBAR_LIST } from '@/lib/constants';
-import Menu from '../common/Menu';
+import Menu from '../../common/Menu';
 
 type TSidebarProps = {
   onSignOut?: () => void;

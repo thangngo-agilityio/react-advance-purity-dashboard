@@ -1,11 +1,10 @@
 import { memo, ReactElement } from 'react';
-import { Box, Flex, VStack } from '@chakra-ui/react';
+import { Box, Flex, useBreakpointValue, VStack } from '@chakra-ui/react';
 
 // Components
-import Sidebar from '@/ui/components/Sidebar';
 import Footer from '@/ui/components/Footer';
 import { useAuthLogout } from '@/lib/hooks';
-import { Indicator } from '@/ui/components';
+import { ExpandSidebar, Indicator, Sidebar } from '@/ui/components';
 
 export type TMainLayoutProps = {
   children: ReactElement;
@@ -13,6 +12,7 @@ export type TMainLayoutProps = {
 
 const MainLayout = ({ children }: TMainLayoutProps) => {
   const { isLogoutHandling, signOut } = useAuthLogout();
+  const isMobile = useBreakpointValue({ base: true, lg: false });
   return (
     <>
       <Indicator isOpen={isLogoutHandling}>
@@ -23,7 +23,7 @@ const MainLayout = ({ children }: TMainLayoutProps) => {
           bgColor="gray.50"
           alignItems="stretch"
         >
-          <Sidebar onSignOut={signOut} />
+          {isMobile ? <ExpandSidebar onSignOut={signOut} /> : <Sidebar onSignOut={signOut} />}
 
           <VStack flex={1} alignItems="stretch" overflow="hidden">
             <Box

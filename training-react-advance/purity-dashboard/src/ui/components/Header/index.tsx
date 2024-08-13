@@ -16,15 +16,16 @@ type THeaderProps = {
 const Header = ({ path, name, colorFill, colorIcon }: THeaderProps) => (
   <Flex
     w="100%"
-    alignItems="center"
     p="24px"
+    flexDirection={{ base: 'column', md: 'row' }}
+    alignItems={{ base: 'flex-start', md: "center" }}
     justifyContent="space-between"
     borderRadius="lg"
   >
-    <Box>
+    <Box mb={{ base: '10px', md: '0' }}>
       <Navbar path={path} name={name} colorFill={colorFill} />
     </Box>
-    <Flex flexDirection="row" alignItems="center">
+    <Flex w={{ base: '100%', md: '0' }} flexDirection="row" alignItems="center" justifyContent="space-between">
       <Box mr="18px">
         <InputField
           type="search"

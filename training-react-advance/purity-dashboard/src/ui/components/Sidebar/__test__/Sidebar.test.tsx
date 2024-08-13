@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 
 // Component
-import Sidebar from "..";
+import Sidebar from "../Default";
 
 describe('Sidebar test case', () => {
   it('Should render correctly', () => {
