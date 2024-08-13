@@ -11,6 +11,8 @@ export const ERROR_MESSAGES = {
   LIMIT_COMPLETION: 'Budget must not exceed 100%',
   SOMETHING_ERROR: 'Something went wrong!!',
   PHONE_NUMBER_INVALID: 'Phone number is invalid',
+  CREATE_ACCOUNT: 'Account creation failed',
+  ACCOUNT_CREATED: 'This email has been created.',
 };
 
 export const SUCCESS_MESSAGE = {
@@ -21,4 +23,5 @@ export const SUCCESS_MESSAGE = {
   USER_UPDATE: 'User update successfully',
   AUTHOR_UPDATE: 'Author update successfully',
   PROJECT_UPDATE: 'Project update successfully',
+  ACCOUNT_SUCCESS: 'Account created successfully',
 };

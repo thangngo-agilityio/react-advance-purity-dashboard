@@ -106,12 +106,11 @@ const ProfilePage = () => {
             fields: {
               name: data.fields.name,
               email: data.fields.email,
-              avatar: data.fields.avatar,
               password: data.fields.password,
-              location: data.fields.location,
+              avatar: data.fields.avatar,
               phone: data.fields.phone,
+              location: data.fields.location,
             },
-            createdTime: data.createdTime,
           },
         ],
       };
