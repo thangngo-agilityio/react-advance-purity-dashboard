@@ -1,1 +1,0 @@
-import{j as r,N as e,R as i}from"./index-wWx4XwpN.js";import{a as m}from"./auth-BaupH3zB.js";const n=({children:o})=>{const t=m(s=>{var a;return(a=s.user)==null?void 0:a.fields});return t!=null&&t.email?o:r.jsx(e,{to:i.SIGN_IN})};export{n as default};

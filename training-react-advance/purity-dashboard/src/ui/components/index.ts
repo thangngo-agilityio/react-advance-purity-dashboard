@@ -1,7 +1,8 @@
 export { default as Navigation } from './Navigation';
 export { default as Header } from './Header';
 export { default as Footer } from './Footer';
-export { default as Sidebar } from './Sidebar';
+export { default as Sidebar } from './Sidebar/Default';
+export { default as ExpandSidebar } from './Sidebar/Expand';
 export { default as CardHelp } from './CardHelp';
 export { default as Author } from './Author';
 export { default as CardProject } from './CardProject';
