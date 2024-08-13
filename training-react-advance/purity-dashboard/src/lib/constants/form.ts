@@ -68,4 +68,13 @@ export const AUTH_SCHEMA = {
       return true;
     },
   },
+  LOCATION: {
+    required: ERROR_MESSAGES.FIELD_REQUIRED('Location'),
+  },
+  PHONE_NUMBER: {
+    pattern: {
+      value: REGEX.PHONE_NUMBER,
+      message: ERROR_MESSAGES.PHONE_NUMBER_INVALID,
+    },
+  },
 };

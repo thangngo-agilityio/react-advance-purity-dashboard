@@ -5,4 +5,4 @@ export { default as Text } from './Text';
 export { default as ButtonIcon } from './ButtonIcon';
 export { default as InputFiled } from './InputFiled';
 export { default as Avatar } from './Avatar';
-export { default as Menu } from './Menu';
+export * from './Menu';

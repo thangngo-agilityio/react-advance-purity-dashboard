@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { useCallback, useMemo, useState } from 'react';
-import { Td, Text, Th, VStack } from '@chakra-ui/react';
+import { Td, Text, Th, useToast, VStack } from '@chakra-ui/react';
 
 // Components
 import {
@@ -47,9 +47,11 @@ import {
 
 // Utils
 import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
+import { SUCCESS_MESSAGE } from '@/lib/constants/message';
 
 const TablePage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const toast = useToast();
 
   const { authorData, isLoading, isFetching, createAuthor, updateAuthor } =
     useAuthor();
@@ -57,7 +59,7 @@ const TablePage = () => {
     projectData,
     isLoading: loadingProject,
     isFetching: fetchingProject,
-    updateProject
+    updateProject,
   } = useProject();
 
   const handleToggleAddModal = () => {
@@ -83,6 +85,14 @@ const TablePage = () => {
         };
 
         await createAuthor(payload as unknown as TCreateAuthorPayload);
+
+        toast({
+          title: SUCCESS_MESSAGE.TITLE_MESSAGE_CREATE('Author'),
+          description: SUCCESS_MESSAGE.AUTHOR_SUCCESS,
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+        });
       } catch (error) {
         throw error;
       }
@@ -110,6 +120,14 @@ const TablePage = () => {
         };
 
         await updateAuthor(payload as unknown as TAuthorResponse);
+
+        toast({
+          title: SUCCESS_MESSAGE.TITLE_MESSAGE_UPDATE('Author'),
+          description: SUCCESS_MESSAGE.AUTHOR_UPDATE,
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+        });
       } catch (err) {
         throw err;
       }
@@ -137,6 +155,14 @@ const TablePage = () => {
         };
 
         await updateProject(payload as unknown as TProjectResponse);
+
+        toast({
+          title: SUCCESS_MESSAGE.TITLE_MESSAGE_UPDATE('Project'),
+          description: SUCCESS_MESSAGE.PROJECT_UPDATE,
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+        });
       } catch (err) {
         throw err;
       }
@@ -230,7 +256,13 @@ const TablePage = () => {
   );
 
   const renderProjectActionIcon = useCallback(
-    (data: TRecordProject) => <ActionCell dataProject={data} isOpenOption={true} onUpdateProject={handleUpdateProject} />,
+    (data: TRecordProject) => (
+      <ActionCell
+        dataProject={data}
+        isOpenOption={true}
+        onUpdateProject={handleUpdateProject}
+      />
+    ),
     [],
   );
 

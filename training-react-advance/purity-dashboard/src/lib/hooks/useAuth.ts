@@ -8,20 +8,22 @@ import { API_PATH, ROUTES, USER_LOGIN } from '../constants';
 import { mainHttpService } from '../service';
 
 // Types
-import { TUser } from '../types';
+import { TRecordUser, TUser } from '../types';
 import { useNavigate } from 'react-router-dom';
 
 export type TUserResponse = {
   records: TUser[];
 };
 
+export type TUserRecordResponse = {
+  records: TRecordUser[];
+};
+
 export const useAuthLogin = () => {
   const { isPending, data: users } = useQuery({
     queryKey: [USER_LOGIN],
-    queryFn: () =>
-      mainHttpService.get<TUserResponse>(API_PATH.USER).then((res) => {
-        return res.data.records;
-      }),
+    queryFn: async () =>
+      (await mainHttpService.get<TUserRecordResponse>(API_PATH.USER)).data,
     refetchOnWindowFocus: false,
   });
 
@@ -59,5 +61,17 @@ export const useAuthLogout = () => {
   return {
     isLogoutHandling: isLogout,
     signOut: handleLogout,
+  };
+};
+
+export const useUpdateUser = () => {
+  const { mutateAsync: updateUser } = useMutation({
+    mutationFn: async (payload: TUserRecordResponse) =>
+      (await mainHttpService.put<TUserRecordResponse>(API_PATH.USER, payload))
+        .data,
+  });
+
+  return {
+    updateUser,
   };
 };
