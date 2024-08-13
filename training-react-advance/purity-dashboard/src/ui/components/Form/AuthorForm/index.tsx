@@ -12,7 +12,7 @@ import { TRecordAuthor } from '@/lib/types';
 
 // constants
 import { AUTH_SCHEMA, DATE_FORMAT, STATUS_SUBMIT } from '@/lib/constants';
-import InputField from '../common/InputFiled';
+import InputField from '../../common/InputFiled';
 import dayjs from 'dayjs';
 
 interface AuthorFormProps {

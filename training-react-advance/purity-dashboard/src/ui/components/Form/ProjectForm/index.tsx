@@ -5,38 +5,36 @@ import { Controller, useForm } from 'react-hook-form';
 import isEqual from 'react-fast-compare';
 
 // Components
-import {
-  Button,
-  Flex,
-  useDisclosure,
-  VStack,
-} from '@chakra-ui/react';
+import { Button, Flex, FormLabel, Select, VStack } from '@chakra-ui/react';
 
 // Types
-import { TRecordUser } from '@/lib/types';
+import { TRecordProject } from '@/lib/types';
 
 // constants
-import { AUTH_SCHEMA, STATUS_SUBMIT } from '@/lib/constants';
-import InputField from '../common/InputFiled';
-import { authStore } from '@/lib/stores';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import {
+  AUTH_SCHEMA,
+  PROJECT_STATUS,
+  PROJECT_STATUS_LIST,
+  STATUS_SUBMIT,
+} from '@/lib/constants';
+import InputField from '../../common/InputFiled';
 
 interface AuthorFormProps {
+  data?: TRecordProject;
   onCloseModal: () => void;
-  onSubmit?: (data: TRecordUser) => void;
+  onSubmit?: (data: TRecordProject) => void;
 }
 
-const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
-  const user = authStore((state) => state.user);
-
-  const { id, fields, createdTime } = user || {};
+const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
+  const { id, fields, createdTime } = data || {};
   const {
-    email = '',
-    password = '',
-    name = '',
-    location = '',
-    phone = '',
+    projectName = '',
     avatar = '',
+    budget = '',
+    status = PROJECT_STATUS.TODO,
+    completion = '',
+    image = '',
+    description = '',
   } = fields || {};
   const {
     control,
@@ -44,16 +42,17 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
     handleSubmit,
     clearErrors,
     reset,
-  } = useForm<TRecordUser>({
+  } = useForm<TRecordProject>({
     defaultValues: {
       id: id,
       fields: {
-        name: name,
+        projectName: projectName,
         avatar: avatar,
-        email: email,
-        password: password,
-        location: location,
-        phone: phone,
+        budget: Number(budget),
+        status: status,
+        completion: Number(completion),
+        image: image,
+        description: description,
       },
       createdTime: createdTime,
     },
@@ -70,12 +69,14 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
         | 'id'
         | 'fields'
         | 'createdTime'
-        | 'fields.name'
+        | 'fields.projectName'
         | 'fields.avatar'
-        | 'fields.email'
-        | 'fields.password'
-        | 'fields.location'
-        | 'fields.phone',
+        | 'fields.budget'
+        | 'fields.status'
+        | 'fields.completion'
+        | 'fields.image'
+        | 'fields.description'
+        | 'fields._id',
       changeHandler: (value: T) => void,
     ) =>
       (data: T) => {
@@ -86,31 +87,12 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
   );
 
   const handleSubmitForm = useCallback(
-    (data: TRecordUser) => {
+    (data: TRecordProject) => {
       onSubmit && onSubmit(data);
       onCloseModal();
       reset();
     },
     [onSubmit, onCloseModal, reset],
-  );
-
-  const { isOpen: isShowPassword, onToggle: onShowPassword } = useDisclosure();
-
-  const renderPasswordIcon = useCallback(
-    (isCorrect: boolean, callback: typeof onShowPassword): JSX.Element => {
-      const Icon = isCorrect ? ViewIcon : ViewOffIcon;
-
-      return (
-        <Icon
-          color="gray.400"
-          w="25px"
-          h="25px"
-          cursor="pointer"
-          onClick={callback}
-        />
-      );
-    },
-    [],
   );
 
   return (
@@ -123,18 +105,18 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
         <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
           <Controller
             control={control}
-            rules={AUTH_SCHEMA.NAME}
-            name="fields.name"
+            rules={AUTH_SCHEMA.PROJECT_NAME}
+            name="fields.projectName"
             render={({ field, field: { onChange }, fieldState: { error } }) => (
               <InputField
-                label="Name"
+                label="Project Name"
                 bg="background.100"
                 placeholder="Project Name"
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
-                onChange={handleChangeValue('fields.name', onChange)}
-                data-testid="edit-field-name"
+                onChange={handleChangeValue('fields.projectName', onChange)}
+                data-testid="edit-field-projectName"
               />
             )}
           />
@@ -142,18 +124,19 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
         <Flex mb={{ base: '5px', sm: '5px' }} w="100%">
           <Controller
             control={control}
-            rules={AUTH_SCHEMA.EMAIL}
-            name="fields.email"
+            rules={AUTH_SCHEMA.BUDGET}
+            name="fields.budget"
             render={({ field, field: { onChange }, fieldState: { error } }) => (
               <InputField
-                label="Email"
+                label="Budget"
                 bg="background.100"
-                placeholder="Email"
+                placeholder="Budget"
+                type="number"
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
-                onChange={handleChangeValue('fields.email', onChange)}
-                data-testid="edit-field-email"
+                onChange={handleChangeValue('fields.budget', onChange)}
+                data-testid="edit-field-budget"
               />
             )}
           />
@@ -186,39 +169,45 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
           h="100%"
           mb={{ base: '5px', sm: '5px' }}
         >
+          <FormLabel>Status</FormLabel>
           <Controller
-            rules={AUTH_SCHEMA.PASSWORD}
             control={control}
-            name="fields.password"
-            render={({ field, fieldState: { error } }) => (
-              <InputField
-                label="Password"
-                type={isShowPassword ? 'text' : 'password'}
-                variant="authentication"
-                placeholder="Password"
-                rightIcon={renderPasswordIcon(isShowPassword, onShowPassword)}
+            // rules={AUTH_SCHEMA.NAME}
+            name="fields.status"
+            render={({ field, field: { onChange } }) => (
+              <Select
+                w="100%"
+                bg="background.100"
                 {...field}
-                isError={!!error?.message}
-                errorMessages={error?.message}
-                onChange={handleChangeValue('fields.password', field.onChange)}
-              />
+                onChange={handleChangeValue('fields.status', onChange)}
+              >
+                {PROJECT_STATUS_LIST.map((list, index) => (
+                  <option key={index} value={list.value}>
+                    {list.name}
+                  </option>
+                ))}
+              </Select>
             )}
           />
         </Flex>
         <Flex w="100%" mb={{ sm: '5px' }}>
           <Controller
-            rules={AUTH_SCHEMA.LOCATION}
+            rules={AUTH_SCHEMA.COMPLETION}
             control={control}
-            name="fields.location"
+            name="fields.completion"
             render={({ field, fieldState: { error } }) => (
               <InputField
-                label="Location"
+                label="Completion"
+                type="number"
                 bg="background.100"
-                placeholder="Location"
+                placeholder="Completion"
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
-                onChange={handleChangeValue('fields.location', field.onChange)}
+                onChange={handleChangeValue(
+                  'fields.completion',
+                  field.onChange,
+                )}
               />
             )}
           />
@@ -227,18 +216,38 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
       <VStack w="100%" alignItems="flex-start">
         <Flex w="100%" mb={{ sm: '5px' }}>
           <Controller
-            rules={AUTH_SCHEMA.PHONE_NUMBER}
+            rules={AUTH_SCHEMA.IMAGE}
             control={control}
-            name="fields.phone"
+            name="fields.image"
             render={({ field, fieldState: { error } }) => (
               <InputField
-                label="Phone"
+                label="Image"
                 bg="background.100"
-                placeholder="Phone"
+                placeholder="Image"
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}
-                onChange={handleChangeValue('fields.phone', field.onChange)}
+                onChange={handleChangeValue('fields.image', field.onChange)}
+              />
+            )}
+          />
+        </Flex>
+        <Flex w="100%" mb={{ sm: '5px' }}>
+          <Controller
+            control={control}
+            name="fields.description"
+            render={({ field, fieldState: { error } }) => (
+              <InputField
+                label="Description"
+                bg="background.100"
+                placeholder="Description"
+                {...field}
+                isError={!!error}
+                errorMessages={error?.message}
+                onChange={handleChangeValue(
+                  'fields.description',
+                  field.onChange,
+                )}
               />
             )}
           />
@@ -272,5 +281,5 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
   );
 };
 
-const UserFormMemorized = memo(UserForm, isEqual);
-export default UserFormMemorized;
+const ProjectFormMemorized = memo(ProjectForm, isEqual);
+export default ProjectFormMemorized;
