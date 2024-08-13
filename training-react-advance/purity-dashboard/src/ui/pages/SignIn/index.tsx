@@ -38,7 +38,6 @@ const SignInPage = ({ children }: { children?: ReactNode }) => {
           user.fields.email === data.email &&
           user.fields.password === data.password,
       );
-
       if (res) {
         setUser({ user: res });
         navigate(ROUTES.TABLES);

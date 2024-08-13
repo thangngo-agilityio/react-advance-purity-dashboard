@@ -20,3 +20,4 @@ export * from './teamIcon';
 export * from './projectIcon';
 export * from './signOut';
 export * from './edit';
+export * from './arrow';

@@ -29,10 +29,8 @@ const Table = ({
 }: TTableProps): JSX.Element => {
   return (
     <TableContainer
-      // overflowX={{
-      //   base: 'scroll',
-      //   '6xl': 'hidden',
-      // }}
+      overflowY='scroll'
+      overflow='hidden'
       w="100%"
       maxH="390px"
     >
