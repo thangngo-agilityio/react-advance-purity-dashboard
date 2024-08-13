@@ -8,14 +8,12 @@ import isEqual from 'react-fast-compare';
 import {
   Button,
   Flex,
-  FormLabel,
-  Select,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
 
 // Types
-import { TRecordProject, TRecordUser } from '@/lib/types';
+import { TRecordUser } from '@/lib/types';
 
 // constants
 import { AUTH_SCHEMA, STATUS_SUBMIT } from '@/lib/constants';

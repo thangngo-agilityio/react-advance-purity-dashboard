@@ -2,7 +2,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { API_PATH } from '../constants';
 import { mainHttpService } from '../service';
 import { TRecordProject } from '../types';
-import { useState } from 'react';
 
 export type TProjectResponse = {
   records: TRecordProject[];
