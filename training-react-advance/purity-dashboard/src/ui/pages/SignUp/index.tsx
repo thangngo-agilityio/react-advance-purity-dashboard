@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Components
 import Footer from '@/ui/components/Footer';
-import AuthForm from '@/ui/components/AuthForm';
+import AuthForm from '@/ui/components/Form/AuthForm';
 
 // Constants
 import { ROUTES } from '@/lib/constants';

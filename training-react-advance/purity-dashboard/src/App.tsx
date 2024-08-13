@@ -1,14 +1,16 @@
-import { Spinner } from '@chakra-ui/react';
 import { Suspense } from 'react';
 
 // Providers
 import { ChakraProvider, QueryProvider, RouterProvider } from '@/lib/providers';
 
+// components
+import { LoadingIndicator } from './ui';
+
 const App = () => {
   return (
     <QueryProvider>
       <ChakraProvider>
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<LoadingIndicator />}>
           <RouterProvider />
         </Suspense>
       </ChakraProvider>

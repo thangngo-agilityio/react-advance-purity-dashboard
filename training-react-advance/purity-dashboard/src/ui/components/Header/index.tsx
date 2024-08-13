@@ -18,14 +18,19 @@ const Header = ({ path, name, colorFill, colorIcon }: THeaderProps) => (
     w="100%"
     p="24px"
     flexDirection={{ base: 'column', md: 'row' }}
-    alignItems={{ base: 'flex-start', md: "center" }}
+    alignItems={{ base: 'flex-start', md: 'center' }}
     justifyContent="space-between"
     borderRadius="lg"
   >
-    <Box mb={{ base: '10px', md: '0' }}>
+    <Box mb={{ base: '10px', md: 'unset' }}>
       <Navbar path={path} name={name} colorFill={colorFill} />
     </Box>
-    <Flex w={{ base: '100%', md: '0' }} flexDirection="row" alignItems="center" justifyContent="space-between">
+    <Flex
+      w={{ base: '100%', md: 'unset' }}
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="space-between"
+    >
       <Box mr="18px">
         <InputField
           type="search"
