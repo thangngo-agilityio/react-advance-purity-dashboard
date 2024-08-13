@@ -103,7 +103,7 @@ const AuthForm = ({
 
   return (
     <Box
-      w={isRegister ? '452px' : '353px'}
+      w={{ base: '100%', md: isRegister ? '452px' : '353px' }}
       px={isRegister ? '51px' : '0px'}
       py={isRegister ? '46px' : '0px'}
       borderRadius={isRegister ? 'lg' : 'transparent'}

@@ -65,15 +65,16 @@ const SignInPage = ({ children }: { children?: ReactNode }) => {
     <VStack position="relative" height="100%" gap="0px">
       {children}
       <VStack
-        w="988px"
+        w={{ base: '100%', md: "988px" }}
         h="100%"
         pb="40px"
+        px={{ base: '25px', md: '0' }}
         gap="0"
         position="relative"
         zIndex={2}
         justifyContent="space-between"
       >
-        <Flex w="100%" h="100%" alignItems="center" flex={2}>
+        <Flex w="100%" h="100%" alignItems="center" justifyContent={{ base: 'center', lg: "unset" }} flex={2}>
           <AuthForm
             onSubmit={onSubmit}
             errorMessage={errorMessage}
@@ -89,15 +90,16 @@ const SignInPage = ({ children }: { children?: ReactNode }) => {
         zIndex={1}
         top={0}
         right={0}
-        w="862px"
+        w={{ md: "300px", lg: "862px" }}
         h="872px"
         alignItems="center"
         justifyContent="center"
         borderBottomLeftRadius="25px"
         backgroundImage="/imgs/background-login.svg"
         backgroundRepeat="no-repeat"
-        backgroundSize="100%"
+        backgroundSize="cover"
         objectFit="cover"
+        display={{ base: 'none', md: 'flex' }}
       >
         <LogoChakra />
       </Flex>
