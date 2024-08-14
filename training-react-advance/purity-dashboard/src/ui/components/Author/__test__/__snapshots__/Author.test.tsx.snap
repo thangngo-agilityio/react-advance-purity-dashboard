@@ -12,8 +12,8 @@ exports[`Author component test case Should render correctly 1`] = `
         class="css-xax5g4"
       >
         <img
-          class="chakra-image css-18fwu7u"
-          src="/public/imgs/avatar-default.svg"
+          class="chakra-image css-15sm3g6"
+          src="/imgs/avatar-default.svg"
         />
       </div>
     </div>
@@ -44,7 +44,7 @@ exports[`Author component test case render when data is available 1`] = `
       >
         <img
           alt="Cat"
-          class="chakra-image css-18fwu7u"
+          class="chakra-image css-15sm3g6"
           src="https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp"
         />
       </div>

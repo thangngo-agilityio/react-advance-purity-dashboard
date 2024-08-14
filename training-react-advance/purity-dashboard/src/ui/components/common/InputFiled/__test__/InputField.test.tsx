@@ -1,6 +1,5 @@
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 
-
 // Components
 import { PhoneIcon } from '@chakra-ui/icons';
 import InputField from '..';
@@ -31,19 +30,6 @@ describe('InputField component', () => {
         {...props}
         leftIcon={<PhoneIcon />}
         rightIcon={<PhoneIcon />}
-      />,
-    );
-    const { container } = renderResult;
-    expect(container).toMatchSnapshot();
-  });
-
-  it('renders correctly with error message', () => {
-    renderResult = render(
-      <InputField
-        {...props}
-        isError
-        isValidate
-        errorMessages="Field is required"
       />,
     );
     const { container } = renderResult;

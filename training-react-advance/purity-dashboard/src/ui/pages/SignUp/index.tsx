@@ -91,12 +91,11 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
       >
         <VStack
           w="100%"
-          h="100%"
           alignItems="center"
           justifyContent="center"
           flex={6}
         >
-          <VStack width="333px" mb="66px">
+          <VStack width="333px" pt='30px' mb="66px">
             <Heading size="xl" variant="secondary">
               Welcome!
             </Heading>
@@ -107,7 +106,7 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
           </VStack>
           <AuthForm isRegister onSubmit={onSubmit} />
         </VStack>
-        <Flex w="100%" h="100%" flex={1}>
+        <Flex w="100%" flex={1}>
           <Footer />
         </Flex>
       </VStack>

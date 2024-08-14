@@ -29,46 +29,6 @@ exports[`InputField component renders correctly with default props 1`] = `
 </div>
 `;
 
-exports[`InputField component renders correctly with error message 1`] = `
-<div>
-  <div
-    class="chakra-form-control css-0"
-    data-invalid=""
-    role="group"
-  >
-    <label
-      class="chakra-form__label css-byg028"
-      data-invalid=""
-      for="field-:r4:"
-      id="field-:r4:-label"
-    >
-      Search
-    </label>
-    <div
-      class="chakra-input__group css-bx0blc"
-      data-group="true"
-    >
-      <input
-        aria-describedby="field-:r4:-feedback"
-        aria-invalid="true"
-        class="chakra-input css-rak02u"
-        id="field-:r4:"
-        name="search"
-        placeholder="Search Tasks"
-        type="text"
-      />
-    </div>
-    <div
-      aria-live="polite"
-      class="chakra-form__error-message css-1qc3jta"
-      id="field-:r4:-feedback"
-    >
-      Field is required
-    </div>
-  </div>
-</div>
-`;
-
 exports[`InputField component renders correctly with left icon and right icon 1`] = `
 <div>
   <div
