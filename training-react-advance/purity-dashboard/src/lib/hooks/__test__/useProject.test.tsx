@@ -10,7 +10,7 @@ import {
   MOCK_PROJECTS_SUCCESS_RES,
   MOCK_UPDATE_PROJECT_PAYLOAD,
   MOCK_UPDATE_SUCCESS_RES,
-  PROJECT_DATA_MOCK,
+  PROJECT,
 } from '@/lib/mocks';
 
 // Service
@@ -35,7 +35,7 @@ describe('useProject', () => {
       wrapper: queryProviderWrapper,
     });
 
-    await waitFor(() => expect(result.current.projectData).toEqual(PROJECT_DATA_MOCK));
+    await waitFor(() => expect(result.current.projectData).toEqual(PROJECT));
   });
 
   it('should add project successfully', async () => {
