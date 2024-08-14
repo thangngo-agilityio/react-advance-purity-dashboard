@@ -7,13 +7,13 @@ exports[`Switch test case Should render correctly 1`] = `
     role="group"
   >
     <label
-      class="chakra-switch css-13gryfn"
+      class="chakra-switch css-16pgy8f"
     >
       <input
         aria-disabled="false"
         aria-invalid="false"
         class="chakra-switch__input"
-        id="field-:r0:"
+        id="remember-me"
         style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
         type="checkbox"
         value=""
@@ -28,8 +28,8 @@ exports[`Switch test case Should render correctly 1`] = `
       </span>
     </label>
     <label
-      class="chakra-form__label css-1w9kk21"
-      for="email-alerts"
+      class="chakra-form__label css-evtg1u"
+      for="remember-me"
       id="field-:r0:-label"
     >
       Remember me

@@ -44,30 +44,4 @@ export class HttpService {
     const jsonBody = JSON.stringify(body);
     return await this.axiosClient.put<T>(url, jsonBody, configs);
   }
-
-  async patch<TRequestBody, T>(
-    endpoint: string,
-    body: TRequestBody,
-    configs?: AxiosRequestConfig,
-  ): Promise<T> {
-    try {
-      const url = `${this.baseApi}${endpoint}`;
-      const res = await this.axiosClient.patch(url, body, configs);
-
-      return res.data;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async delete<TRequestBody, T>(path: string, body: TRequestBody): Promise<T> {
-    try {
-      const url = `${this.baseApi}${path}`;
-      const res = await this.axiosClient.post(url, body);
-
-      return res.data;
-    } catch (error) {
-      throw error;
-    }
-  }
 }
