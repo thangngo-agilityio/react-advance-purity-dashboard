@@ -30,7 +30,7 @@ const Table = ({
   return (
     <TableContainer
       overflowY='scroll'
-      overflow='hidden'
+      overflowX={{ base: 'scroll', 'xl': 'hidden' }}
       w="100%"
       maxH="390px"
     >

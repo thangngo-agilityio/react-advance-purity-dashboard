@@ -295,7 +295,7 @@ const TablePage = () => {
       >
         <Text
           flex={1}
-          w={{ base: '100px', '3xl': '150px', '5xl': '200px' }}
+          w={{ base: '200px', xl: '220px', '3xl': '250px', '6xl': '350px' }}
           noOfLines={1}
           color="text.primary"
           fontWeight="bold"
