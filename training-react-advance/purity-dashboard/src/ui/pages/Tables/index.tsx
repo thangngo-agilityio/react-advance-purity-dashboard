@@ -151,6 +151,7 @@ const TablePage = () => {
                 status: data.fields.status,
                 completion: data.fields.completion,
                 description: data.fields.description,
+                image: data.fields.image,
               },
             },
           ],

@@ -18,7 +18,7 @@ import { mainHttpService } from '@/lib/service';
 // Utils
 import { queryProviderWrapper } from '@/lib/utils';
 
-describe('useAuth', () => {
+describe('useAuthor', () => {
   beforeEach(() => {
     jest
       .spyOn(mainHttpService, 'get')
