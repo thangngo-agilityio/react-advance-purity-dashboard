@@ -5,7 +5,6 @@ import { TRecordProject } from '../types';
 
 export type TProjectResponse = {
   records: TRecordProject[];
-  offset: string;
 };
 
 export const useProject = () => {
@@ -35,8 +34,7 @@ export const useProject = () => {
       queryClient.setQueryData(
         [API_PATH.PROJECT],
         (oldData: TProjectResponse) => ({
-          records: [...newData, ...oldData.records],
-          offset: oldData.offset,
+          records: [newData, ...(oldData?.records || [])],
         }),
       );
     },
@@ -47,12 +45,12 @@ export const useProject = () => {
       (await mainHttpService.put<TProjectResponse>(API_PATH.PROJECT, project))
         .data,
     onSuccess: async (_, variables) => {
-      const newData = variables.records.map((data) => data);
+      const newData = variables.records;
 
       queryClient.setQueryData(
         [API_PATH.PROJECT],
         (oldData: TProjectResponse) => ({
-          records: oldData.records.map((item) =>
+          records: oldData?.records.map((item) =>
             item.id === newData[0].id
               ? {
                   ...item,
