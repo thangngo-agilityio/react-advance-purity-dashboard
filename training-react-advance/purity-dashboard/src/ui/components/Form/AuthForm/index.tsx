@@ -113,7 +113,7 @@ const AuthForm = ({
     >
       {!isRegister ? (
         <Box mb="36px">
-          <Heading as="h1" mb="8px" variant="tertiary" size="xl">
+          <Heading as="h1" mb="8px" variant="tertiary" fontSize={{ base: '24px', lg: '36px' }} size={"xl"}>
             Welcome Back
           </Heading>
           <Text fontWeight="700">Enter your email and password to sign in</Text>
