@@ -25,7 +25,6 @@ export { default as Fetching } from './Skeleton/TableList';
 export { default as FetchingModal } from './Skeleton/Modal';
 export { default as ProjectDetail } from './Modal/ModalDetail';
 export { default as UserForm } from './Form/UserForm';
-export { default as Pagination } from './Pagination';
 export { default as LoadingIndicator } from './Indicator/Loading';
 
 // Common

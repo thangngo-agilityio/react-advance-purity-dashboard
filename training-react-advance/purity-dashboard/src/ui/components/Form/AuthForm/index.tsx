@@ -154,6 +154,7 @@ const AuthForm = ({
             name="name"
             render={({ field, fieldState: { error } }) => (
               <InputField
+                label='Name'
                 variant="authentication"
                 placeholder="name"
                 isError={!!error}
@@ -182,6 +183,7 @@ const AuthForm = ({
 
             return (
               <InputField
+                label='Email'
                 variant="authentication"
                 placeholder="Email"
                 isError={!!error?.message}
@@ -201,6 +203,7 @@ const AuthForm = ({
           name="password"
           render={({ field, fieldState: { error } }) => (
             <InputField
+              label='Password'
               type={isShowPassword ? 'text' : 'password'}
               variant="authentication"
               placeholder="Password"
@@ -242,6 +245,7 @@ const AuthForm = ({
               name="confirmPassword"
               render={({ field, fieldState: { error } }) => (
                 <InputField
+                  label='Confirm password'
                   type={isShowConfirmPassword ? 'text' : 'password'}
                   variant="authentication"
                   placeholder="Confirm password"

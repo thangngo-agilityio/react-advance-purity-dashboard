@@ -13,6 +13,8 @@ export const ERROR_MESSAGES = {
   PHONE_NUMBER_INVALID: 'Phone number is invalid',
   CREATE_ACCOUNT: 'Account creation failed',
   ACCOUNT_CREATED: 'This email has been created.',
+  REQUEST:
+    'Request failed with error. Please help contact team to identify issue',
 };
 
 export const SUCCESS_MESSAGE = {

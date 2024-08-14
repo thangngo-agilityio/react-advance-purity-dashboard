@@ -111,6 +111,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
                 fieldState: { error },
               }) => (
                 <InputField
+                  label='Name'
                   bg="background.100"
                   placeholder="Name"
                   mr={{ md: 2 }}
@@ -134,6 +135,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
                 fieldState: { error },
               }) => (
                 <InputField
+                  label='Email'
                   bg="background.100"
                   placeholder="Email"
                   mr={{ md: 2 }}
@@ -154,6 +156,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
             name="fields.avatar"
             render={({ field, field: { onChange }, fieldState: { error } }) => (
               <InputField
+                label='Avatar'
                 bg="background.100"
                 placeholder="Avatar"
                 accept="image/*"
@@ -184,6 +187,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
                 fieldState: { error },
               }) => (
                 <InputField
+                  label='Role'
                   bg="background.100"
                   placeholder="Role"
                   mr={{ md: 2 }}
@@ -203,6 +207,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
               name="fields.job"
               render={({ field, fieldState: { error } }) => (
                 <InputField
+                  label='Job'
                   bg="background.100"
                   placeholder="Job"
                   {...field}
@@ -226,6 +231,7 @@ const AuthorForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
             name="fields.employed"
             render={({ field, fieldState: { error } }) => (
               <InputField
+                label='Employed'
                 bg="background.100"
                 type="date"
                 placeholder="Employed"

@@ -74,16 +74,9 @@ const Table = ({
             </Tr>
           ) : (
             dataSource.map((data) => {
-              const handleClick = () =>
-                !!onClickTableRow && onClickTableRow(`${data.id}`);
-
               return (
                 <Tr
                   key={data.id}
-                  {...(onClickTableRow && {
-                    cursor: 'pointer',
-                  })}
-                  onClick={handleClick}
                   data-testid="table-row"
                 >
                   {!!columns.length &&
