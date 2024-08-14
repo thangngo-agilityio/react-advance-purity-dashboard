@@ -63,7 +63,7 @@ export const useAuthor = (queryParam?: TSearchAuthor) => {
       queryClient.setQueryData(
         [API_PATH.AUTHOR],
         (oldData: TAuthorResponse) => ({
-          records: [...newData, ...oldData.records],
+          records: [...newData, ...(oldData?.records || [])],
         }),
       );
     },
@@ -74,12 +74,12 @@ export const useAuthor = (queryParam?: TSearchAuthor) => {
       (await mainHttpService.put<TAuthorResponse>(API_PATH.AUTHOR, author))
         .data,
     onSuccess: async (_, variables) => {
-      const newData = variables.records.map((data) => data);
+      const newData = variables.records;
 
       queryClient.setQueryData(
-        [API_PATH.AUTHOR],
+        [API_PATH.AUTHOR, searchName],
         (oldData: TAuthorResponse) => ({
-          records: oldData.records.map((item) =>
+          records: oldData?.records?.map((item) =>
             item.id === newData[0].id
               ? {
                   ...item,
