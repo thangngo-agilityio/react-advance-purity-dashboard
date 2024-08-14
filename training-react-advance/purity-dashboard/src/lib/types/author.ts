@@ -1,14 +1,14 @@
 import { AUTHOR_STATUS } from '../constants';
 
 export type TAuthor = {
-  _id: string;
+  _id: number;
   name: string;
   email: string;
   avatar: string;
   role: string;
   job: string;
-  status: AUTHOR_STATUS;
   employed: string;
+  status?: AUTHOR_STATUS;
 };
 
 export type TFiledAuthor = {
@@ -31,8 +31,8 @@ export interface TRecordAuthor {
 }
 
 export type TAuthorRequest = {
-  records: TRecordAuthor
-}
+  records: TRecordAuthor;
+};
 
 export type AuthorFormData = {
   _id: number;
