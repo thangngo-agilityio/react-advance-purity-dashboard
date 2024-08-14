@@ -14,11 +14,11 @@ const ProfilePage = lazy(() => import('@/ui/pages/profile'));
 export const privateRoutes: RouteObject = {
   element: (
     <AuthLayout>
-      <Suspense fallback={<Spinner />}>
-        <MainLayout>
+      <MainLayout>
+        <Suspense fallback={<Spinner />}>
           <Outlet />
-        </MainLayout>
-      </Suspense>
+        </Suspense>
+      </MainLayout>
     </AuthLayout>
   ),
   children: [

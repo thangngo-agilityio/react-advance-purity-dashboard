@@ -45,6 +45,7 @@ const config: Config = {
 
   coveragePathIgnorePatterns: [
     '<rootDir>/src/ui/themes/',
+    '<rootDir>/src/ui/icons/',
     '<rootDir>/src/lib/constants/',
     '<rootDir>/src/lib/routes/',
     '<rootDir>/src/lib/types/',
@@ -57,6 +58,10 @@ const config: Config = {
     '<rootDir>/src/ui/pages/index.ts',
     '<rootDir>/src/ui/layouts/index.ts',
     '<rootDir>/src/ui/components/index.ts',
+    '<rootDir>/src/ui/components/Form/index.ts',
+    '<rootDir>/src/ui/components/Sidebar/index.ts',
+    '<rootDir>/src/ui/components/Sidebar/index.ts',
+    '<rootDir>/src/ui/components/Skeleton/index.ts',
     '<rootDir>/src/lib/hooks/index.ts',
     '<rootDir>/src/App.tsx',
     '<rootDir>/src/main.tsx',

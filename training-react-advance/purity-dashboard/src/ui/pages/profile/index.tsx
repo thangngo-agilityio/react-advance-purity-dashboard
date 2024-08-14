@@ -364,7 +364,7 @@ const ProfilePage = () => {
               justifyContent="center"
               opacity={1}
               cursor="pointer"
-              transition=".2s ease-in-out"
+              transition=".2s"
               _hover={{
                 opacity: 0.6,
               }}

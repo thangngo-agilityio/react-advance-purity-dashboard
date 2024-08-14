@@ -1,7 +1,7 @@
 // Service
-import { HttpService } from "./httpService";
+import { HttpService } from './httpService';
 
 // Constants
-import { STATISTICAL_API } from "@/lib/constants";
+import { STATISTICAL_API } from '@/lib/constants';
 
-export const mainHttpService = new HttpService(STATISTICAL_API)
+export const mainHttpService = new HttpService(STATISTICAL_API);
