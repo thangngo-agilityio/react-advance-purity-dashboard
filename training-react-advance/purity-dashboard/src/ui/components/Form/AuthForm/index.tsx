@@ -106,6 +106,7 @@ const AuthForm = ({
       w={{ base: '100%', md: isRegister ? '452px' : '353px' }}
       px={isRegister ? '51px' : '0px'}
       py={isRegister ? '46px' : '0px'}
+      mb='30px'
       borderRadius={isRegister ? 'lg' : 'transparent'}
       boxShadow={isRegister ? '0 7px 23px rgba(0, 0 , 0, .05)' : 'transparent'}
       bg={isRegister ? 'background.100' : 'transparent'}

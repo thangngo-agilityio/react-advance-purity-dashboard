@@ -74,14 +74,14 @@ const SignInPage = ({ children }: { children?: ReactNode }) => {
         zIndex={2}
         justifyContent="space-between"
       >
-        <Flex w="100%" h="100%" alignItems="center" justifyContent={{ base: 'center', lg: "unset" }} flex={2}>
+        <Flex w="100%" pt='30px' alignItems="center" justifyContent={{ base: 'center', lg: "unset" }} flex={2}>
           <AuthForm
             onSubmit={onSubmit}
             errorMessage={errorMessage}
             handleClearRootError={handleResetError}
           />
         </Flex>
-        <Flex w="100%" h="100%" flex={1}>
+        <Flex w="100%" flex={1}>
           <Footer />
         </Flex>
       </VStack>
