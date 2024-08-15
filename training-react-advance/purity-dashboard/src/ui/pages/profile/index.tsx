@@ -6,6 +6,7 @@ import {
   GridItem,
   Heading,
   HStack,
+  Stack,
   Text,
   useDisclosure,
   useToast,
@@ -150,7 +151,7 @@ const ProfilePage = () => {
         bgImage="/imgs/background-profile.svg"
         borderRadius="lg"
         justifyContent="space-between"
-        mb="74px"
+        mb={{ base: "130px", md: "74px" }}
       >
         <Header
           name="Profile"
@@ -159,18 +160,19 @@ const ProfilePage = () => {
           colorIcon="#FFF"
         />
 
-        <HStack
+        <Stack
           p="16px"
-          w="97%"
+          w={{ base: "90%", md: "97%" }}
           mb="-56px"
+          flexDirection={{ base: 'column', md: 'row' }}
           borderRadius="lg"
           alignItems="center"
           bgGradient="linear(to-t, linear.300, linear.400)"
           justifyContent="space-between"
         >
           {
-            <Flex alignItems="center">
-              <Box position="relative">
+            <Flex alignItems="center" flexDirection={{ base: 'column', md: 'row' }}>
+              <Box position="relative" mb={{ base: "5px", md: "unset" }}>
                 <Avatar
                   width="80px"
                   height="80px"
@@ -194,14 +196,14 @@ const ProfilePage = () => {
                   <EditIcon />
                 </Flex>
               </Box>
-              <VStack ml="22px" alignItems="flex-start" gap={0}>
+              <VStack ml={{ base: "unset", md: "22px" }} alignItems={{ base: "center", md: "flex-start" }} gap={0}>
                 <Heading size="lg">{user?.fields.name}</Heading>
                 <Text variant="tertiary">{user?.fields.email}</Text>
               </VStack>
             </Flex>
           }
 
-          <Box>
+          <Flex flexDirection={{ base: "column", md: "row" }}>
             <Button variant="iconTertiary" leftIcon={<OverviewIcon />}>
               OVERVIEW
             </Button>
@@ -211,8 +213,8 @@ const ProfilePage = () => {
             <Button variant="iconTertiary" leftIcon={<ProjectIcon />}>
               PROJECTS
             </Button>
-          </Box>
-        </HStack>
+          </Flex>
+        </Stack>
       </VStack>
 
       <Grid w="100%" templateColumns={{ base: "", lg: "repeat(3, 1fr)" }} gap="24px" mb="24px">

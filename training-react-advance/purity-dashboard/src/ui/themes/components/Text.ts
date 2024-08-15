@@ -6,6 +6,9 @@ export const Text = defineStyleConfig({
     fontFamily: 'body',
   },
   sizes: {
+    textXs: {
+      fontSize: 'xs',
+    },
     textSm: {
       fontSize: 'sm',
     },
