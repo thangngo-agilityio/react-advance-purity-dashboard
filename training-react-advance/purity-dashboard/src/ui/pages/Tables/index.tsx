@@ -149,7 +149,7 @@ const TablePage = () => {
                 avatar: data.fields.avatar,
                 budget: data.fields.budget,
                 status: data.fields.status,
-                completion: data.fields.completion,
+                completion: Number(data.fields.completion),
                 description: data.fields.description,
                 image: data.fields.image,
               },

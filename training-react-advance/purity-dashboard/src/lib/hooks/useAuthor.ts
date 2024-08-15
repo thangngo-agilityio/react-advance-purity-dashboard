@@ -61,7 +61,7 @@ export const useAuthor = (queryParam?: TSearchAuthor) => {
       const newData = dataResponse.records;
 
       queryClient.setQueryData(
-        [API_PATH.AUTHOR],
+        [API_PATH.AUTHOR, searchName],
         (oldData: TAuthorResponse) => ({
           records: [...newData, ...(oldData?.records || [])],
         }),

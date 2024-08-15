@@ -146,7 +146,7 @@ exports[`Tables page Should render match with snapshot. 1`] = `
           </button>
         </div>
         <div
-          class="chakra-table__container css-1c13jy5"
+          class="chakra-table__container css-7i2zk8"
         >
           <table
             class="chakra-table css-0"
@@ -277,11 +277,15 @@ exports[`Tables page Should render match with snapshot. 1`] = `
                 <td
                   class="css-10ngfz9"
                 >
-                  <span
-                    class="chakra-badge css-11k7pgp"
+                  <div
+                    class="css-acdumj"
                   >
-                    Offline
-                  </span>
+                    <span
+                      class="chakra-badge css-11k7pgp"
+                    >
+                      Offline
+                    </span>
+                  </div>
                 </td>
                 <td
                   class="css-svc9xl"
@@ -359,11 +363,15 @@ exports[`Tables page Should render match with snapshot. 1`] = `
                 <td
                   class="css-10ngfz9"
                 >
-                  <span
-                    class="chakra-badge css-11k7pgp"
+                  <div
+                    class="css-acdumj"
                   >
-                    Offline
-                  </span>
+                    <span
+                      class="chakra-badge css-11k7pgp"
+                    >
+                      Offline
+                    </span>
+                  </div>
                 </td>
                 <td
                   class="css-svc9xl"
@@ -402,7 +410,7 @@ exports[`Tables page Should render match with snapshot. 1`] = `
           </h2>
         </div>
         <div
-          class="chakra-table__container css-1c13jy5"
+          class="chakra-table__container css-7i2zk8"
         >
           <table
             class="chakra-table css-0"
@@ -514,7 +522,7 @@ exports[`Tables page Should render match with snapshot. 1`] = `
                   class="css-os8l3e"
                 >
                   <p
-                    class="chakra-text css-ezs8j4"
+                    class="chakra-text css-1gq48kf"
                   >
                     $123,213
                   </p>
@@ -522,11 +530,15 @@ exports[`Tables page Should render match with snapshot. 1`] = `
                 <td
                   class="css-10ngfz9"
                 >
-                  <span
-                    class="chakra-badge css-sbi8wv"
+                  <div
+                    class="css-acdumj"
                   >
-                    Working
-                  </span>
+                    <span
+                      class="chakra-badge css-sbi8wv"
+                    >
+                      Working
+                    </span>
+                  </div>
                 </td>
                 <td
                   class="css-1nygxpw"

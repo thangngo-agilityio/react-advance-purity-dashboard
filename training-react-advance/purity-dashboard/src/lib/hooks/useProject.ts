@@ -34,7 +34,7 @@ export const useProject = () => {
       queryClient.setQueryData(
         [API_PATH.PROJECT],
         (oldData: TProjectResponse) => ({
-          records: [newData, ...(oldData?.records || [])],
+          records: [...newData, ...(oldData?.records || [])],
         }),
       );
     },
@@ -50,7 +50,7 @@ export const useProject = () => {
       queryClient.setQueryData(
         [API_PATH.PROJECT],
         (oldData: TProjectResponse) => ({
-          records: oldData?.records.map((item) =>
+          records: oldData?.records?.map((item) =>
             item.id === newData[0].id
               ? {
                   ...item,

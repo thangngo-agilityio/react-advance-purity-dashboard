@@ -18,7 +18,7 @@ exports[`Sign In page Should render match with snapshot. 1`] = `
             class="css-1wvv5q9"
           >
             <h1
-              class="chakra-heading css-19idom"
+              class="chakra-heading css-t5jvjc"
             >
               Welcome Back
             </h1>
