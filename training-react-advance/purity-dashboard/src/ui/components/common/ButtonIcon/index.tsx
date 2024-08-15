@@ -6,6 +6,7 @@ interface TButtonIconProps {
   isActive?: boolean;
 }
 
+// Rename
 const ButtonIcon = ({ icon, isActive, ...rest }: TButtonIconProps) => (
   <Box
     display='inline-block'

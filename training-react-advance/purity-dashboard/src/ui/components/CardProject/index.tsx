@@ -16,6 +16,7 @@ type TCardProject = {
 };
 
 const CardProject = ({
+  // Update naming
   projectData,
   src,
   alt,
@@ -65,6 +66,8 @@ const CardProject = ({
         </Box>
       </VStack>
 
+
+      {/* Remove modal outside component */}
       {isOpen && (
         <Modal
           isOpen={isOpen}
