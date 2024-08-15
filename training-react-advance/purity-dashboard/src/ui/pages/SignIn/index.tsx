@@ -35,7 +35,7 @@ const SignInPage = ({ children }: { children?: ReactNode }) => {
     (data: AuthFormData): void => {
       const res = users?.records.find(
         (user) =>
-          user.fields.email === data.email &&
+          user.fields.email.toLowerCase() === data.email.toLowerCase() &&
           user.fields.password === data.password,
       );
       if (res) {
