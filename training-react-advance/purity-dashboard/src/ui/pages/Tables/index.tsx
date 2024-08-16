@@ -31,9 +31,9 @@ import {
 import {
   COLUMNS_AUTHOR,
   COLUMNS_PROJECT,
+  DATE_FORMAT,
   ROUTES,
   STATUS_LABEL,
-  TIME_FORMAT,
 } from '@/lib/constants';
 import { SUCCESS_MESSAGE } from '@/lib/constants/message';
 
@@ -80,7 +80,7 @@ const TablePage = () => {
                 avatar: data.fields.avatar,
                 role: data.fields.role,
                 job: data.fields.job,
-                employed: dayjs(data.fields.employed).format(TIME_FORMAT),
+                employed: dayjs(data.fields.employed).format(DATE_FORMAT),
               },
             },
           ],
@@ -115,7 +115,7 @@ const TablePage = () => {
                 avatar: data.fields.avatar,
                 role: data.fields.role,
                 job: data.fields.job,
-                employed: dayjs(data.fields.employed).format(TIME_FORMAT),
+                employed: dayjs(data.fields.employed).format(DATE_FORMAT),
               },
             },
           ],
@@ -251,7 +251,7 @@ const TablePage = () => {
           color="text.200"
           fontWeight="bold"
         >
-          {dayjs(employed).format(TIME_FORMAT)}
+          {dayjs(employed).format(DATE_FORMAT)}
         </Text>
       </Td>
     ),

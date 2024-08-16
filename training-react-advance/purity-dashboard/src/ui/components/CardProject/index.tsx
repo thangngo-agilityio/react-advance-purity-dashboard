@@ -7,22 +7,12 @@ import { Modal, ProjectDetail } from '..';
 import { TRecordProject } from '@/lib/types';
 
 type TCardProject = {
-  projectData: TRecordProject
-  src?: string;
-  alt?: string;
-  projectNumber?: string;
-  projectName?: string;
-  description?: string;
+  data: TRecordProject
 };
 
 const CardProject = ({
   // Update naming
-  projectData,
-  src,
-  alt,
-  projectNumber,
-  projectName,
-  description,
+  data,
 }: TCardProject) => {
   const { isOpen, onToggle } = useDisclosure()
   return (
@@ -40,8 +30,8 @@ const CardProject = ({
           objectFit="cover"
           w="100%"
           h="100%"
-          src={src}
-          alt={alt}
+          src={`${data.fields.image}`}
+          alt={`${data.fields.projectName}`}
         />
         <Image
           position="absolute"
@@ -56,9 +46,9 @@ const CardProject = ({
         />
       </Box>
       <VStack alignItems="flex-start" w="100%" px="10px">
-        <Text size="textSm">Project #{projectNumber}</Text>
-        <Heading mb="10px">{projectName}</Heading>
-        <Text mb="20px">{description}</Text>
+        <Text size="textSm">Project #{data.fields._id}</Text>
+        <Heading mb="10px">{data.fields.projectName}</Heading>
+        <Text mb="20px">{data.fields.description}</Text>
         <Box>
           <Button w="110px" size="xs" variant="tertiary" onClick={onToggle}>
             VIEW ALL
@@ -76,7 +66,7 @@ const CardProject = ({
           haveCloseButton
           isProjectDetail
           body={
-            <ProjectDetail data={projectData} />
+            <ProjectDetail data={data} />
           }
         />
       )}
