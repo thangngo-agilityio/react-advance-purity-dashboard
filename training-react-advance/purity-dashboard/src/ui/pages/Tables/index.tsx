@@ -147,7 +147,7 @@ const TablePage = () => {
               fields: {
                 projectName: data.fields.projectName,
                 avatar: data.fields.avatar,
-                budget: data.fields.budget,
+                budget: Number(data.fields.budget),
                 status: data.fields.status,
                 completion: Number(data.fields.completion),
                 description: data.fields.description,
