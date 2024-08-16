@@ -28,7 +28,11 @@ const ModalComponent = ({
 }: TModalProps) => (
   <Modal isCentered isOpen={isOpen} onClose={onClose}>
     <ModalOverlay />
-    <ModalContent minW={isProjectDetail ? '0' : '320px'} maxW={isProjectDetail ? '30%' :"fit-content"}>
+    <ModalContent
+      w={isProjectDetail ? { base: '400px', md: '600px', lg: '800px' } : 'unset'}
+      minW={isProjectDetail ? '0' : '320px'}
+      maxW={isProjectDetail ? 'unset' : "fit-content"}
+    >
       <ModalHeader
         display="flex"
         justifyContent={haveCloseButton ? 'space-between' : 'center'}
