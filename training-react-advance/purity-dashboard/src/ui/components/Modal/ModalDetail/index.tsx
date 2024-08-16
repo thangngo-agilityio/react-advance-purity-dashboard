@@ -8,7 +8,6 @@ type TProjectDetailProps = {
 }
 
 const ProjectDetail = ({ data }: TProjectDetailProps) => {
-  console.log(data)
   return (
     <VStack w='100%'>
       <Box
