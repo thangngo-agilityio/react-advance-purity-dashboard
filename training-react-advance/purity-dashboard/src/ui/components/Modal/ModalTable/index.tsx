@@ -3,16 +3,20 @@ import { Button, Flex, Heading, VStack } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 
 // Components
+import Fetching from '../../Skeleton/TableList';
+import Table from '../../Table';
+import Pagination from '../../Pagination';
+
+// Hooks
+import { usePagination } from '@/lib/hooks';
 
 // types
 import { TDataSource, THeaderTable } from '@/lib/types/table';
-import Table from '../../Table';
-import Fetching from '../../Skeleton/TableList';
 
 type TModalTableProps = {
   title?: string;
   columns?: THeaderTable[];
-  dataSource?: TDataSource[];
+  dataSource: TDataSource[];
   isAuthor?: boolean;
   isFetching?: boolean;
   onClickTableRow?: (id: string) => void;
@@ -23,11 +27,22 @@ const ModalTable = ({
   title,
   columns,
   dataSource,
-  isAuthor,
+  isAuthor = false,
   isFetching,
   onClickTableRow,
   onClickAdd,
 }: TModalTableProps) => {
+
+  const {
+    data,
+    filterData,
+    arrOfCurrButtons,
+    isDisabledPrev,
+    isDisableNext,
+    handlePageChange,
+    handlePageClick,
+  } = usePagination(dataSource);
+
   return (
     <VStack
       w="100%"
@@ -49,10 +64,20 @@ const ModalTable = ({
       <Fetching quality={15} isLoading={isFetching}>
         <Table
           columns={columns}
-          dataSource={dataSource}
+          dataSource={filterData}
           onClickTableRow={onClickTableRow}
         />
       </Fetching>
+      <Flex w='100%' justifyContent='flex-end'>
+        <Pagination
+          currentPage={data.currentPage}
+          isDisableNext={isDisableNext}
+          isDisabledPrev={isDisabledPrev}
+          arrOfCurrButtons={arrOfCurrButtons}
+          onPageChange={handlePageChange}
+          onClickPage={handlePageClick}
+        />
+      </Flex>
     </VStack>
   );
 };
