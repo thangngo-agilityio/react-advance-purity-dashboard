@@ -11,3 +11,4 @@ export * from './status';
 export * from './time';
 export * from './form';
 export * from './regex';
+export * from './pagination';
