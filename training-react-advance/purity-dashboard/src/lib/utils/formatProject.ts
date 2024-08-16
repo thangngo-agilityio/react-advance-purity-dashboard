@@ -1,5 +1,4 @@
 // Types
-import { AUTHOR_STATUS } from '../constants';
 import { TRecordProject } from '../types';
 
 // Utils
