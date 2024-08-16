@@ -1,4 +1,5 @@
 // Types
+import { AUTHOR_STATUS } from '../constants';
 import { TRecordProject } from '../types';
 
 // Utils
@@ -24,21 +25,21 @@ export const formatProjectResponse = (projects: TRecordProject[] = []) =>
       fields: {
         _id,
         projectName,
-        avatar,
+        avatar: avatar || '/imgs/avatar-default.svg',
         budget,
         status,
         projectStatus: status,
         completion,
         description,
-        image,
+        image: image || 'imgs/image-project-default.jpg',
       },
       projectName,
-      avatar,
+      avatar: avatar || '/imgs/avatar-default.svg',
       budget: `$${formatDecimalNumber(budget)}`,
       status,
       projectStatus: status,
       completion,
       description,
-      image,
+      image: image || 'imgs/image-project-default.jpg',
     };
   });

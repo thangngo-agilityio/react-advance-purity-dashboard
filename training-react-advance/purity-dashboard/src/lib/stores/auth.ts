@@ -19,7 +19,6 @@ const initialState: TAuthState = {
 };
 
 // Create the store
-// Read zustand
 export const authStore = createWithEqualityFn(
   persist<TAuthState & TAuthAction>(
     (set) => ({
@@ -28,8 +27,6 @@ export const authStore = createWithEqualityFn(
         set((state) => ({ ...state, ...data })),
       removeUser: () => {
         set(initialState);
-        // Remove
-        // authStore.persist.clearStorage();
       },
     }),
     {

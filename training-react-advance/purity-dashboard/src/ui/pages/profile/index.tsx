@@ -343,12 +343,7 @@ const ProfilePage = () => {
               <GridItem>
                 <CardProject
                   key={project.fields.projectName}
-                  projectData={project}
-                  src={`${project.fields.image}`}
-                  alt={`${project.fields.projectName}`}
-                  projectName={project.fields.projectName}
-                  projectNumber={project.fields._id}
-                  description={project.fields.description}
+                  data={project}
                 />
               </GridItem>
             </FetchingModal>
