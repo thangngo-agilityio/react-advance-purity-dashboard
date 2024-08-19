@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Button, Flex, Heading, VStack } from '@chakra-ui/react';
+import isEqual from 'react-fast-compare';
 import { AddIcon } from '@chakra-ui/icons';
 
 // Components
@@ -82,4 +83,4 @@ const ModalTable = ({
   );
 };
 
-export default memo(ModalTable);
+export default memo(ModalTable, isEqual);
