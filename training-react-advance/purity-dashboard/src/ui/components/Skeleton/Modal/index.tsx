@@ -1,5 +1,6 @@
 import { Flex, Heading, Skeleton } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
+import isEqual from 'react-fast-compare';
 
 // Constants
 import { ERROR_MESSAGES } from '@/lib/constants/message';
@@ -39,4 +40,4 @@ const FetchingModal = ({
   );
 };
 
-export default FetchingModal;
+export default memo(FetchingModal, isEqual);

@@ -1,4 +1,6 @@
 import { Box, Image } from '@chakra-ui/react';
+import { memo } from 'react';
+import isEqual from 'react-fast-compare';
 
 type TAvatarProps = {
   src?: string;
@@ -26,4 +28,4 @@ const Avatar = ({
   </Box>
 );
 
-export default Avatar;
+export default memo(Avatar, isEqual);
