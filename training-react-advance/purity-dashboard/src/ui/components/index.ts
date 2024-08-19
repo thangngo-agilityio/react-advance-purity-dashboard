@@ -27,6 +27,7 @@ export { default as ProjectDetail } from './Modal/ModalDetail';
 export { default as UserForm } from './Form/UserForm';
 export { default as LoadingIndicator } from './Indicator/Loading';
 export { default as Pagination } from './Pagination';
+export { default as ErrorBoundary } from './ErrorBoundary';
 
 // Common
 export { default as Avatar } from './common/Avatar';
