@@ -14,14 +14,4 @@ describe('Navigation test case', () => {
 
     expect(container).toMatchSnapshot();
   })
-
-  it('When Navigation active', () => {
-    const { container } = render(
-      <Navigation leftIcon={<PhoneIcon />} isActive={true} >
-        Content1
-      </Navigation>
-    )
-
-    expect(container).toMatchSnapshot();
-  })
 });

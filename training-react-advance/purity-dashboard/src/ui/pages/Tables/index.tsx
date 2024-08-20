@@ -65,7 +65,7 @@ const TablePage = () => {
   });
 
   const { authors, isLoading, isFetching, createAuthor, updateAuthor } =
-    useAuthor({ name: searchAuthor.name.toLowerCase() });
+    useAuthor({ name: searchAuthor?.name?.toLowerCase() });
   const {
     projectData,
     isLoading: loadingProject,
@@ -372,7 +372,7 @@ const TablePage = () => {
           name="Tables"
           path={ROUTES.TABLES}
           onSearch={handleChangeSearch}
-          searchValue={searchAuthor.name.toLowerCase()}
+          searchValue={searchAuthor?.name?.toLowerCase()}
         />
 
         <VStack gap="24px" w="100%">

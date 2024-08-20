@@ -146,7 +146,7 @@ exports[`Tables page Should render match with snapshot. 1`] = `
           </button>
         </div>
         <div
-          class="chakra-table__container css-7i2zk8"
+          class="chakra-table__container css-77azut"
         >
           <table
             class="chakra-table css-0"
@@ -226,175 +226,70 @@ exports[`Tables page Should render match with snapshot. 1`] = `
                 data-testid="table-row"
               >
                 <td
-                  class="css-1ydvgvr"
+                  class="css-b6tu5s"
+                  colspan="5"
                 >
-                  <div
-                    class="css-fktblz"
-                  >
-                    <div
-                      class="css-xax5g4"
-                    >
-                      <img
-                        alt="Thang"
-                        class="chakra-image css-15sm3g6"
-                        src="https://tiki.vn/blog/wp-content/uploads/2023/02/o0XKdJdOcSuXoo3NbsjzNdn00-7PcHzNpAuQ85LIrsC2qwi4oEykPVZGDPskjmOQvd85etOVIPb4f0rprNu_dGGbslg_L4kUHgra7v..."
-                      />
-                    </div>
-                    <div
-                      class="chakra-stack css-1c1uyy8"
-                    >
-                      <h2
-                        class="chakra-heading css-1ouru2w"
-                      >
-                        Thang
-                      </h2>
-                      <p
-                        class="chakra-text css-1vox59v"
-                      >
-                        asd@gmail.com
-                      </p>
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="css-1nygxpw"
-                >
-                  <div
-                    class="chakra-stack css-qa66p0"
-                  >
-                    <h2
-                      class="chakra-heading css-fcqnrt"
-                    >
-                      asd
-                    </h2>
-                    <p
-                      class="chakra-text css-fcqnrt"
-                    >
-                      asd
-                    </p>
-                  </div>
-                </td>
-                <td
-                  class="css-10ngfz9"
-                >
-                  <div
-                    class="css-acdumj"
-                  >
-                    <span
-                      class="chakra-badge css-11k7pgp"
-                    >
-                      Offline
-                    </span>
-                  </div>
-                </td>
-                <td
-                  class="css-svc9xl"
-                >
-                  <p
-                    class="chakra-text css-1n7ogn7"
-                  >
-                    01/08/24
-                  </p>
-                </td>
-                <td
-                  class="css-lepxbj"
-                >
-                  <button
-                    class="chakra-button css-yx91ij"
-                    type="button"
-                  >
-                    Edit
-                  </button>
-                </td>
-              </tr>
-              <tr
-                class="css-0"
-                data-testid="table-row"
-              >
-                <td
-                  class="css-1ydvgvr"
-                >
-                  <div
-                    class="css-fktblz"
-                  >
-                    <div
-                      class="css-xax5g4"
-                    >
-                      <img
-                        alt="asdasd"
-                        class="chakra-image css-15sm3g6"
-                        src="https://tiki.vn/blog/wp-content/uploads/2023/02/o0XKdJdOcSuXoo3NbsjzNdn00-7PcHzNpAuQ85LIrsC2qwi4oEykPVZGDPskjmOQvd85etOVIPb4f0rprNu_dGGbslg_L4kUHgra7v..."
-                      />
-                    </div>
-                    <div
-                      class="chakra-stack css-1c1uyy8"
-                    >
-                      <h2
-                        class="chakra-heading css-1ouru2w"
-                      >
-                        asdasd
-                      </h2>
-                      <p
-                        class="chakra-text css-1vox59v"
-                      >
-                        asd@gmail.com
-                      </p>
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="css-1nygxpw"
-                >
-                  <div
-                    class="chakra-stack css-qa66p0"
-                  >
-                    <h2
-                      class="chakra-heading css-fcqnrt"
-                    >
-                      asd
-                    </h2>
-                    <p
-                      class="chakra-text css-fcqnrt"
-                    >
-                      sad
-                    </p>
-                  </div>
-                </td>
-                <td
-                  class="css-10ngfz9"
-                >
-                  <div
-                    class="css-acdumj"
-                  >
-                    <span
-                      class="chakra-badge css-11k7pgp"
-                    >
-                      Offline
-                    </span>
-                  </div>
-                </td>
-                <td
-                  class="css-svc9xl"
-                >
-                  <p
-                    class="chakra-text css-1n7ogn7"
-                  >
-                    08/01/24
-                  </p>
-                </td>
-                <td
-                  class="css-lepxbj"
-                >
-                  <button
-                    class="chakra-button css-yx91ij"
-                    type="button"
-                  >
-                    Edit
-                  </button>
+                  No data found
                 </td>
               </tr>
             </tbody>
           </table>
+        </div>
+        <div
+          class="css-10zunq2"
+        >
+          <div
+            class="css-1oc7l50"
+            data-testid="pagination"
+          >
+            <div
+              class="css-iuzkhh"
+            >
+              <button
+                aria-label="btn-prev"
+                class="chakra-button css-ax9ml0"
+                data-testid="prev-button"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="10px"
+                  style="transform: rotate(90deg);"
+                  viewBox="0 0 15 9"
+                  width="10px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.365273 0.522622C0.576242 0.311717 0.862339 0.193237 1.16065 0.193237C1.45896 0.193237 1.74505 0.311717 1.95602 0.522622L7.52477 6.09137L13.0935 0.522622C13.3057 0.317694 13.5899 0.2043 13.8849 0.206863C14.1798 0.209427 14.462 0.327742 14.6706 0.536326C14.8792 0.74491 14.9975 1.02707 15 1.32205C15.0026 1.61702 14.8892 1.90119 14.6843 2.11337L8.32015 8.4775C8.10918 8.6884 7.82308 8.80688 7.52477 8.80688C7.22646 8.80688 6.94037 8.6884 6.7294 8.4775L0.365273 2.11337C0.154369 1.9024 0.0358887 1.61631 0.0358887 1.318C0.0358887 1.01969 0.154369 0.733591 0.365273 0.522622Z"
+                    fill="gray"
+                  />
+                </svg>
+              </button>
+              <div
+                class="css-1fu46g5"
+              />
+              <button
+                aria-label="btn-next"
+                class="chakra-button css-u2i7i4"
+                data-testid="next-button"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="10px"
+                  style="transform: rotate(-90deg);"
+                  viewBox="0 0 15 9"
+                  width="10px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.365273 0.522622C0.576242 0.311717 0.862339 0.193237 1.16065 0.193237C1.45896 0.193237 1.74505 0.311717 1.95602 0.522622L7.52477 6.09137L13.0935 0.522622C13.3057 0.317694 13.5899 0.2043 13.8849 0.206863C14.1798 0.209427 14.462 0.327742 14.6706 0.536326C14.8792 0.74491 14.9975 1.02707 15 1.32205C15.0026 1.61702 14.8892 1.90119 14.6843 2.11337L8.32015 8.4775C8.10918 8.6884 7.82308 8.80688 7.52477 8.80688C7.22646 8.80688 6.94037 8.6884 6.7294 8.4775L0.365273 2.11337C0.154369 1.9024 0.0358887 1.61631 0.0358887 1.318C0.0358887 1.01969 0.154369 0.733591 0.365273 0.522622Z"
+                    fill="gray"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -410,7 +305,7 @@ exports[`Tables page Should render match with snapshot. 1`] = `
           </h2>
         </div>
         <div
-          class="chakra-table__container css-7i2zk8"
+          class="chakra-table__container css-77azut"
         >
           <table
             class="chakra-table css-0"
@@ -490,191 +385,70 @@ exports[`Tables page Should render match with snapshot. 1`] = `
                 data-testid="table-row"
               >
                 <td
-                  class="css-1ydvgvr"
+                  class="css-b6tu5s"
+                  colspan="5"
                 >
-                  <div
-                    class="css-fktblz"
-                  >
-                    <div
-                      class="css-xax5g4"
-                    >
-                      <img
-                        alt="Project "
-                        class="chakra-image css-15sm3g6"
-                        src="https://d38b044pevnwc9.cloudfront.net/cutout-nuxt/enhancer/3.jpg"
-                      />
-                    </div>
-                    <div
-                      class="chakra-stack css-1c1uyy8"
-                    >
-                      <h2
-                        class="chakra-heading css-1ouru2w"
-                      >
-                        Project 
-                      </h2>
-                      <p
-                        class="chakra-text css-1vox59v"
-                      />
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="css-os8l3e"
-                >
-                  <p
-                    class="chakra-text css-1gq48kf"
-                  >
-                    $123,213
-                  </p>
-                </td>
-                <td
-                  class="css-10ngfz9"
-                >
-                  <div
-                    class="css-acdumj"
-                  >
-                    <span
-                      class="chakra-badge css-sbi8wv"
-                    >
-                      Working
-                    </span>
-                  </div>
-                </td>
-                <td
-                  class="css-1nygxpw"
-                >
-                  <div
-                    class="chakra-stack css-1ey9w6j"
-                  >
-                    <p
-                      class="chakra-text css-1dachdp"
-                    >
-                      12
-                      %
-                    </p>
-                    <div
-                      class="css-1cv4g7h"
-                    >
-                      <div
-                        aria-valuemax="100"
-                        aria-valuemin="0"
-                        aria-valuenow="12"
-                        class="css-1tm1yf1"
-                        role="progressbar"
-                        style="width: 12%;"
-                      />
-                    </div>
-                  </div>
-                </td>
-                <td
-                  class="css-lepxbj"
-                >
-                  <button
-                    aria-controls="menu-list-:rb:"
-                    aria-expanded="false"
-                    aria-haspopup="menu"
-                    class="chakra-button chakra-menu__menu-button css-14rg285"
-                    id="menu-button-:rb:"
-                    type="button"
-                  >
-                    <span
-                      class="css-xl71ch"
-                    >
-                      <button
-                        aria-label="This is the icon action"
-                        class="chakra-button css-s1urw5"
-                        data-testid="dot-icon"
-                        type="button"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          fill="none"
-                          focusable="false"
-                          height="4"
-                          width="18"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M8 2a1 1 0 1 0 2 0 1 1 0 0 0-2 0ZM1 2a1 1 0 1 0 2 0 1 1 0 0 0-2 0ZM15 2a1 1 0 1 0 2 0 1 1 0 0 0-2 0Z"
-                            stroke="#A0AEC0"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                          />
-                        </svg>
-                      </button>
-                    </span>
-                  </button>
-                  <div
-                    class="css-0"
-                    style="visibility: hidden; position: absolute; min-width: max-content; inset: 0 auto auto 0;"
-                  >
-                    <div
-                      aria-orientation="vertical"
-                      class="chakra-menu__menu-list css-6dyv79"
-                      id="menu-list-:rb:"
-                      role="menu"
-                      style="transform-origin: var(--popper-transform-origin); opacity: 0; visibility: hidden; transform: scale(0.8);"
-                      tabindex="-1"
-                    >
-                      <button
-                        class="chakra-menu__menuitem css-bjyw8u"
-                        data-index="0"
-                        id="menu-list-:rb:-menuitem-:rc:"
-                        role="menuitem"
-                        tabindex="-1"
-                        type="button"
-                      >
-                        <div
-                          class="css-1tf9wat"
-                        >
-                          <svg
-                            class="chakra-icon css-5au1dy"
-                            data-testid="edit-icon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
-                          >
-                            <g
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-width="2"
-                            >
-                              <path
-                                d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                              />
-                              <path
-                                d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                              />
-                            </g>
-                          </svg>
-                          <svg
-                            class="chakra-icon css-5au1dy"
-                            data-testid="View-icon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
-                          >
-                            <g
-                              fill="currentColor"
-                            >
-                              <path
-                                d="M23.432,10.524C20.787,7.614,16.4,4.538,12,4.6,7.6,4.537,3.213,7.615.568,10.524a2.211,2.211,0,0,0,0,2.948C3.182,16.351,7.507,19.4,11.839,19.4h.308c4.347,0,8.671-3.049,11.288-5.929A2.21,2.21,0,0,0,23.432,10.524ZM7.4,12A4.6,4.6,0,1,1,12,16.6,4.6,4.6,0,0,1,7.4,12Z"
-                              />
-                              <circle
-                                cx="12"
-                                cy="12"
-                                r="2"
-                              />
-                            </g>
-                          </svg>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
+                  No data found
                 </td>
               </tr>
             </tbody>
           </table>
+        </div>
+        <div
+          class="css-10zunq2"
+        >
+          <div
+            class="css-1oc7l50"
+            data-testid="pagination"
+          >
+            <div
+              class="css-iuzkhh"
+            >
+              <button
+                aria-label="btn-prev"
+                class="chakra-button css-ax9ml0"
+                data-testid="prev-button"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="10px"
+                  style="transform: rotate(90deg);"
+                  viewBox="0 0 15 9"
+                  width="10px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.365273 0.522622C0.576242 0.311717 0.862339 0.193237 1.16065 0.193237C1.45896 0.193237 1.74505 0.311717 1.95602 0.522622L7.52477 6.09137L13.0935 0.522622C13.3057 0.317694 13.5899 0.2043 13.8849 0.206863C14.1798 0.209427 14.462 0.327742 14.6706 0.536326C14.8792 0.74491 14.9975 1.02707 15 1.32205C15.0026 1.61702 14.8892 1.90119 14.6843 2.11337L8.32015 8.4775C8.10918 8.6884 7.82308 8.80688 7.52477 8.80688C7.22646 8.80688 6.94037 8.6884 6.7294 8.4775L0.365273 2.11337C0.154369 1.9024 0.0358887 1.61631 0.0358887 1.318C0.0358887 1.01969 0.154369 0.733591 0.365273 0.522622Z"
+                    fill="gray"
+                  />
+                </svg>
+              </button>
+              <div
+                class="css-1fu46g5"
+              />
+              <button
+                aria-label="btn-next"
+                class="chakra-button css-u2i7i4"
+                data-testid="next-button"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  height="10px"
+                  style="transform: rotate(-90deg);"
+                  viewBox="0 0 15 9"
+                  width="10px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.365273 0.522622C0.576242 0.311717 0.862339 0.193237 1.16065 0.193237C1.45896 0.193237 1.74505 0.311717 1.95602 0.522622L7.52477 6.09137L13.0935 0.522622C13.3057 0.317694 13.5899 0.2043 13.8849 0.206863C14.1798 0.209427 14.462 0.327742 14.6706 0.536326C14.8792 0.74491 14.9975 1.02707 15 1.32205C15.0026 1.61702 14.8892 1.90119 14.6843 2.11337L8.32015 8.4775C8.10918 8.6884 7.82308 8.80688 7.52477 8.80688C7.22646 8.80688 6.94037 8.6884 6.7294 8.4775L0.365273 2.11337C0.154369 1.9024 0.0358887 1.61631 0.0358887 1.318C0.0358887 1.01969 0.154369 0.733591 0.365273 0.522622Z"
+                    fill="gray"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

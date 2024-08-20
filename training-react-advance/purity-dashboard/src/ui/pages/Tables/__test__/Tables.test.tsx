@@ -35,6 +35,19 @@ jest.mock('@/lib/hooks', () => ({
     isFetching: false,
     updateProject: mockUpdateProject,
   }),
+  useSearch: () => ({
+    searchParam: '',
+    setSearchParam: jest.fn()
+  }),
+  usePagination: () => ({
+    data: [],
+    filterData: [],
+    arrOfCurrButtons: [],
+    isDisabledPrev: false,
+    isDisableNext: false,
+    handlePageChange: jest.fn(),
+    handlePageClick: jest.fn(),
+  }),
   useDebounce: jest.fn(),
 
 }));
