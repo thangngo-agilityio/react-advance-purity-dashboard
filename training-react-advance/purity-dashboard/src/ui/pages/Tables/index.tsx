@@ -22,9 +22,11 @@ import {
   TAuthorResponse,
   TCreateAuthorPayload,
   TProjectResponse,
+  TSearchAuthor,
   useAuthor,
   useDebounce,
   useProject,
+  useSearch,
 } from '@/lib/hooks';
 
 // Constants
@@ -51,12 +53,19 @@ import {
 import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
 
 const TablePage = () => {
-  const [searchValue, setSearchValue] = useState<string>('');
+  // const [searchValue, setSearchValue] = useState<string>('');
   const [isOpenModal, setIsOpenModal] = useState(false);
   const toast = useToast();
 
-  const { authorData, isLoading, isFetching, createAuthor, updateAuthor } =
-    useAuthor({ name: searchValue });
+  const {
+    searchParam: searchAuthor,
+    setSearchParam: setSearchAuthor,
+  } = useSearch<TSearchAuthor>({
+    name: '',
+  });
+
+  const { authors, isLoading, isFetching, createAuthor, updateAuthor } =
+    useAuthor({ name: searchAuthor?.name?.toLowerCase() });
   const {
     projectData,
     isLoading: loadingProject,
@@ -182,9 +191,9 @@ const TablePage = () => {
 
   const handleChangeSearch = useDebounce(
     (value: string) => {
-      setSearchValue(value);
+      setSearchAuthor('name', value);
     },
-    [setSearchValue],
+    [],
   );
 
   const renderHead = useCallback((title: string, key: string): JSX.Element => {
@@ -363,7 +372,7 @@ const TablePage = () => {
           name="Tables"
           path={ROUTES.TABLES}
           onSearch={handleChangeSearch}
-          searchValue={searchValue}
+          searchValue={searchAuthor?.name?.toLowerCase()}
         />
 
         <VStack gap="24px" w="100%">
@@ -371,7 +380,7 @@ const TablePage = () => {
             isAuthor
             title="Authors Table"
             columns={columnAuthor as unknown as THeaderTable[]}
-            dataSource={formatAuthorResponse(authorData)}
+            dataSource={formatAuthorResponse(authors)}
             onClickAdd={handleToggleAddModal}
             isFetching={isFetching}
           />

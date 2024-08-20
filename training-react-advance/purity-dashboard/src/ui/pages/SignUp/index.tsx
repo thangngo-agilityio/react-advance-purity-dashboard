@@ -29,7 +29,10 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
   const handleCreateAccount = useCallback(
     async (data: AuthFormData) => {
       try {
-        const isUser = users?.records.some((user) => user.fields.email === data.email);
+        const isUser = users?.records.some(
+          (user) =>
+            user.fields.email.toLowerCase() === data.email.toLowerCase(),
+        );
 
         if (isUser) {
           toast({
@@ -38,7 +41,7 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
             status: 'error',
             duration: 2000,
             isClosable: true,
-          })
+          });
         } else {
           const payload: TUser[] = [
             {
@@ -58,7 +61,7 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
             status: 'success',
             duration: 2000,
             isClosable: true,
-          })
+          });
 
           navigate(ROUTES.SIGN_IN);
         }
@@ -80,7 +83,7 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
     <VStack position="relative" height="100%" gap="0px">
       {children}
       <VStack
-        w={{ base: '100%', md: "988px" }}
+        w={{ base: '100%', md: '988px' }}
         h="100%"
         pb="40px"
         px={{ base: '25px', md: '0' }}
@@ -89,13 +92,8 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
         zIndex={2}
         justifyContent="space-between"
       >
-        <VStack
-          w="100%"
-          alignItems="center"
-          justifyContent="center"
-          flex={6}
-        >
-          <VStack width="333px" pt='30px' mb="66px">
+        <VStack w="100%" alignItems="center" justifyContent="center" flex={6}>
+          <VStack width="333px" pt="30px" mb="66px">
             <Heading size="xl" variant="secondary">
               Welcome!
             </Heading>
@@ -113,10 +111,16 @@ const SignUpPage = ({ children }: { children?: ReactNode }) => {
       <Box
         position="absolute"
         zIndex={1}
-        top={{ base: 0, md: "24px" }}
-        w={{ base: "100%", md: '96%' }}
-        h={{ base: '700px', md: '500px', xl: '320px', '2xl': '420px', '5xl': 520 }}
-        borderRadius={{ base: 'unset', md: "lg" }}
+        top={{ base: 0, md: '24px' }}
+        w={{ base: '100%', md: '96%' }}
+        h={{
+          base: '700px',
+          md: '500px',
+          xl: '320px',
+          '2xl': '420px',
+          '5xl': 520,
+        }}
+        borderRadius={{ base: 'unset', md: 'lg' }}
         backgroundImage="/imgs/background-signup.svg"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"

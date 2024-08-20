@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { API_PATH, AUTHOR_STATUS } from '../constants';
 import { mainHttpService } from '../service';
 import { TRecordAuthor } from '../types';
+import { useMemo } from 'react';
 
 export type TSearchAuthor = {
   name: string;
@@ -45,12 +46,25 @@ export const useAuthor = (queryParam?: TSearchAuthor) => {
         await mainHttpService.get<TAuthorResponse>(
           `${API_PATH.AUTHOR}?view=Grid%20view`,
           configs,
+          '',
         )
       ).data,
     refetchOnWindowFocus: false,
   });
 
   const authorData = data?.records || [];
+
+  const authors: TRecordAuthor[] = useMemo((): TRecordAuthor[] => {
+    const isNameMatchWith = (target: string): boolean =>
+      (target || '').trim().toLowerCase().includes(searchName);
+    console.log('searchName', isNameMatchWith(searchName));
+
+    return authorData.filter(({ fields: { name } }: TRecordAuthor) => {
+      const isMatchWithName: boolean = isNameMatchWith(`${name}`);
+      console.log('data', name);
+      return isMatchWithName;
+    });
+  }, [authorData, searchName]);
 
   const { mutateAsync: createAuthor } = useMutation({
     mutationFn: async (payload: Omit<TCreateAuthorPayload, '_id'>) =>
@@ -100,5 +114,12 @@ export const useAuthor = (queryParam?: TSearchAuthor) => {
     },
   });
 
-  return { authorData, isLoading, isFetching, createAuthor, updateAuthor };
+  return {
+    authorData,
+    authors,
+    isLoading,
+    isFetching,
+    createAuthor,
+    updateAuthor,
+  };
 };
