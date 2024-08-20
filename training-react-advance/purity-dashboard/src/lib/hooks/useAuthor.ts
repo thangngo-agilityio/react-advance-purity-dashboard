@@ -59,22 +59,11 @@ export const useAuthor = (queryParam?: TSearchAuthor) => {
       (target || '').trim().toLowerCase().includes(searchName);
     console.log('searchName', isNameMatchWith(searchName));
 
-    const dataA = authorData.filter((item) => {
-      const isMatchName = isNameMatchWith(item.fields.name);
-
-      console.log('isMatchName', isMatchName);
-
-      return isMatchName;
+    return authorData.filter(({ fields: { name } }: TRecordAuthor) => {
+      const isMatchWithName: boolean = isNameMatchWith(`${name}`);
+      console.log('data', name);
+      return isMatchWithName;
     });
-
-    console.log('dataA', dataA);
-    return dataA;
-
-    // return authorData.filter(({ fields: { name } }: TRecordAuthor) => {
-    //   const isMatchWithName: boolean = isNameMatchWith(`${name}`);
-    //   console.log('data', name);
-    //   return isMatchWithName;
-    // });
   }, [authorData, searchName]);
 
   const { mutateAsync: createAuthor } = useMutation({
