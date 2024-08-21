@@ -64,8 +64,8 @@ const TablePage = () => {
     name: '',
   });
 
-  const { authors, isLoading, isFetching, createAuthor, updateAuthor } =
-    useAuthor({ name: searchAuthor?.name?.toLowerCase() });
+  const { authorData, isLoading, isFetching, createAuthor, updateAuthor } =
+    useAuthor({ name: searchAuthor?.name });
   const {
     projectData,
     isLoading: loadingProject,
@@ -191,6 +191,7 @@ const TablePage = () => {
 
   const handleChangeSearch = useDebounce(
     (value: string) => {
+      console.log('value', value)
       setSearchAuthor('name', value);
     },
     [],
@@ -372,7 +373,7 @@ const TablePage = () => {
           name="Tables"
           path={ROUTES.TABLES}
           onSearch={handleChangeSearch}
-          searchValue={searchAuthor?.name?.toLowerCase()}
+          searchValue={searchAuthor?.name}
         />
 
         <VStack gap="24px" w="100%">
@@ -380,7 +381,7 @@ const TablePage = () => {
             isAuthor
             title="Authors Table"
             columns={columnAuthor as unknown as THeaderTable[]}
-            dataSource={formatAuthorResponse(authors)}
+            dataSource={formatAuthorResponse(authorData)}
             onClickAdd={handleToggleAddModal}
             isFetching={isFetching}
           />

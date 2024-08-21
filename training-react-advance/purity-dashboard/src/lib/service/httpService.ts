@@ -29,9 +29,8 @@ export class HttpService {
   get<T>(
     endpoint: string,
     configs?: AxiosRequestConfig,
-    searchParam?: string,
   ): Promise<AxiosResponse<T>> {
-    const url = `${this.baseApi}${endpoint}${searchParam || ''}`;
+    const url = `${this.baseApi}${endpoint}`;
     return this.axiosClient.get<T>(url, configs);
   }
 
