@@ -23,7 +23,10 @@ type Story = StoryObj<typeof CardProject>;
 
 export const Default: Story = {
   args: {
-    data: PROJECT_DATA_MOCK
+    projectId: PROJECT_DATA_MOCK?.fields._id,
+    image: PROJECT_DATA_MOCK?.fields.image,
+    name: PROJECT_DATA_MOCK?.fields.projectName,
+    description: PROJECT_DATA_MOCK?.fields.description,
   }
 }
 

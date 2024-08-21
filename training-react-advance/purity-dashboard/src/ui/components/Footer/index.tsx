@@ -1,5 +1,4 @@
-import { HStack, Link, List, ListItem, Stack } from '@chakra-ui/react';
-import { Text } from '../common';
+import { HStack, Link, List, ListItem, Stack, Text } from '@chakra-ui/react';
 import { FOOTER_LINKS } from '@/lib/constants';
 
 export type TFooterProps = {

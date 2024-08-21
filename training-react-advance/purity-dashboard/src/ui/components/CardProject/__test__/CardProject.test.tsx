@@ -8,7 +8,11 @@ describe('CardProject component test case', () => {
     const mockData: TRecordProject = PROJECT_DATA_MOCK
     const { container } = render(
       <CardProject
-        data={mockData}
+        id={mockData.id}
+        projectId={mockData?.fields._id}
+        image={mockData?.fields.image}
+        name={mockData?.fields.projectName}
+        description={mockData?.fields.description}
       />
     )
 

@@ -2,7 +2,7 @@ import { MouseEvent, ReactElement, ReactNode } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-import ButtonIcon from '../common/ButtonIcon';
+import ButtonIcon from '../common/ItemIcon';
 
 export type TNavigationProps = {
   children: ReactNode;
