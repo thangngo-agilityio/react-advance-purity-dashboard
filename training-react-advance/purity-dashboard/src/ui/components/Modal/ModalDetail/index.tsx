@@ -1,12 +1,17 @@
-import { TRecordProject } from "@/lib/types";
 import { formatDecimalNumber } from "@/lib/utils/formatNumber";
 import { Box, Heading, HStack, Image, Progress, Text, VStack } from "@chakra-ui/react"
 
 type TProjectDetailProps = {
-  data?: TRecordProject
+  projectId?: string;
+  image?: string;
+  name?: string;
+  budget?: number;
+  status?: string;
+  completion?: number;
+  description?: string
 }
 
-const ProjectDetail = ({ data }: TProjectDetailProps) => (
+const ProjectDetail = ({ projectId, image, name, budget, status, completion, description }: TProjectDetailProps) => (
   <VStack w='100%'>
     <Box
       position="relative"
@@ -21,8 +26,8 @@ const ProjectDetail = ({ data }: TProjectDetailProps) => (
         objectFit="cover"
         w="100%"
         h="100%"
-        src={`${data?.fields.image}`}
-        alt={`${data?.fields.projectName}`}
+        src={image}
+        alt={name}
       />
       <Image
         position="absolute"
@@ -38,28 +43,28 @@ const ProjectDetail = ({ data }: TProjectDetailProps) => (
     </Box>
     <VStack alignItems="flex-start" w="100%" px="10px">
       <VStack alignItems='flex-start' gap={0} mb='10px'>
-        <Heading mb="5px">{data?.fields.projectName}</Heading>
-        <Text size="textSm">Project #{data?.fields._id}</Text>
+        <Heading mb="5px">{name}</Heading>
+        <Text size="textSm">Project #{projectId}</Text>
       </VStack>
       <HStack w='100%' alignItems='flex-start' justifyContent='space-between'>
         <VStack alignItems='flex-start'>
           <Heading>Budget</Heading>
-          <Text mb="20px">{`$${formatDecimalNumber(data?.fields.budget)}`}</Text>
+          <Text mb="20px">{`$${formatDecimalNumber(budget)}`}</Text>
         </VStack>
         <VStack alignItems='flex-start'>
           <Heading>Status</Heading>
-          <Text mb="20px">{data?.fields.status}</Text>
+          <Text mb="20px">{status}</Text>
         </VStack>
         <VStack alignItems='flex-start'>
           <Heading>Completion</Heading>
           <VStack alignItems="flex-start">
             <Text color="#38A169" fontWeight="bold">
-              {data?.fields.completion}%
+              {completion}%
             </Text>
             <Progress
               w="125px"
               borderRadius="md"
-              value={data?.fields.completion}
+              value={completion}
               size="xs"
               colorScheme="green"
             />
@@ -69,7 +74,7 @@ const ProjectDetail = ({ data }: TProjectDetailProps) => (
 
       <VStack alignItems='flex-start'>
         <Heading>Descripttion</Heading>
-        <Text mb="20px">{data?.fields.description}</Text>
+        <Text mb="20px">{description}</Text>
       </VStack>
     </VStack>
   </VStack>

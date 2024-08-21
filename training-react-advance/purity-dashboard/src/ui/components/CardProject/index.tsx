@@ -1,20 +1,25 @@
-import { Box, Button, Heading, Image, Text, useDisclosure, VStack } from '@chakra-ui/react';
-
-// Components
-import { Modal, ProjectDetail } from '..';
-
-// Types
-import { TRecordProject } from '@/lib/types';
+import { Box, Button, Heading, Image, Text, VStack } from '@chakra-ui/react';
 
 type TCardProject = {
-  data: TRecordProject
+  id: string;
+  image: string;
+  name: string;
+  projectId: string;
+  description: string;
+  onClick: (id: string) => void;
 };
 
 const CardProject = ({
-  // Update naming
-  data,
+  id,
+  image,
+  name,
+  projectId,
+  description,
+  onClick
 }: TCardProject) => {
-  const { isOpen, onToggle } = useDisclosure()
+  const handleClick = () => {
+    onClick && onClick(id)
+  }
   return (
     <VStack>
       <Box
@@ -30,8 +35,8 @@ const CardProject = ({
           objectFit="cover"
           w="100%"
           h="100%"
-          src={`${data.fields.image}`}
-          alt={`${data.fields.projectName}`}
+          src={image}
+          alt={name}
         />
         <Image
           position="absolute"
@@ -46,30 +51,15 @@ const CardProject = ({
         />
       </Box>
       <VStack alignItems="flex-start" w="100%" px="10px">
-        <Text size="textSm">Project #{data.fields._id}</Text>
-        <Heading mb="10px">{data.fields.projectName}</Heading>
-        <Text mb="20px">{data.fields.description}</Text>
+        <Text size="textSm">Project #{projectId}</Text>
+        <Heading mb="10px">{name}</Heading>
+        <Text mb="20px">{description}</Text>
         <Box>
-          <Button w="110px" size="xs" variant="tertiary" onClick={onToggle}>
+          <Button w="110px" size="xs" variant="tertiary" onClick={handleClick}>
             VIEW ALL
           </Button>
         </Box>
       </VStack>
-
-
-      {/* Remove modal outside component */}
-      {isOpen && (
-        <Modal
-          isOpen={isOpen}
-          onClose={onToggle}
-          title="View Detail Project"
-          haveCloseButton
-          isProjectDetail
-          body={
-            <ProjectDetail data={data} />
-          }
-        />
-      )}
     </VStack>
   );
 }
