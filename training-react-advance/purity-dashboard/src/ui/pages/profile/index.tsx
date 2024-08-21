@@ -39,6 +39,7 @@ import Avatar from '@/ui/components/common/Avatar';
 
 // Hooks
 import {
+  getProjectId,
   TProjectResponse,
   TUserRecordResponse,
   useProject,
@@ -66,7 +67,8 @@ const ProfilePage = () => {
   const setUser = authStore((state) => state.setUser);
   const toast = useToast();
 
-  const { projectData, projectId, createProject, isFetching, loadingProjectId } = useProject(isProjectId);
+  const { projectData, createProject, isFetching } = useProject();
+  const { projectId, loadingProjectId } = getProjectId(isProjectId);
   const { updateUser } = useUpdateUser();
 
   const handleCreateProject = useCallback(async (data: TRecordProject) => {
