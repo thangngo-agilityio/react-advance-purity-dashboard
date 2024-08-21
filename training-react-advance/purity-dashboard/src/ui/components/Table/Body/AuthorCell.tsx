@@ -13,6 +13,7 @@ const AuthorCell = ({ image, name, email }: TDataSource) => (
           size="md"
           textOverflow="ellipsis"
           overflow="hidden"
+          textTransform="capitalize"
           w={{ base: '200px', xl: '220px', '3xl': '450px', '6xl': '450px' }}
         >
           {name as string}

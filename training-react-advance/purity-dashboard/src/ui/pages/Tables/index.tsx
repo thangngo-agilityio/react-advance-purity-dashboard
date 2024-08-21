@@ -57,15 +57,13 @@ const TablePage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const toast = useToast();
 
-  const {
-    searchParam: searchAuthor,
-    setSearchParam: setSearchAuthor,
-  } = useSearch<TSearchAuthor>({
-    name: '',
-  });
+  const { searchParam: searchAuthor, setSearchParam: setSearchAuthor } =
+    useSearch<TSearchAuthor>({
+      name: '',
+    });
 
   const { authorData, isLoading, isFetching, createAuthor, updateAuthor } =
-    useAuthor({ name: searchAuthor?.name });
+    useAuthor({ name: searchAuthor?.name.toLowerCase() });
   const {
     projectData,
     isLoading: loadingProject,
@@ -84,7 +82,7 @@ const TablePage = () => {
           records: [
             {
               fields: {
-                name: data.fields.name,
+                name: data.fields.name.toLowerCase(),
                 email: data.fields.email,
                 avatar: data.fields.avatar,
                 role: data.fields.role,
@@ -119,7 +117,7 @@ const TablePage = () => {
             {
               id: data.id,
               fields: {
-                name: data.fields.name,
+                name: data.fields.name.toLowerCase(),
                 email: data.fields.email,
                 avatar: data.fields.avatar,
                 role: data.fields.role,
@@ -189,12 +187,9 @@ const TablePage = () => {
     [handleCreateAuthor, handleUpdateAuthor],
   );
 
-  const handleChangeSearch = useDebounce(
-    (value: string) => {
-      setSearchAuthor('name', value);
-    },
-    [],
-  );
+  const handleChangeSearch = useDebounce((value: string) => {
+    setSearchAuthor('name', value);
+  }, []);
 
   const renderHead = useCallback((title: string, key: string): JSX.Element => {
     return title ? (
