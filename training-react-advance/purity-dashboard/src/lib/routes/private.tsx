@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'react';
 // Constants
 import { ROUTES } from '@/lib/constants';
 import { Spinner } from '@chakra-ui/react';
-import { PageDefault } from '@/ui/components';
+import { NotFound } from '@/ui/pages';
 
 // Pages
 const MainLayout = lazy(() => import('@/ui/layouts/MainLayout'));
@@ -33,15 +33,15 @@ export const privateRoutes: RouteObject = {
     },
     {
       path: ROUTES.DASHBOARD,
-      element: <PageDefault page='Dashboard' />
+      element: <NotFound />
     },
     {
       path: ROUTES.BILLING,
-      element: <PageDefault page='Billing' />
+      element: <NotFound />
     },
     {
       path: ROUTES.RTL,
-      element: <PageDefault page='RTL' />
+      element: <NotFound />
     },
   ],
 };

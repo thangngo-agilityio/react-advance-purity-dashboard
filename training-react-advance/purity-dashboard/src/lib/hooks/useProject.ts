@@ -7,7 +7,7 @@ export type TProjectResponse = {
   records: TRecordProject[];
 };
 
-export const useProject = () => {
+export const useProject = (id?: string) => {
   const queryClient = useQueryClient();
 
   const { data, isLoading, isFetching } = useQuery({
@@ -22,6 +22,19 @@ export const useProject = () => {
   });
 
   const projectData = data?.records || [];
+
+  const { data: projectId, isLoading: loadingProjectId } = useQuery({
+    queryKey: [API_PATH.PROJECT, id],
+    queryFn: async ({ signal }) =>
+      (
+        await mainHttpService.getById<TRecordProject>(
+          API_PATH.PROJECT,
+          { signal },
+          id,
+        )
+      ).data,
+    refetchOnWindowFocus: false,
+  });
 
   const { mutateAsync: createProject } = useMutation({
     mutationFn: async (payload: TProjectResponse) =>
@@ -71,5 +84,13 @@ export const useProject = () => {
     },
   });
 
-  return { projectData, isLoading, isFetching, createProject, updateProject };
+  return {
+    projectData,
+    projectId,
+    isLoading,
+    loadingProjectId,
+    isFetching,
+    createProject,
+    updateProject,
+  };
 };

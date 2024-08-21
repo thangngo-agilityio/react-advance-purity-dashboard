@@ -17,6 +17,15 @@ export class HttpService {
     },
   });
 
+  getById<T>(
+    endpoint: string,
+    configs?: AxiosRequestConfig,
+    id?: string,
+  ): Promise<AxiosResponse<T>> {
+    const url = `${this.baseApi}${endpoint}/${id}`;
+    return this.axiosClient.get<T>(url, configs);
+  }
+
   get<T>(
     endpoint: string,
     configs?: AxiosRequestConfig,

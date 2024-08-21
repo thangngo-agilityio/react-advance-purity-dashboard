@@ -25,6 +25,8 @@ import {
   InforItem,
   CardProject,
   UserForm,
+  ProjectDetail,
+  Fetching,
 } from '@/ui/components';
 import {
   EditIcon,
@@ -54,15 +56,17 @@ import { TRecordProject, TRecordUser } from '@/lib/types';
 import { SUCCESS_MESSAGE } from '@/lib/constants/message';
 
 const ProfilePage = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isProjectId, setIsProjectId] = useState('')
+  const [isOpenModalDetail, setModalDetail] = useState(false);
 
   const { isOpen, onToggle } = useDisclosure();
+  const { isOpen: isOpenModal, onToggle: setIsOpenModal } = useDisclosure();
 
   const user = authStore((state) => state.user);
   const setUser = authStore((state) => state.setUser);
   const toast = useToast();
 
-  const { projectData, createProject, isFetching } = useProject();
+  const { projectData, projectId, createProject, isFetching, loadingProjectId } = useProject(isProjectId);
   const { updateUser } = useUpdateUser();
 
   const handleCreateProject = useCallback(async (data: TRecordProject) => {
@@ -130,8 +134,13 @@ const ProfilePage = () => {
     }
   }, []);
 
-  const handleToggleModal = () => {
-    setIsOpenModal((prev) => !prev);
+  const handleToggleModalDetail = () => {
+    setModalDetail((prev) => !prev)
+  }
+
+  const handleClickDetail = (id: string) => {
+    setIsProjectId(id)
+    handleToggleModalDetail()
   };
 
   const handleSubmitProject = useCallback((data: TRecordProject) => {
@@ -329,12 +338,9 @@ const ProfilePage = () => {
           colorFill="text.100"
           colorIcon="#FFF"
         />
-
         {subHeader}
       </VStack>
-
       {cardInformation}
-
       <VStack
         w="100%"
         alignItems="flex-start"
@@ -351,12 +357,12 @@ const ProfilePage = () => {
           <GridItem>
             <VStack
               w="100%"
-              h="385px"
+              h="342px"
               borderRadius="lg"
               borderWidth="1px"
               borderColor="border.400"
               gap="10px"
-              onClick={handleToggleModal}
+              onClick={setIsOpenModal}
               justifyContent="center"
               opacity={1}
               cursor="pointer"
@@ -373,23 +379,29 @@ const ProfilePage = () => {
             <FetchingModal isLoading={isFetching}>
               <GridItem>
                 <CardProject
+                  id={project.id}
                   key={project.fields.projectName}
-                  data={project}
+                  image={project.fields.image}
+                  name={project.fields.projectName}
+                  projectId={project.fields._id}
+                  description={project.fields.description}
+                  onClick={handleClickDetail}
                 />
               </GridItem>
             </FetchingModal>
           ))}
         </Grid>
       </VStack>
+
       {isOpenModal && (
         <Modal
           isOpen={isOpenModal}
-          onClose={handleToggleModal}
+          onClose={setIsOpenModal}
           title="Add Project"
           haveCloseButton
           body={
             <ProjectForm
-              onCloseModal={handleToggleModal}
+              onCloseModal={setIsOpenModal}
               onSubmit={handleSubmitProject}
             />
           }
@@ -404,6 +416,29 @@ const ProfilePage = () => {
           haveCloseButton
           body={
             <UserForm onCloseModal={onToggle} onSubmit={handleSubmitUser} />
+          }
+        />
+      )}
+
+      {isOpenModalDetail && (
+        <Modal
+          isOpen={isOpenModalDetail}
+          onClose={handleToggleModalDetail}
+          title="View Detail Project"
+          haveCloseButton
+          isProjectDetail
+          body={
+            <Fetching isLoading={loadingProjectId}>
+              <ProjectDetail
+                projectId={projectId?.fields._id}
+                image={projectId?.fields.image}
+                name={projectId?.fields.projectName}
+                budget={projectId?.fields.budget}
+                status={projectId?.fields.status}
+                completion={projectId?.fields.completion}
+                description={projectId?.fields.description}
+              />
+            </Fetching>
           }
         />
       )}
