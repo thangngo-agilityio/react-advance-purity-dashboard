@@ -317,6 +317,8 @@ const ProfilePage = () => {
         w="100%"
         height="300px"
         bgImage="/imgs/background-profile.svg"
+        bgRepeat='no-repeat'
+        bgSize='cover'
         borderRadius="lg"
         justifyContent="space-between"
         mb={{ base: "130px", md: "74px" }}
@@ -346,16 +348,6 @@ const ProfilePage = () => {
           <Text>Architects design houses</Text>
         </Box>
         <Grid w="100%" templateColumns={{ base: '', lg: "repeat(4, 1fr)" }} gap="24px">
-          {projectData.map((project) => (
-            <FetchingModal isLoading={isFetching}>
-              <GridItem>
-                <CardProject
-                  key={project.fields.projectName}
-                  data={project}
-                />
-              </GridItem>
-            </FetchingModal>
-          ))}
           <GridItem>
             <VStack
               w="100%"
@@ -377,6 +369,16 @@ const ProfilePage = () => {
               <Heading textAlign="center">Create a New Project</Heading>
             </VStack>
           </GridItem>
+          {projectData.map((project) => (
+            <FetchingModal isLoading={isFetching}>
+              <GridItem>
+                <CardProject
+                  key={project.fields.projectName}
+                  data={project}
+                />
+              </GridItem>
+            </FetchingModal>
+          ))}
         </Grid>
       </VStack>
       {isOpenModal && (
