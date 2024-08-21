@@ -31,7 +31,7 @@ const Table = ({
     <TableContainer
       overflowX={{ base: 'scroll', 'xl': 'hidden' }}
       w="100%"
-      maxH="390px"
+      h="388px"
     >
       <TableChakra {...props}>
         <Thead>

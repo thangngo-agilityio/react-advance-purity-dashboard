@@ -31,10 +31,7 @@ export { default as ErrorBoundary } from './ErrorBoundary';
 
 // Common
 export { default as Avatar } from './common/Avatar';
-export { default as Button } from './common/Button';
-export { default as ButtonIcon } from './common/ButtonIcon';
-export { default as Heading } from './common/Heading';
+export { default as ItemIcon } from './common/ItemIcon';
 export { default as InputFiled } from './common/InputFiled';
 export { default as Menu } from './common/Menu';
 export { default as Switch } from './common/Switch';
-export { default as Text } from './common/Text';

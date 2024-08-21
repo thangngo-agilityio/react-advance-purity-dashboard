@@ -6,7 +6,7 @@ type TCardProject = {
   name: string;
   projectId: string;
   description: string;
-  onClick: (id: string) => void;
+  onClick?: (id: string) => void;
 };
 
 const CardProject = ({

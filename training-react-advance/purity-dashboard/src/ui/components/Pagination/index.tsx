@@ -1,7 +1,6 @@
-import { Flex } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 
 // Components
-import { Button } from '@/ui/components';
 import { ArrowIcon } from '@/ui/icons';
 
 // Constants

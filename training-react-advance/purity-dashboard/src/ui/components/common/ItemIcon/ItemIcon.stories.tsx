@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 // components
-import ButtonIcon from '.';
 import { PhoneIcon } from '@chakra-ui/icons';
+import { ItemIcon } from '..';
 
 
-const meta: Meta<typeof ButtonIcon> = {
-  title: 'Components/ButtonIcon',
+const meta: Meta<typeof ItemIcon> = {
+  title: 'Components/ItemIcon',
   tags: ['autodocs'],
-  component: ButtonIcon,
+  component: ItemIcon,
 
   parameters: {
     controls: {
@@ -19,7 +19,7 @@ const meta: Meta<typeof ButtonIcon> = {
 
 export default meta;
 
-type Story = StoryObj<typeof ButtonIcon>;
+type Story = StoryObj<typeof ItemIcon>;
 
 
 export const Default: Story = {

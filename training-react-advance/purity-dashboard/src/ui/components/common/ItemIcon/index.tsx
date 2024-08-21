@@ -1,13 +1,13 @@
 import { ReactNode } from "react"
 import { Box, Flex } from "@chakra-ui/react"
 
-interface TButtonIconProps {
+interface TItemIconProps {
   icon: ReactNode;
   isActive?: boolean;
 }
 
 // Rename
-const ButtonIcon = ({ icon, isActive, ...rest }: TButtonIconProps) => (
+const ItemIcon = ({ icon, isActive, ...rest }: TItemIconProps) => (
   <Box
     display='inline-block'
     p='7.5px'
@@ -27,4 +27,4 @@ const ButtonIcon = ({ icon, isActive, ...rest }: TButtonIconProps) => (
   </Box>
 );
 
-export default ButtonIcon;
+export default ItemIcon;

@@ -180,7 +180,15 @@ const ActionCellComponent = ({
           haveCloseButton
           isProjectDetail
           body={
-            <ProjectDetail data={dataProject} />
+            <ProjectDetail
+              projectId={dataProject?.fields._id}
+              image={dataProject?.fields.image}
+              name={dataProject?.fields.projectName}
+              budget={dataProject?.fields.budget}
+              status={dataProject?.fields.status}
+              completion={dataProject?.fields.completion}
+              description={dataProject?.fields.description}
+            />
           }
         />
       )}
