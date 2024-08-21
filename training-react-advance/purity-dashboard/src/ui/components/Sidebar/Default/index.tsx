@@ -26,4 +26,4 @@ const Sidebar = ({ onSignOut }: TSidebarProps) => (
   </VStack>
 );
 
-export default memo(Sidebar);
+export default Sidebar;

@@ -31,4 +31,4 @@ const AuthorCell = ({ image, name, email }: TDataSource) => (
   </Td>
 );
 
-export default memo(AuthorCell);
+export default AuthorCell;

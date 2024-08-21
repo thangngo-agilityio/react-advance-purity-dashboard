@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import {
   Button,
@@ -47,6 +47,69 @@ const ActionCellComponent = ({
     setIsView(isViewModal)
   }, [])
 
+  const MenuComponent = useMemo(() => (
+    <Menu closeOnSelect={false}>
+      {({ isOpen }) => (
+        <>
+          <MenuButton
+            as={Button}
+            isActive={isOpen}
+            p={0}
+            bg="none"
+            _hover={{
+              bg: 'none',
+            }}
+            _active={{
+              bg: 'none',
+            }}
+          >
+            <IconButton
+              aria-label="This is the icon action"
+              w={7}
+              h={7}
+              bgColor="transparent"
+              _hover={{
+                bgColor: 'transparent',
+              }}
+              data-testid="dot-icon"
+              transform="rotate(90deg)"
+            >
+              <Dot />
+            </IconButton>
+          </MenuButton>
+          {isOpenOption && (
+            <MenuList border="none" mt="-2.5" bg="transparent" minW={65}>
+              <MenuItem bg="transparent">
+                <Flex
+                  position="absolute"
+                  right={4}
+                  minW={12}
+                  alignItems="center"
+                  justifyContent="center"
+                  flexDirection="column"
+                  gap="10px"
+                >
+                  <EditIcon
+                    w="18px"
+                    h="18px"
+                    onClick={handleToggleModalProject(false)}
+                    data-testid="edit-icon"
+                  />
+                  <ViewIcon
+                    w="18px"
+                    h="18px"
+                    onClick={handleToggleModalProject(true)}
+                    data-testid="View-icon"
+                  />
+                </Flex>
+              </MenuItem>
+            </MenuList>
+          )}
+        </>
+      )}
+    </Menu>
+  ), [])
+
   return (
     <>
       <Td
@@ -74,68 +137,8 @@ const ActionCellComponent = ({
           >
             Edit
           </Button>
-        ) : (
-          <Menu closeOnSelect={false}>
-            {({ isOpen }) => (
-              <>
-                <MenuButton
-                  as={Button}
-                  isActive={isOpen}
-                  p={0}
-                  bg="none"
-                  _hover={{
-                    bg: 'none',
-                  }}
-                  _active={{
-                    bg: 'none',
-                  }}
-                >
-                  <IconButton
-                    aria-label="This is the icon action"
-                    w={7}
-                    h={7}
-                    bgColor="transparent"
-                    _hover={{
-                      bgColor: 'transparent',
-                    }}
-                    data-testid="dot-icon"
-                    transform="rotate(90deg)"
-                  >
-                    <Dot />
-                  </IconButton>
-                </MenuButton>
-                {isOpenOption && (
-                  <MenuList border="none" mt="-2.5" bg="transparent" minW={65}>
-                    <MenuItem bg="transparent">
-                      <Flex
-                        position="absolute"
-                        right={4}
-                        minW={12}
-                        alignItems="center"
-                        justifyContent="center"
-                        flexDirection="column"
-                        gap="10px"
-                      >
-                        <EditIcon
-                          w="18px"
-                          h="18px"
-                          onClick={handleToggleModalProject(false)}
-                          data-testid="edit-icon"
-                        />
-                        <ViewIcon
-                          w="18px"
-                          h="18px"
-                          onClick={handleToggleModalProject(true)}
-                          data-testid="View-icon"
-                        />
-                      </Flex>
-                    </MenuItem>
-                  </MenuList>
-                )}
-              </>
-            )}
-          </Menu>
-        )}
+        ) : (MenuComponent)
+        }
       </Td>
       {isOpen && data && (
         <Modal
@@ -185,6 +188,6 @@ const ActionCellComponent = ({
   );
 };
 
-const ActionCell = memo(ActionCellComponent, isEqual);
+const ActionCell = ActionCellComponent;
 
-export default ActionCell;
+export default memo(ActionCell, isEqual);

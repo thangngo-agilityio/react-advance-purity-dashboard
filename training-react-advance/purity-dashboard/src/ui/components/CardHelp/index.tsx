@@ -20,4 +20,4 @@ const CardHelp = () => (
   </VStack>
 )
 
-export default memo(CardHelp)
+export default CardHelp

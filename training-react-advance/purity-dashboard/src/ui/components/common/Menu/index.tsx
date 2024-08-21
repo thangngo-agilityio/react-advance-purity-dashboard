@@ -57,4 +57,4 @@ const MenuComponent = ({ title, listItem = [], onSignOut }: TSidebarProps) => {
   );
 };
 
-export default memo(MenuComponent);
+export default MenuComponent;

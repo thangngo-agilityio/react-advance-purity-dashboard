@@ -36,6 +36,6 @@ const HeadCellComponent = ({ title }: THeadCellProps): JSX.Element => (
   </Th>
 );
 
-const HeadCell = memo(HeadCellComponent);
+const HeadCell = HeadCellComponent;
 
 export default HeadCell;

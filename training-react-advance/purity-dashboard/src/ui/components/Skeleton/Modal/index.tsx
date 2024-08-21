@@ -40,4 +40,4 @@ const FetchingModal = ({
   );
 };
 
-export default memo(FetchingModal, isEqual);
+export default FetchingModal;

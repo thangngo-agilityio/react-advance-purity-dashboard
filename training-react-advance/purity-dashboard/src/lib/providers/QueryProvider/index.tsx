@@ -23,4 +23,4 @@ const QueryProvider = ({ children }: { children?: ReactNode }) => (
   </PersistQueryClientProvider>
 );
 
-export default memo(QueryProvider);
+export default QueryProvider;

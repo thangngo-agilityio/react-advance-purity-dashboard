@@ -281,5 +281,5 @@ const ProjectForm = ({ data, onCloseModal, onSubmit }: AuthorFormProps) => {
   );
 };
 
-const ProjectFormMemorized = memo(ProjectForm, isEqual);
+const ProjectFormMemorized = ProjectForm;
 export default ProjectFormMemorized;

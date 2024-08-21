@@ -1,12 +1,13 @@
 import { memo, useCallback } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
+import isEqual from 'react-fast-compare';
+import { Controller, useForm } from 'react-hook-form';
+import { CloseIcon } from '@chakra-ui/icons';
 
 // Component
 import Navbar from './NavbarItem';
 import { NotificationIcon, SearchIcon, SettingIcon } from '@/ui/icons';
 import InputField from '../common/InputFiled';
-import { Controller, useForm } from 'react-hook-form';
-import { CloseIcon } from '@chakra-ui/icons';
 
 type THeaderProps = {
   path?: string;
@@ -88,4 +89,4 @@ const Header = ({
   );
 };
 
-export default memo(Header);
+export default memo(Header, isEqual);

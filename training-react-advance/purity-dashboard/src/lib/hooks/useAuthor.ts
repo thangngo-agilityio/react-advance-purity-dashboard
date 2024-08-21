@@ -57,11 +57,9 @@ export const useAuthor = (queryParam?: TSearchAuthor) => {
   const authors: TRecordAuthor[] = useMemo((): TRecordAuthor[] => {
     const isNameMatchWith = (target: string): boolean =>
       (target || '').trim().toLowerCase().includes(searchName);
-    console.log('searchName', isNameMatchWith(searchName));
 
     return authorData.filter(({ fields: { name } }: TRecordAuthor) => {
       const isMatchWithName: boolean = isNameMatchWith(`${name}`);
-      console.log('data', name);
       return isMatchWithName;
     });
   }, [authorData, searchName]);

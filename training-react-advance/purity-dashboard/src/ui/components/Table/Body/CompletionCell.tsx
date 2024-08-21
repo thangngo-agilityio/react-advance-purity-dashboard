@@ -22,4 +22,4 @@ const CompletionCell = ({ completion }: TCompletionCellProps) => (
   </Td>
 );
 
-export default memo(CompletionCell);
+export default CompletionCell;
