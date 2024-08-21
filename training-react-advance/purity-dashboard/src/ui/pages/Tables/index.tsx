@@ -191,7 +191,6 @@ const TablePage = () => {
 
   const handleChangeSearch = useDebounce(
     (value: string) => {
-      console.log('value', value)
       setSearchAuthor('name', value);
     },
     [],
