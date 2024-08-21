@@ -1,7 +1,6 @@
 import { TRecordProject } from "@/lib/types";
 import { formatDecimalNumber } from "@/lib/utils/formatNumber";
 import { Box, Heading, HStack, Image, Progress, Text, VStack } from "@chakra-ui/react"
-import { memo } from "react";
 
 type TProjectDetailProps = {
   data?: TRecordProject

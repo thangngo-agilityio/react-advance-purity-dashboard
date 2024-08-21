@@ -3,7 +3,6 @@ import { Flex, Heading, Td, Text, VStack } from '@chakra-ui/react';
 
 // Components
 import Avatar from '../../common/Avatar';
-import { memo } from 'react';
 
 const AuthorCell = ({ image, name, email }: TDataSource) => (
   <Td px={0} w={{ base: '200px', xl: '220px', '3xl': '450px', '6xl': '450px' }}>

@@ -1,6 +1,4 @@
 import { Box, Image } from '@chakra-ui/react';
-import { memo } from 'react';
-import isEqual from 'react-fast-compare';
 
 type TAvatarProps = {
   src?: string;

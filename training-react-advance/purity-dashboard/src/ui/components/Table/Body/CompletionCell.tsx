@@ -1,5 +1,4 @@
 import { Progress, Td, Text, VStack } from '@chakra-ui/react';
-import { memo } from 'react';
 
 type TCompletionCellProps = {
   completion: number;

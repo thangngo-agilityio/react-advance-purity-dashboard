@@ -1,4 +1,4 @@
-import { memo, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Box, Flex, useBreakpointValue, VStack } from '@chakra-ui/react';
 
 // Components

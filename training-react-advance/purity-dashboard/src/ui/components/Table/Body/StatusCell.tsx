@@ -1,5 +1,4 @@
 import { Badge, BadgeProps, Box, Td, Tooltip } from '@chakra-ui/react';
-import { memo } from 'react';
 
 type TStatusProps = BadgeProps & {
   text?: string | number | boolean;

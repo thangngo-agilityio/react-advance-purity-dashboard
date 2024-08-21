@@ -1,6 +1,5 @@
 import { Flex, Heading, Skeleton } from '@chakra-ui/react';
-import { memo, ReactNode } from 'react';
-import isEqual from 'react-fast-compare';
+import { ReactNode } from 'react';
 
 // Constants
 import { ERROR_MESSAGES } from '@/lib/constants/message';

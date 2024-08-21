@@ -8,7 +8,7 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
-import { ChangeEvent, memo, useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 
