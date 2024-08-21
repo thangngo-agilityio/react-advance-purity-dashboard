@@ -35,6 +35,6 @@ const Indicator = ({
   </>
 );
 
-const IndicatorMemorized = memo(Indicator, isEqual);
+const IndicatorMemorized = Indicator;
 
 export default IndicatorMemorized;

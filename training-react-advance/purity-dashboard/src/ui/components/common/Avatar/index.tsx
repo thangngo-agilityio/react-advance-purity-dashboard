@@ -28,4 +28,4 @@ const Avatar = ({
   </Box>
 );
 
-export default memo(Avatar, isEqual);
+export default Avatar;

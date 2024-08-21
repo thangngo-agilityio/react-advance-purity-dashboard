@@ -6,4 +6,4 @@ import { routes } from '@/lib/routes';
 
 const RouterProvider = () => <Provider router={routes} />;
 
-export default memo(RouterProvider);
+export default RouterProvider;

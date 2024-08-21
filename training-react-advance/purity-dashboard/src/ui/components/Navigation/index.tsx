@@ -52,4 +52,4 @@ const Navigation = ({
   );
 };
 
-export default memo(Navigation);
+export default Navigation;

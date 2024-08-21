@@ -1,6 +1,4 @@
-import { memo, useCallback } from 'react';
 import { Flex } from '@chakra-ui/react';
-import isEqual from 'react-fast-compare';
 
 // Components
 import { Button } from '@/ui/components';
@@ -27,9 +25,9 @@ const PaginationComponent = ({
   onClickPage = () => { },
 }: PaginationProps) => {
 
-  const handleNextPage = useCallback(() => onPageChange(NEXT), [onPageChange]);
+  const handleNextPage = () => onPageChange(NEXT);
 
-  const handlePrevPage = useCallback(() => onPageChange(PREV), [onPageChange]);
+  const handlePrevPage = () => onPageChange(PREV);
 
   return (
     <Flex
@@ -133,5 +131,5 @@ const PaginationComponent = ({
   );
 };
 
-const Pagination = memo(PaginationComponent, isEqual);
+const Pagination = PaginationComponent;
 export default Pagination;

@@ -33,6 +33,6 @@ const StatusComponent = ({
   );
 };
 
-const StatusCell = memo(StatusComponent);
+const StatusCell = StatusComponent;
 
 export default StatusCell;

@@ -27,4 +27,4 @@ const FunctionCell = ({ job, role }: TDataSource) => (
   </Td>
 );
 
-export default memo(FunctionCell);
+export default FunctionCell;

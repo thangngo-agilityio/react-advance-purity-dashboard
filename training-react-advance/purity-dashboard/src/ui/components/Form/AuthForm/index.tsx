@@ -322,4 +322,4 @@ const AuthForm = ({
   );
 };
 
-export default memo(AuthForm);
+export default AuthForm;

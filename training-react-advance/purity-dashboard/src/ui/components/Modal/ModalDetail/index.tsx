@@ -76,4 +76,4 @@ const ProjectDetail = ({ data }: TProjectDetailProps) => (
   </VStack>
 )
 
-export default memo(ProjectDetail);
+export default ProjectDetail;

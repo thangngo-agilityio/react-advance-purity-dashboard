@@ -41,4 +41,4 @@ const MainLayout = ({ children }: TMainLayoutProps) => {
   );
 };
 
-export default memo(MainLayout);
+export default MainLayout;

@@ -46,4 +46,4 @@ const ExpandSidebar = ({ onSignOut }: TSidebarProps) => {
   );
 }
 
-export default memo(ExpandSidebar);
+export default ExpandSidebar;

@@ -1,7 +1,7 @@
-import { memo } from 'react';
 import { Button, Flex, Heading, VStack } from '@chakra-ui/react';
-import isEqual from 'react-fast-compare';
 import { AddIcon } from '@chakra-ui/icons';
+import { memo } from 'react';
+import isEqual from 'react-fast-compare';
 
 // Components
 import Fetching from '../../Skeleton/TableList';

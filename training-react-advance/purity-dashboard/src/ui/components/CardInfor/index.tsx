@@ -1,6 +1,5 @@
-import { memo, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Heading, VStack } from '@chakra-ui/react';
-import isEqual from 'react-fast-compare';
 
 type TCardInforProps = {
   title?: string;
@@ -26,4 +25,4 @@ const CardInfor = ({ title, children, ...props }: TCardInforProps) => (
   </VStack>
 );
 
-export default memo(CardInfor, isEqual);
+export default CardInfor

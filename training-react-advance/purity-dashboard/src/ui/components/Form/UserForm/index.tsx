@@ -272,5 +272,5 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
   );
 };
 
-const UserFormMemorized = memo(UserForm, isEqual);
+const UserFormMemorized = UserForm;
 export default UserFormMemorized;
