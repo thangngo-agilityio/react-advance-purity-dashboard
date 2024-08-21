@@ -7,7 +7,7 @@ export type TProjectResponse = {
   records: TRecordProject[];
 };
 
-export const useProject = (id?: string) => {
+export const useProject = () => {
   const queryClient = useQueryClient();
 
   const { data, isLoading, isFetching } = useQuery({
@@ -22,19 +22,6 @@ export const useProject = (id?: string) => {
   });
 
   const projectData = data?.records || [];
-
-  const { data: projectId, isLoading: loadingProjectId } = useQuery({
-    queryKey: [API_PATH.PROJECT, id],
-    queryFn: async ({ signal }) =>
-      (
-        await mainHttpService.getById<TRecordProject>(
-          API_PATH.PROJECT,
-          { signal },
-          id,
-        )
-      ).data,
-    refetchOnWindowFocus: false,
-  });
 
   const { mutateAsync: createProject } = useMutation({
     mutationFn: async (payload: TProjectResponse) =>
@@ -86,11 +73,29 @@ export const useProject = (id?: string) => {
 
   return {
     projectData,
-    projectId,
     isLoading,
-    loadingProjectId,
     isFetching,
     createProject,
     updateProject,
+  };
+};
+
+export const getProjectId = (id?: string) => {
+  const { data: projectId, isLoading: loadingProjectId } = useQuery({
+    queryKey: [API_PATH.PROJECT, id],
+    queryFn: async ({ signal }) =>
+      (
+        await mainHttpService.getById<TRecordProject>(
+          API_PATH.PROJECT,
+          { signal },
+          id,
+        )
+      ).data,
+    refetchOnWindowFocus: false,
+  });
+
+  return {
+    projectId,
+    loadingProjectId,
   };
 };
