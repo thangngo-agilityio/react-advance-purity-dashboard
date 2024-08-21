@@ -1,5 +1,4 @@
 import { Flex, Text, Th } from '@chakra-ui/react';
-import { memo } from 'react';
 
 
 type THeadCellProps = {

@@ -1,5 +1,4 @@
 import { Box, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Link, Stack, useDisclosure } from '@chakra-ui/react';
-import { memo } from 'react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 
 // Component

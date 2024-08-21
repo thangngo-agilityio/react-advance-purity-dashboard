@@ -1,8 +1,7 @@
 'use client';
 
-import { memo, useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import isEqual from 'react-fast-compare';
 
 // Components
 import {

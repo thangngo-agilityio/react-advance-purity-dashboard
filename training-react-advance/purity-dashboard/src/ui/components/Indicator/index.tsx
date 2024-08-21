@@ -1,7 +1,6 @@
 // Libs
-import { ReactNode, memo } from 'react';
+import { ReactNode } from 'react';
 import { Center, Spinner } from '@chakra-ui/react';
-import isEqual from 'react-fast-compare';
 
 type TIndicatorProps = {
   isOpen?: boolean;

@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { RouterProvider as Provider } from 'react-router-dom';
 
 // Routes

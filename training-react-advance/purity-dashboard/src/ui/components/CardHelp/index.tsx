@@ -1,5 +1,4 @@
 import { Box, Button, Heading, Text, VStack } from "@chakra-ui/react";
-import { memo } from "react";
 
 // Components
 import ButtonIcon from "../common/ButtonIcon";

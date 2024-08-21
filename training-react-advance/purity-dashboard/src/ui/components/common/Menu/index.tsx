@@ -1,5 +1,5 @@
 import { Heading, List, ListItem, VStack } from '@chakra-ui/react';
-import { Fragment, memo, MouseEvent, ReactElement, useCallback } from 'react';
+import { Fragment, MouseEvent, ReactElement, useCallback } from 'react';
 
 // Components
 import Navigation from '../../Navigation';

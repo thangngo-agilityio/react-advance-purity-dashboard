@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { Heading, Td, Text, VStack } from '@chakra-ui/react';
 
 // Components

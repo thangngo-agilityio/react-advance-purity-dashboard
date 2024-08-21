@@ -1,4 +1,4 @@
-import { MouseEvent, ReactElement, ReactNode, memo } from 'react';
+import { MouseEvent, ReactElement, ReactNode } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 

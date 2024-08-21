@@ -1,5 +1,4 @@
 import { Link, VStack } from '@chakra-ui/react';
-import { memo } from 'react';
 
 // Component
 import { LineIcon, LogoIcon } from '@/ui/icons';
