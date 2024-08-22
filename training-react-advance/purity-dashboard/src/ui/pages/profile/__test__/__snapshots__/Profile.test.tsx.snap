@@ -6,7 +6,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
     class="chakra-stack css-1ntac34"
   >
     <div
-      class="chakra-stack css-1khukpb"
+      class="chakra-stack css-114ho1i"
     >
       <div
         class="css-16qko05"
@@ -21,7 +21,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
               class="css-ofhpoc"
             >
               <p
-                class="chakra-text css-d0o9su"
+                class="chakra-text css-ey7c2h"
               >
                 Pages /
               </p>
@@ -71,8 +71,9 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 </div>
                 <input
                   class="chakra-input css-ytsznm"
-                  id="field-:r1:"
-                  placeholder="Type here..."
+                  disabled=""
+                  id="field-:r2:"
+                  placeholder="Search Author"
                   type="text"
                   value=""
                 />
@@ -175,7 +176,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
               class="chakra-heading css-oy3fvb"
             />
             <p
-              class="chakra-text css-zkvzt6"
+              class="chakra-text css-1r2ayu0"
             />
           </div>
         </div>
@@ -372,7 +373,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 <label
                   class="chakra-form__label css-4jdon"
                   for="remember-me"
-                  id="field-:r2:-label"
+                  id="field-:r3:-label"
                 >
                   Email me when someone follows me
                 </label>
@@ -405,7 +406,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 <label
                   class="chakra-form__label css-4jdon"
                   for="remember-me"
-                  id="field-:r3:-label"
+                  id="field-:r4:-label"
                 >
                   Email me when someone answers on my post
                 </label>
@@ -438,7 +439,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 <label
                   class="chakra-form__label css-4jdon"
                   for="remember-me"
-                  id="field-:r4:-label"
+                  id="field-:r5:-label"
                 >
                   Email me when someone mentions me
                 </label>
@@ -484,7 +485,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 <label
                   class="chakra-form__label css-4jdon"
                   for="remember-me"
-                  id="field-:r5:-label"
+                  id="field-:r6:-label"
                 >
                   New launches and projects
                 </label>
@@ -517,7 +518,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 <label
                   class="chakra-form__label css-4jdon"
                   for="remember-me"
-                  id="field-:r6:-label"
+                  id="field-:r7:-label"
                 >
                   Monthly product updates
                 </label>
@@ -550,7 +551,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 <label
                   class="chakra-form__label css-4jdon"
                   for="remember-me"
-                  id="field-:r7:-label"
+                  id="field-:r8:-label"
                 >
                   Subscribe to newsletter
                 </label>
@@ -574,7 +575,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
             class="chakra-stack css-f0hxb4"
           >
             <p
-              class="chakra-text css-1yqksxi"
+              class="chakra-text css-17q6ppl"
             >
               Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
             </p>
@@ -627,7 +628,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                   :
                 </h2>
                 <p
-                  class="chakra-text css-1l3aga8"
+                  class="chakra-text css-1vbmvs3"
                 />
               </div>
               <div
@@ -640,7 +641,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                   :
                 </h2>
                 <p
-                  class="chakra-text css-1l3aga8"
+                  class="chakra-text css-1vbmvs3"
                 />
               </div>
               <div
@@ -653,7 +654,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                   :
                 </h2>
                 <p
-                  class="chakra-text css-1l3aga8"
+                  class="chakra-text css-1vbmvs3"
                 />
               </div>
               <div
@@ -666,7 +667,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                   :
                 </h2>
                 <p
-                  class="chakra-text css-1l3aga8"
+                  class="chakra-text css-1vbmvs3"
                 />
               </div>
               <div
@@ -679,7 +680,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                   :
                 </h2>
                 <p
-                  class="chakra-text css-1l3aga8"
+                  class="chakra-text css-1vbmvs3"
                 />
               </div>
             </div>
@@ -720,7 +721,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                   Esthera Jackson
                 </h2>
                 <p
-                  class="chakra-text css-zkvzt6"
+                  class="chakra-text css-1r2ayu0"
                 >
                   Hi! I need more informations...
                 </p>
@@ -746,7 +747,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                   Esthera Jackson
                 </h2>
                 <p
-                  class="chakra-text css-zkvzt6"
+                  class="chakra-text css-1r2ayu0"
                 >
                   Awesome work, can you change...
                 </p>
@@ -772,7 +773,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                   Esthera Jackson
                 </h2>
                 <p
-                  class="chakra-text css-zkvzt6"
+                  class="chakra-text css-1r2ayu0"
                 >
                   Have a great afternoon...
                 </p>
@@ -798,7 +799,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                   Esthera Jackson
                 </h2>
                 <p
-                  class="chakra-text css-zkvzt6"
+                  class="chakra-text css-1r2ayu0"
                 >
                   About files I can...
                 </p>
@@ -820,7 +821,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
           Project
         </h2>
         <p
-          class="chakra-text css-1yqksxi"
+          class="chakra-text css-17q6ppl"
         >
           Architects design houses
         </p>
@@ -832,57 +833,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
           class="css-0"
         >
           <div
-            class="chakra-stack css-tl3ftk"
-          >
-            <div
-              class="css-1gdh63z"
-            >
-              <img
-                alt="Project "
-                class="chakra-image css-177r1e2"
-                src="https://d38b044pevnwc9.cloudfront.net/cutout-nuxt/enhancer/3.jpg"
-              />
-              <img
-                class="chakra-image css-1k3iufv"
-              />
-            </div>
-            <div
-              class="chakra-stack css-13du08q"
-            >
-              <p
-                class="chakra-text css-j9gyu5"
-              >
-                Project #
-                7
-              </p>
-              <h2
-                class="chakra-heading css-w8vpoz"
-              >
-                Project 
-              </h2>
-              <p
-                class="chakra-text css-ou4ll3"
-              >
-                asdasd
-              </p>
-              <div
-                class="css-0"
-              >
-                <button
-                  class="chakra-button css-ylogsa"
-                  type="button"
-                >
-                  VIEW ALL
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="css-0"
-        >
-          <div
-            class="chakra-stack css-37irdd"
+            class="chakra-stack css-10awbpf"
           >
             <svg
               class="chakra-icon css-onkibi"
@@ -899,6 +850,56 @@ exports[`Profile page Should render match with snapshot. 1`] = `
             >
               Create a New Project
             </h2>
+          </div>
+        </div>
+        <div
+          class="css-0"
+        >
+          <div
+            class="chakra-stack css-tl3ftk"
+          >
+            <div
+              class="css-17s1m33"
+            >
+              <img
+                alt="Project "
+                class="chakra-image css-1wvfyt3"
+                src="https://d38b044pevnwc9.cloudfront.net/cutout-nuxt/enhancer/3.jpg"
+              />
+              <img
+                class="chakra-image css-1k3iufv"
+              />
+            </div>
+            <div
+              class="chakra-stack css-13du08q"
+            >
+              <p
+                class="chakra-text css-1s2vh1k"
+              >
+                Project #
+                7
+              </p>
+              <h2
+                class="chakra-heading css-w8vpoz"
+              >
+                Project 
+              </h2>
+              <p
+                class="chakra-text css-nefy13"
+              >
+                asdasd
+              </p>
+              <div
+                class="css-0"
+              >
+                <button
+                  class="chakra-button css-ylogsa"
+                  type="button"
+                >
+                  VIEW ALL
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -13,6 +13,7 @@ describe('CardProject component test case', () => {
         image={mockData?.fields.image}
         name={mockData?.fields.projectName}
         description={mockData?.fields.description}
+        onClick={jest.fn()}
       />
     )
 
