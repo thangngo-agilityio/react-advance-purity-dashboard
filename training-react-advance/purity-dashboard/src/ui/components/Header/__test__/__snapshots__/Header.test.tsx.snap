@@ -61,7 +61,7 @@ exports[`Header test case Should render correctly 1`] = `
             <input
               class="chakra-input css-gh4tfk"
               id="field-:r0:"
-              placeholder="Type here..."
+              placeholder="Search Author"
               type="text"
               value=""
             />

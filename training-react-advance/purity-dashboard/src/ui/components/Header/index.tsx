@@ -67,7 +67,7 @@ const Header = ({
             name="search"
             render={({ field: { value, onChange } }) => (
               <InputField
-                placeholder="Type here..."
+                placeholder="Search Author"
                 value={value}
                 onChange={(value: string) => {
                   onChange(value);

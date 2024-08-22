@@ -67,7 +67,7 @@ const TablePage = () => {
     isFetching,
     createAuthor,
     updateAuthor
-  } = useAuthor({ name: searchAuthor?.name.toLowerCase() });
+  } = useAuthor({ name: searchAuthor?.name?.toLowerCase() });
   const {
     projectData,
     isLoading: loadingProject,

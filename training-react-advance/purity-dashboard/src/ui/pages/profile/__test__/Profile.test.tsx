@@ -7,7 +7,7 @@ import ProfilePage from "..";
 
 
 // Mocks
-import { PROJECT } from "@/lib/mocks";
+import { PROJECT, PROJECT_DATA_MOCK } from "@/lib/mocks";
 import { theme } from "@/ui/themes";
 
 const mockCreateProject = jest.fn()
@@ -23,6 +23,10 @@ jest.mock('@/lib/hooks', () => ({
   useUpdateUser: () => ({
     updateUser: mockUpdateUser
   }),
+  getProjectId: () => ({
+    projectId: PROJECT_DATA_MOCK.id,
+    loadingProjectId: false
+  })
 }));
 
 jest.mock('@chakra-ui/react', () => ({

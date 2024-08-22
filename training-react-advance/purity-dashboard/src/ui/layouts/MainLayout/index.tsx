@@ -30,7 +30,6 @@ const MainLayout = ({ children }: TMainLayoutProps) => {
             overflowY="auto"
             px={30}
             pb={30}
-            bgColor="background.table"
           >
             {children}
           </Box>
