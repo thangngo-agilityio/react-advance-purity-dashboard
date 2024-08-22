@@ -60,16 +60,32 @@ const ProfilePage = () => {
   const [isProjectId, setIsProjectId] = useState('')
   const [isOpenModalDetail, setModalDetail] = useState(false);
 
+  // Lib
   const { isOpen, onToggle } = useDisclosure();
   const { isOpen: isOpenModal, onToggle: setIsOpenModal } = useDisclosure();
-
-  const user = authStore((state) => state.user);
-  const setUser = authStore((state) => state.setUser);
   const toast = useToast();
 
+  // Store
+  const setUser = authStore((state) => state.setUser);
+  const user = authStore((state) => state.user);
+  const { fields } = user || {}
+  const { name, avatar, phone, email, location } = fields || {}
+
+  // Hooks
+  const { updateUser } = useUpdateUser();
   const { projectData, createProject, isFetching } = useProject();
   const { projectId, loadingProjectId } = getProjectId(isProjectId);
-  const { updateUser } = useUpdateUser();
+  const { fields: fieldsProjectId } = projectId || {}
+  const {
+    _id,
+    projectName,
+    image,
+    budget,
+    status,
+    completion,
+    description
+  } = fieldsProjectId || {}
+
 
   const handleCreateProject = useCallback(async (data: TRecordProject) => {
     try {
@@ -170,8 +186,8 @@ const ProfilePage = () => {
             <Avatar
               width="80px"
               height="80px"
-              src={`${user?.fields.avatar}`}
-              alt={`${user?.fields.name}`}
+              src={`${avatar}`}
+              alt={`${name}`}
             />
             <Flex
               w="26px"
@@ -191,8 +207,8 @@ const ProfilePage = () => {
             </Flex>
           </Box>
           <VStack ml={{ base: "unset", md: "22px" }} alignItems={{ base: "center", md: "flex-start" }} gap={0}>
-            <Heading size="lg">{user?.fields.name}</Heading>
-            <Text variant="tertiary">{user?.fields.email}</Text>
+            <Heading size="lg">{name}</Heading>
+            <Text variant="tertiary">{email}</Text>
           </VStack>
         </Flex>
       }
@@ -211,7 +227,7 @@ const ProfilePage = () => {
     </Stack>
   ), [user, onToggle])
 
-  const cardInformation = useMemo(() => (
+  const sectionInformation = useMemo(() => (
     <Grid w="100%" templateColumns={{ base: "", lg: "repeat(3, 1fr)" }} gap="24px" mb="24px">
       <GridItem>
         <CardInfor title="Platform Settings">
@@ -272,10 +288,10 @@ const ProfilePage = () => {
             </Text>
             <LineIcon />
             <VStack alignItems="flex-start" gap="14px">
-              <InforItem param="Full Name" content={user?.fields.name} />
-              <InforItem param="Mobile" content={user?.fields.phone} />
-              <InforItem param="Email" content={user?.fields.email} />
-              <InforItem param="Location" content={user?.fields.location} />
+              <InforItem param="Full Name" content={name} />
+              <InforItem param="Mobile" content={phone} />
+              <InforItem param="Email" content={email} />
+              <InforItem param="Location" content={location} />
               <InforItem param="Social Media" />
             </VStack>
           </VStack>
@@ -336,13 +352,14 @@ const ProfilePage = () => {
       >
         <Header
           name="Profile"
+          isProfile
           path={ROUTES.PROFILE}
           colorFill="text.100"
           colorIcon="#FFF"
         />
         {subHeader}
       </VStack>
-      {cardInformation}
+      {sectionInformation}
       <VStack
         w="100%"
         alignItems="flex-start"
@@ -377,21 +394,25 @@ const ProfilePage = () => {
               <Heading textAlign="center">Create a New Project</Heading>
             </VStack>
           </GridItem>
-          {projectData.map((project) => (
-            <FetchingModal isLoading={isFetching}>
-              <GridItem>
-                <CardProject
-                  id={project.id}
-                  key={project.fields.projectName}
-                  image={project.fields.image}
-                  name={project.fields.projectName}
-                  projectId={project.fields._id}
-                  description={project.fields.description}
-                  onClick={handleClickDetail}
-                />
-              </GridItem>
-            </FetchingModal>
-          ))}
+          {projectData.map((project) => {
+            const { id, fields } = project || {}
+            const { _id, projectName, image, description } = fields || {}
+            return (
+              <FetchingModal isLoading={isFetching}>
+                <GridItem>
+                  <CardProject
+                    id={id}
+                    key={projectName}
+                    image={image}
+                    name={projectName}
+                    projectId={_id}
+                    description={description}
+                    onClick={handleClickDetail}
+                  />
+                </GridItem>
+              </FetchingModal>
+            )
+          })}
         </Grid>
       </VStack>
 
@@ -432,13 +453,13 @@ const ProfilePage = () => {
           body={
             <Fetching isLoading={loadingProjectId}>
               <ProjectDetail
-                projectId={projectId?.fields._id}
-                image={projectId?.fields.image}
-                name={projectId?.fields.projectName}
-                budget={projectId?.fields.budget}
-                status={projectId?.fields.status}
-                completion={projectId?.fields.completion}
-                description={projectId?.fields.description}
+                projectId={_id}
+                image={image}
+                name={projectName}
+                budget={budget}
+                status={status}
+                completion={completion}
+                description={description}
               />
             </Fetching>
           }
