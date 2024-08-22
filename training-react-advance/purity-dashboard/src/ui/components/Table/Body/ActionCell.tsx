@@ -42,6 +42,17 @@ const ActionCellComponent = ({
   const [isView, setIsView] = useState(false);
   const { isOpen, onToggle } = useDisclosure()
 
+  const { fields } = dataProject || {}
+  const {
+    _id,
+    projectName,
+    budget,
+    image,
+    status,
+    completion,
+    description
+  } = fields || {}
+
   const handleToggleModalProject = useCallback((isViewModal: boolean) => () => {
     onToggle()
     setIsView(isViewModal)
@@ -181,13 +192,13 @@ const ActionCellComponent = ({
           isProjectDetail
           body={
             <ProjectDetail
-              projectId={dataProject?.fields._id}
-              image={dataProject?.fields.image}
-              name={dataProject?.fields.projectName}
-              budget={dataProject?.fields.budget}
-              status={dataProject?.fields.status}
-              completion={dataProject?.fields.completion}
-              description={dataProject?.fields.description}
+              projectId={_id}
+              image={image}
+              name={projectName}
+              budget={budget}
+              status={status}
+              completion={completion}
+              description={description}
             />
           }
         />

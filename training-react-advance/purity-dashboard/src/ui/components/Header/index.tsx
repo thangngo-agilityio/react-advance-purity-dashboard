@@ -15,6 +15,7 @@ type THeaderProps = {
   searchValue?: string;
   colorFill?: string;
   colorIcon?: string;
+  isProfile?: boolean;
   onSearch?: (value: string) => void;
 };
 
@@ -28,6 +29,7 @@ const Header = ({
   searchValue,
   colorFill,
   colorIcon,
+  isProfile,
   onSearch,
 }: THeaderProps) => {
   const { control, resetField } = useForm<TSearchValue>({
@@ -74,6 +76,7 @@ const Header = ({
                 leftIcon={<SearchIcon />}
                 rightIcon={value && <CloseIcon onClick={handleResetValue} />}
                 background="background.100"
+                isDisabled={isProfile}
               />
             )}
           />

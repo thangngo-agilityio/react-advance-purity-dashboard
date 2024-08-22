@@ -53,7 +53,6 @@ import {
 import { formatAuthorResponse, formatProjectResponse } from '@/lib/utils';
 
 const TablePage = () => {
-  // const [searchValue, setSearchValue] = useState<string>('');
   const [isOpenModal, setIsOpenModal] = useState(false);
   const toast = useToast();
 
@@ -62,8 +61,13 @@ const TablePage = () => {
       name: '',
     });
 
-  const { authorData, isLoading, isFetching, createAuthor, updateAuthor } =
-    useAuthor({ name: searchAuthor?.name.toLowerCase() });
+  const {
+    authorData,
+    isLoading,
+    isFetching,
+    createAuthor,
+    updateAuthor
+  } = useAuthor({ name: searchAuthor?.name.toLowerCase() });
   const {
     projectData,
     isLoading: loadingProject,
@@ -369,7 +373,6 @@ const TablePage = () => {
           onSearch={handleChangeSearch}
           searchValue={searchAuthor?.name}
         />
-
         <VStack gap="24px" w="100%">
           <ModalTable
             isAuthor
