@@ -133,7 +133,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
               <img
                 alt="undefined"
                 class="chakra-image css-vhf13f"
-                src="undefined"
+                src="/imgs/avatar-default.svg"
               />
             </div>
             <div
@@ -708,6 +708,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 class="css-1hahzqe"
               >
                 <img
+                  alt="Avatar"
                   class="chakra-image css-vhf13f"
                   src="/imgs/avatar-default.svg"
                 />
@@ -734,6 +735,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 class="css-1hahzqe"
               >
                 <img
+                  alt="Avatar"
                   class="chakra-image css-vhf13f"
                   src="/imgs/avatar-default.svg"
                 />
@@ -760,6 +762,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 class="css-1hahzqe"
               >
                 <img
+                  alt="Avatar"
                   class="chakra-image css-vhf13f"
                   src="/imgs/avatar-default.svg"
                 />
@@ -786,6 +789,7 @@ exports[`Profile page Should render match with snapshot. 1`] = `
                 class="css-1hahzqe"
               >
                 <img
+                  alt="Avatar"
                   class="chakra-image css-vhf13f"
                   src="/imgs/avatar-default.svg"
                 />

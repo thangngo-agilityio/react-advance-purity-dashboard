@@ -25,10 +25,12 @@ const CardProject = ({
       <Box
         position="relative"
         borderRadius="lg"
+        w='100%'
         mb="20px"
         borderColor="transparent"
       >
         <Image
+          w='100%'
           borderRadius="lg"
           objectFit="cover"
           src={image}

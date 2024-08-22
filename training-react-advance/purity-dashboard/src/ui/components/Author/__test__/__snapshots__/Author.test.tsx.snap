@@ -1,36 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Author component test case Should render correctly 1`] = `
-<div>
-  <div
-    class="chakra-stack css-1igwmid"
-  >
-    <div
-      class="css-j5b9iu"
-    >
-      <div
-        class="css-xax5g4"
-      >
-        <img
-          class="chakra-image css-15sm3g6"
-          src="/imgs/avatar-default.svg"
-        />
-      </div>
-    </div>
-    <div
-      class="css-0"
-    >
-      <h2
-        class="chakra-heading css-0"
-      />
-      <p
-        class="chakra-text css-0"
-      />
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Author component test case render when data is available 1`] = `
 <div>
   <div
