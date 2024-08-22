@@ -9,7 +9,7 @@ export const AUTH_SCHEMA = {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Email'),
     pattern: {
       value: REGEX.EMAIL,
-      message: ERROR_MESSAGES.EMAIL_INVALID,
+      message: ERROR_MESSAGES.EMAIL_FAILED,
     },
   },
   PASSWORD: {
@@ -27,7 +27,7 @@ export const AUTH_SCHEMA = {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Image'),
     pattern: {
       value: REGEX.IMG,
-      message: ERROR_MESSAGES.IMAGE_INVALID,
+      message: ERROR_MESSAGES.IMAGE_FAILED,
     },
   },
   ROLE: {

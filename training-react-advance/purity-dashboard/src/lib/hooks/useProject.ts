@@ -80,7 +80,7 @@ export const useProject = () => {
   };
 };
 
-export const getProjectId = (id?: string) => {
+export const getProjectId = (id: string) => {
   const { data: projectId, isLoading: loadingProjectId } = useQuery({
     queryKey: [API_PATH.PROJECT, id],
     queryFn: async ({ signal }) =>

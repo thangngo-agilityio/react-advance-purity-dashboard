@@ -402,7 +402,12 @@ const ProfilePage = () => {
           </GridItem>
           {projectData.map((project) => {
             const { id, fields } = project || {}
-            const { _id, projectName, image, description } = fields || {}
+            const {
+              _id,
+              projectName,
+              image = '/imgs/image-project-default.jpg',
+              description
+            } = fields || {}
             return (
               <FetchingModal isLoading={isFetching}>
                 <GridItem>
