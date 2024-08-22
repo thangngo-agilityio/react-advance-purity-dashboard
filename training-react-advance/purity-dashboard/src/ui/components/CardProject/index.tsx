@@ -26,11 +26,13 @@ const CardProject = ({
         position="relative"
         borderRadius="lg"
         w='100%'
+        h='192px'
         mb="20px"
         borderColor="transparent"
       >
         <Image
           w='100%'
+          h='100%'
           borderRadius="lg"
           objectFit="cover"
           src={image}
