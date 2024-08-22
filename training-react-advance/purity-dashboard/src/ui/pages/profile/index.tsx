@@ -69,7 +69,13 @@ const ProfilePage = () => {
   const setUser = authStore((state) => state.setUser);
   const user = authStore((state) => state.user);
   const { fields } = user || {}
-  const { name, avatar, phone, email, location } = fields || {}
+  const {
+    name,
+    avatar = '/imgs/avatar-default.svg',
+    phone,
+    email,
+    location
+  } = fields || {}
 
   // Hooks
   const { updateUser } = useUpdateUser();
@@ -79,7 +85,7 @@ const ProfilePage = () => {
   const {
     _id,
     projectName,
-    image,
+    image = '/imgs/image-project-default.jpg',
     budget,
     status,
     completion,
