@@ -4,6 +4,8 @@ export const Text = defineStyleConfig({
   baseStyle: {
     fontWeight: 400,
     fontFamily: 'body',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
   sizes: {
     textXs: {

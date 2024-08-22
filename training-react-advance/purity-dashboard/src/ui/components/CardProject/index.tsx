@@ -6,7 +6,7 @@ type TCardProject = {
   name: string;
   projectId: string;
   description: string;
-  onClick?: (id: string) => void;
+  onClick: (id: string) => void;
 };
 
 const CardProject = ({
@@ -25,16 +25,12 @@ const CardProject = ({
       <Box
         position="relative"
         borderRadius="lg"
-        w="100%"
-        h="192px"
         mb="20px"
         borderColor="transparent"
       >
         <Image
           borderRadius="lg"
           objectFit="cover"
-          w="100%"
-          h="100%"
           src={image}
           alt={name}
         />
@@ -53,14 +49,20 @@ const CardProject = ({
       <VStack alignItems="flex-start" w="100%" px="10px">
         <Text size="textSm">Project #{projectId}</Text>
         <Heading mb="10px">{name}</Heading>
-        <Text mb="20px">{description}</Text>
+        <Text
+          mb="20px"
+          width='370px'
+          noOfLines={2}
+        >
+          {description}
+        </Text>
         <Box>
           <Button w="110px" size="xs" variant="tertiary" onClick={handleClick}>
             VIEW ALL
           </Button>
         </Box>
       </VStack>
-    </VStack>
+    </VStack >
   );
 }
 export default CardProject;

@@ -12,7 +12,7 @@ type TProjectDetailProps = {
 }
 
 const ProjectDetail = ({ projectId, image, name, budget, status, completion, description }: TProjectDetailProps) => (
-  <VStack w='100%'>
+  <VStack w='100%' overflow='hidden'>
     <Box
       position="relative"
       borderRadius="lg"
@@ -74,7 +74,13 @@ const ProjectDetail = ({ projectId, image, name, budget, status, completion, des
 
       <VStack alignItems='flex-start'>
         <Heading>Descripttion</Heading>
-        <Text mb="20px">{description}</Text>
+        <Text
+          mb="20px"
+          width='745px'
+          noOfLines={5}
+        >
+          {description}
+        </Text>
       </VStack>
     </VStack>
   </VStack>
