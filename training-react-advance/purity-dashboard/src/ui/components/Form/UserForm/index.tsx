@@ -128,7 +128,7 @@ const UserForm = ({ onCloseModal, onSubmit }: AuthorFormProps) => {
               <InputField
                 label="Name"
                 bg="background.100"
-                placeholder="Project Name"
+                placeholder="Name"
                 {...field}
                 isError={!!error}
                 errorMessages={error?.message}

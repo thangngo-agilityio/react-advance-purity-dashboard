@@ -1,8 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 
 // Hooks
-import { TProjectResponse, useProject } from '../useProject';
-
+import { getProjectId, TProjectResponse, useProject } from '../useProject';
 
 // Mocks
 import {
@@ -11,6 +10,7 @@ import {
   MOCK_UPDATE_PROJECT_PAYLOAD,
   MOCK_UPDATE_SUCCESS_RES,
   PROJECT,
+  PROJECT_DATA_MOCK,
 } from '@/lib/mocks';
 
 // Service
@@ -38,6 +38,16 @@ describe('useProject', () => {
     await waitFor(() => expect(result.current.projectData).toEqual(PROJECT));
   });
 
+  it('should fetch project Id successfully', async () => {
+    const { result } = renderHook(() => getProjectId(PROJECT_DATA_MOCK.id), {
+      wrapper: queryProviderWrapper,
+    });
+
+    await waitFor(() =>
+      expect(result.current.projectId).toEqual(PROJECT_DATA_MOCK.id),
+    );
+  });
+
   it('should add project successfully', async () => {
     jest
       .spyOn(mainHttpService, 'post')
@@ -47,7 +57,9 @@ describe('useProject', () => {
       wrapper: queryProviderWrapper,
     });
 
-    result.current.createProject(MOCK_ADD_PROJECT_PAYLOAD as unknown as TProjectResponse);
+    result.current.createProject(
+      MOCK_ADD_PROJECT_PAYLOAD as unknown as TProjectResponse,
+    );
 
     await waitFor(() =>
       expect(jest.spyOn(mainHttpService, 'post')).toHaveBeenCalled(),
@@ -63,10 +75,10 @@ describe('useProject', () => {
       wrapper: queryProviderWrapper,
     });
 
-    result.current.updateProject(MOCK_UPDATE_PROJECT_PAYLOAD as unknown as TProjectResponse);
+    result.current.updateProject(
+      MOCK_UPDATE_PROJECT_PAYLOAD as unknown as TProjectResponse,
+    );
 
     await waitFor(() => expect(mainHttpService.put).toHaveBeenCalled());
   });
-
-
 });

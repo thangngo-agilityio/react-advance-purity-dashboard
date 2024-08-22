@@ -146,7 +146,7 @@ exports[`Tables page Should render match with snapshot. 1`] = `
           </button>
         </div>
         <div
-          class="chakra-table__container css-77azut"
+          class="chakra-table__container css-4ruwj2"
         >
           <table
             class="chakra-table css-0"
@@ -305,7 +305,7 @@ exports[`Tables page Should render match with snapshot. 1`] = `
           </h2>
         </div>
         <div
-          class="chakra-table__container css-77azut"
+          class="chakra-table__container css-4ruwj2"
         >
           <table
             class="chakra-table css-0"
