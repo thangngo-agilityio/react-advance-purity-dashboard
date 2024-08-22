@@ -16,9 +16,9 @@ export type TCreateAuthorPayload = {
     _id: number;
     name: string;
     email: string;
-    avatar?: string;
     role: string;
     job: string;
+    avatar?: string;
     status?: AUTHOR_STATUS;
     employed: string;
   };

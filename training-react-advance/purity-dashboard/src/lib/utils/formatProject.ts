@@ -30,7 +30,7 @@ export const formatProjectResponse = (projects: TRecordProject[] = []) =>
         projectStatus: status,
         completion,
         description,
-        image: image || 'imgs/image-project-default.jpg',
+        image: image || '/imgs/image-project-default.jpg',
       },
       projectName,
       avatar: avatar || '/imgs/avatar-default.svg',
@@ -39,6 +39,6 @@ export const formatProjectResponse = (projects: TRecordProject[] = []) =>
       projectStatus: status,
       completion,
       description,
-      image: image || 'imgs/image-project-default.jpg',
+      image: image || '/imgs/image-project-default.jpg',
     };
   });

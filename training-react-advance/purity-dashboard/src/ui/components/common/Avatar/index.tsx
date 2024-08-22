@@ -9,7 +9,7 @@ type TAvatarProps = {
 
 const Avatar = ({
   src = '/imgs/avatar-default.svg',
-  alt,
+  alt = 'Avatar',
   width = '40px',
   height = '40px',
   ...props

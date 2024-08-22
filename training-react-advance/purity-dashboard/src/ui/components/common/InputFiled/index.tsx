@@ -18,12 +18,12 @@ import {
 } from '@chakra-ui/react';
 
 type TInputFieldProps = Omit<InputProps, 'onChange'> & {
-  isValidate?: boolean;
-  isError?: boolean;
   errorMessages?: string;
   label?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+  isError?: boolean;
+  isValidate?: boolean;
   onChange?: (value: string) => void;
 };
 

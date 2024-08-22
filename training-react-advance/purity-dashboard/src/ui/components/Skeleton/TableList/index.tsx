@@ -4,14 +4,11 @@ import { ReactNode } from 'react';
 // Constants
 import { ERROR_MESSAGES } from '@/lib/constants/message';
 
-type TVariant = 'primary' | 'secondary';
 type TFetchingProps = {
-  isLoading?: boolean;
-  isError?: boolean;
   errorMessage?: string;
-  quality?: number;
-  variant?: TVariant;
   children?: ReactNode;
+  isError?: boolean;
+  isLoading?: boolean;
 };
 
 const Fetching = ({

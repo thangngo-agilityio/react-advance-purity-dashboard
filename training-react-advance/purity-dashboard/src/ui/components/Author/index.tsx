@@ -2,10 +2,10 @@ import { Box, Heading, HStack, Text } from "@chakra-ui/react";
 import Avatar from "../common/Avatar";
 
 type TAuthorProps = {
-  src?: string,
-  alt?: string,
-  name?: string,
-  email?: string,
+  src: string,
+  alt: string,
+  name: string,
+  email: string,
 }
 
 const Author = ({ src, alt, name, email }: TAuthorProps) => (
