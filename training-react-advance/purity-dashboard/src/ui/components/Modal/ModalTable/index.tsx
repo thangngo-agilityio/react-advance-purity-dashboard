@@ -62,7 +62,7 @@ const ModalTable = ({
           </Button>
         )}
       </Flex>
-      <Fetching quality={15} isLoading={isFetching}>
+      <Fetching isLoading={isFetching}>
         <Table
           columns={columns}
           dataSource={filterData}

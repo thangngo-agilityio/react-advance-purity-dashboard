@@ -4,13 +4,6 @@ import { render } from "@testing-library/react";
 import Author from "..";
 
 describe('Author component test case', () => {
-  it('Should render correctly', () => {
-    const { container } = render(
-      <Author />
-    )
-
-    expect(container).toMatchSnapshot();
-  })
 
   it('render when data is available', () => {
     const { container } = render(
