@@ -3,6 +3,7 @@ export const ERROR_MESSAGES = {
   EMPTY_DATA: 'No data found',
   EMAIL_INVALID: 'Email is invalid',
   EMAIL_FAILED: 'Email is not in correct format (example: @test.com)',
+  TEXT_FAILED: 'There must be no space in front',
   PASSWORD_NOT_MATCH: 'Password does not match',
   AUTH_INCORRECT: 'Email or password is incorrect',
   IMAGE_INVALID: 'Image is invalid',

@@ -863,11 +863,11 @@ exports[`Profile page Should render match with snapshot. 1`] = `
             class="chakra-stack css-tl3ftk"
           >
             <div
-              class="css-17s1m33"
+              class="css-1gdh63z"
             >
               <img
                 alt="Project "
-                class="chakra-image css-1wvfyt3"
+                class="chakra-image css-vhf13f"
                 src="https://d38b044pevnwc9.cloudfront.net/cutout-nuxt/enhancer/3.jpg"
               />
               <img

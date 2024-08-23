@@ -4,6 +4,10 @@ import { REGEX } from './regex';
 export const AUTH_SCHEMA = {
   NAME: {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Name'),
+    pattern: {
+      value: REGEX.CHARACTERS,
+      message: ERROR_MESSAGES.TEXT_FAILED,
+    },
   },
   EMAIL: {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Email'),
@@ -32,9 +36,17 @@ export const AUTH_SCHEMA = {
   },
   ROLE: {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Role'),
+    pattern: {
+      value: REGEX.CHARACTERS,
+      message: ERROR_MESSAGES.TEXT_FAILED,
+    },
   },
   JOB: {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Job'),
+    pattern: {
+      value: REGEX.CHARACTERS,
+      message: ERROR_MESSAGES.TEXT_FAILED,
+    },
   },
   EMPOLYED: {
     required: ERROR_MESSAGES.FIELD_REQUIRED('Employed'),
