@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 import { Heading, VStack } from '@chakra-ui/react';
 
-type TCardInforProps = {
+type TCardInfoProps = {
   title?: string;
   children?: ReactNode;
 };
 
-const CardInfor = ({ title, children, ...props }: TCardInforProps) => (
+const CardInfo = ({ title, children }: TCardInfoProps) => (
   <VStack
     alignItems="flex-start"
     borderRadius="lg"
@@ -15,7 +15,6 @@ const CardInfor = ({ title, children, ...props }: TCardInforProps) => (
     px="20px"
     py="28px"
     boxShadow="0 3.5px 5.5px rgba(0, 0, 0, .02)"
-    {...props}
     overflowY="scroll"
   >
     <Heading as="h2" mb="16px">
@@ -25,4 +24,4 @@ const CardInfor = ({ title, children, ...props }: TCardInforProps) => (
   </VStack>
 );
 
-export default CardInfor
+export default CardInfo
