@@ -382,7 +382,7 @@ const ProfilePage = () => {
           <GridItem>
             <VStack
               w="100%"
-              h="342px"
+              h={{ base: "342px", lg: '100%' }}
               borderRadius="lg"
               borderWidth="1px"
               borderColor="border.400"
