@@ -55,7 +55,7 @@ const CardProject = ({
         <Heading mb="10px">{name}</Heading>
         <Text
           mb="20px"
-          width='370px'
+          maxW='370px'
           noOfLines={2}
         >
           {description}
