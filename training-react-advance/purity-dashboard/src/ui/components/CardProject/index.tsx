@@ -21,41 +21,35 @@ const CardProject = ({
     onClick && onClick(id)
   }
   return (
-    <VStack>
+    <VStack alignItems='flex-start'>
       <Box
         position="relative"
         borderRadius="lg"
         w='100%'
-        h='192px'
         mb="20px"
-        borderColor="transparent"
       >
         <Image
-          w='100%'
-          h='100%'
-          borderRadius="lg"
-          objectFit="cover"
           src={image}
           alt={name}
+          w="100%"
+          borderRadius="lg"
+          objectFit="cover"
         />
-        <Image
+        <Box
           position="absolute"
           borderRadius="lg"
-          borderColor="transparent"
           w="100%"
           h="100%"
           top={0}
-          left={0}
           zIndex={2}
           bgGradient="linear(to-t, linear.100, linear.200)"
         />
       </Box>
-      <VStack alignItems="flex-start" w="100%" px="10px">
+      <VStack alignItems="flex-start" maxW='410px' px="10px">
         <Text size="textSm">Project #{projectId}</Text>
         <Heading mb="10px">{name}</Heading>
         <Text
           mb="20px"
-          maxW='370px'
           noOfLines={2}
         >
           {description}
