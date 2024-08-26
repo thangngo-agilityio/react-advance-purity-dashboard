@@ -1,12 +1,12 @@
 import { Heading, HStack, Text } from '@chakra-ui/react';
 
-type TInforItemProps = {
+type TInfoItemProps = {
   param?: string;
   content?: string;
 };
 
-const InforItem = ({ param, content, ...rest }: TInforItemProps) => (
-  <HStack {...rest}>
+const InfoItem = ({ param, content }: TInfoItemProps) => (
+  <HStack>
     <Heading fontSize="sm" color="text.500">
       {param}:
     </Heading>
@@ -14,4 +14,4 @@ const InforItem = ({ param, content, ...rest }: TInforItemProps) => (
   </HStack>
 );
 
-export default InforItem;
+export default InfoItem;
