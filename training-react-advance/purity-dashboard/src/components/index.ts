@@ -10,7 +10,7 @@ export { default as AuthForm } from './Form/AuthForm';
 export { default as Table } from './Table';
 export { default as ModalTable } from './Modal/ModalTable';
 export { default as CardInfo } from './CardInfo';
-export { default as InforItem } from './InforItem';
+export { default as InfoItem } from './InfoItem';
 export { default as Modal } from './Modal';
 export { default as ActionCell } from './Table/Body/ActionCell';
 export { default as AuthorCell } from './Table/Body/AuthorCell';

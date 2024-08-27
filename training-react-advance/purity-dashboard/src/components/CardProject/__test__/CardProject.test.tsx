@@ -1,7 +1,13 @@
 import { render } from "@testing-library/react";
+
+// Components
 import CardProject from "..";
-import { PROJECT_DATA_MOCK } from "src/mocks";
-import { TRecordProject } from "src/types";
+
+// Mocks
+import { PROJECT_DATA_MOCK } from "@/mocks";
+
+// Types
+import { TRecordProject } from "@/types";
 
 describe('CardProject component test case', () => {
   it('Render when data is available', () => {

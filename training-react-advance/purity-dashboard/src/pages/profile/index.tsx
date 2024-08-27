@@ -22,7 +22,7 @@ import {
   ProjectForm,
   Switch,
   CardInfo,
-  InforItem,
+  InfoItem,
   CardProject,
   UserForm,
   ProjectDetail,
@@ -294,11 +294,11 @@ const ProfilePage = () => {
             </Text>
             <LineIcon />
             <VStack alignItems="flex-start" gap="14px">
-              <InforItem param="Full Name" content={name} />
-              <InforItem param="Mobile" content={phone} />
-              <InforItem param="Email" content={email} />
-              <InforItem param="Location" content={location} />
-              <InforItem param="Social Media" />
+              <InfoItem param="Full Name" content={name} />
+              <InfoItem param="Mobile" content={phone} />
+              <InfoItem param="Email" content={email} />
+              <InfoItem param="Location" content={location} />
+              <InfoItem param="Social Media" />
             </VStack>
           </VStack>
         </CardInfo>
