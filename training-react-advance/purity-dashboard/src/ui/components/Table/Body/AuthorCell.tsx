@@ -10,19 +10,15 @@ const AuthorCell = ({ image, name, email }: TDataSource) => (
       <Avatar src={`${image}`} alt={`${name}`} />
       <VStack ml="15px" alignItems="flex-start" gap={0}>
         <Heading
-          size="md"
-          textOverflow="ellipsis"
-          overflow="hidden"
-          textTransform="capitalize"
           w={{ base: '200px', xl: '220px', '3xl': '450px', '6xl': '450px' }}
+          size="md"
+          textTransform="capitalize"
         >
           {name as string}
         </Heading>
         <Text
           w={{ base: '200px', xl: '220px', '3xl': '450px', '6xl': '450px' }}
           variant="tertiary"
-          textOverflow="ellipsis"
-          overflow="hidden"
         >
           {email as string}
         </Text>

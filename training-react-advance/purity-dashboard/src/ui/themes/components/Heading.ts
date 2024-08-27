@@ -3,6 +3,8 @@ import { defineStyleConfig } from '@chakra-ui/react';
 export const Heading = defineStyleConfig({
   baseStyle: {
     fontFamily: 'heading',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
 
   sizes: {
