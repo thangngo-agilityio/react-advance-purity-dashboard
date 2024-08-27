@@ -2,10 +2,10 @@ import { Suspense } from 'react';
 import { Text } from '@chakra-ui/react';
 
 // Providers
-import { ChakraProvider, QueryProvider, RouterProvider } from '@/lib/providers';
+import { ChakraProvider, QueryProvider, RouterProvider } from '@/providers';
 
 // components
-import { ErrorBoundary, LoadingIndicator } from './ui';
+import { ErrorBoundary, LoadingIndicator } from '@/components';
 
 const App = () => {
   return (
