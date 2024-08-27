@@ -24,8 +24,7 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@/lib/*": ["src/lib/*"],
-      "@/ui/*": ["src/ui/*"],
+      "@/*": ["src/*"],
       "public/*": ["public/*"]
     }
   },
@@ -35,6 +34,6 @@
     "@testing-library/jest-dom",
     "vite-plugin-svgr/client"
   ],
-  "include": ["./src/", "jest.config.ts"],
+  "include": ["src", "jest.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
